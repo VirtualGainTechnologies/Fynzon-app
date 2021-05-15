@@ -1,0 +1,30 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fyn_zon/tokenPass.dart';
+
+Future postSell(String base, String tread, String usdt,
+    String btc, BuildContext context) async
+{
+  var prefs = await SharedPreferences.getInstance();
+  var user = prefs.getString("userid");
+  AuthToken.userid = user;
+  var token = prefs.getString("token");
+  AuthToken.authtoken = token;
+  String url =AuthToken.api + "/" + "v2/sellPeer/" + AuthToken.authtoken;
+  final response = await http.post(url,
+      headers: {"Accept": "Application/json"},
+      body: {
+
+        'baseCurrency': base,
+        'tradingCurrency': tread,
+        'volume': usdt,
+        'price': btc,
+      }
+  );
+
+  var convertedDatatoJson = jsonDecode(response.body);
+  return convertedDatatoJson;
+}
+
