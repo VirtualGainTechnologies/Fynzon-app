@@ -41,3 +41,18 @@ Future registerUser(String phone_number, String fname, String lname, String emai
 
 }
 
+Future mainScreen() async
+{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String url = AuthToken.api + "/" + "client/userDetails/"+ prefs.getString('token');
+  final response= await http.post(url,
+      headers: {"Accept": "Application/json"},
+      body: {
+
+      }
+  );
+
+  var convertedDatatoJson =jsonDecode(response.body);
+  return convertedDatatoJson;
+
+}

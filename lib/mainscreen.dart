@@ -1,20 +1,122 @@
+
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/Profile.dart';
+import 'package:fyn_zon/api/api.dart';
 import 'package:fyn_zon/deposit.dart';
-import 'package:fyn_zon/horizontal_list.dart';
+import 'package:fyn_zon/tokenPass.dart';
 import 'package:fyn_zon/wallet.dart';
 import 'package:fyn_zon/dBar.dart';
 import 'package:fyn_zon/withdraw.dart';
-import 'package:provider/provider.dart';
-import 'package:fyn_zon/animation/FadeAnimation.dart';
 import './MarketTab.dart';
-import 'package:flutter/services.dart';
-import './Info.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 import './orderHistory.dart';
-import 'Network/network_aware_widget.dart';
-import 'Network/network_status_service.dart';
+import 'mainApi.dart';
 import 'orderHistoryPage.dart';
+
+class HomePage {
+  String message;
+  String error;
+  Data data;
+
+  HomePage({this.message, this.error, this.data});
+
+  HomePage.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    error = json['error'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['message'] = this.message;
+    data['error'] = this.error;
+    if (this.data != null) {
+      data['data'] = this.data.toJson();
+    }
+    return data;
+  }
+}
+
+class Data {
+  String country;
+  String panImage;
+  String adhaarImage;
+  String adhaarBackImage;
+  bool updateMainNetBalance;
+  bool kycApproved;
+  String sId;
+  int phone;
+  String fname;
+  String mname;
+  String lname;
+  String email;
+  String pin;
+  String accType;
+  String bankAccNo;
+  String ifscCode;
+
+  Data(
+      {this.country,
+        this.panImage,
+        this.adhaarImage,
+        this.adhaarBackImage,
+        this.updateMainNetBalance,
+        this.kycApproved,
+        this.sId,
+        this.phone,
+        this.fname,
+        this.mname,
+        this.lname,
+        this.email,
+        this.pin,
+        this.accType,
+        this.bankAccNo,
+        this.ifscCode});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    country = json['country'];
+    panImage = json['panImage'];
+    adhaarImage = json['adhaarImage'];
+    adhaarBackImage = json['adhaarBackImage'];
+    updateMainNetBalance = json['updateMainNetBalance'];
+    kycApproved = json['kycApproved'];
+    sId = json['_id'];
+    phone = json['phone'];
+    fname = json['fname'];
+    mname = json['mname'];
+    lname = json['lname'];
+    email = json['email'];
+    pin = json['pin'];
+    accType = json['accType'];
+    bankAccNo = json['bankAccNo'];
+    ifscCode = json['ifscCode'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['country'] = this.country;
+    data['panImage'] = this.panImage;
+    data['adhaarImage'] = this.adhaarImage;
+    data['adhaarBackImage'] = this.adhaarBackImage;
+    data['updateMainNetBalance'] = this.updateMainNetBalance;
+    data['kycApproved'] = this.kycApproved;
+    data['_id'] = this.sId;
+    data['phone'] = this.phone;
+    data['fname'] = this.fname;
+    data['mname'] = this.mname;
+    data['lname'] = this.lname;
+    data['email'] = this.email;
+    data['pin'] = this.pin;
+    data['accType'] = this.accType;
+    data['bankAccNo'] = this.bankAccNo;
+    data['ifscCode'] = this.ifscCode;
+    return data;
+  }
+}
 
 class MainScreenPage extends StatefulWidget {
   @override
@@ -31,6 +133,61 @@ class MainScreenState extends State<MainScreenPage> {
     OrderHistoryMain()
   ];
   final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
+  HomePage futureAlbum;
+  /*@override
+  void initState() {
+    super.initState();
+    fetchAlbum1();
+    setState(() {
+
+    });
+  }*/
+  Future<void> main() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs?.clear();
+    prefs.remove('token');
+    prefs.remove('userid');
+    /* AuthToken.authtoken = null;
+    AuthToken.userid = null;*/
+    Navigator.pop(context);
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        type: PageTransitionType.leftToRight,
+        child: MainScreenPage(),
+      ),
+    );   /* Navigator
+        .of(context)
+        .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) =>MainScreenPage()
+    ));*/
+        (Route route) => false;
+  }
+  var userid;
+  Future<void> fetchAlbum1() async {
+    /* var data = {
+
+    };*/
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userid = prefs.getString('userid');
+    });
+    var apiData = {
+      "url": AuthToken.api + "/" + "client/userDetails/"+ prefs.getString('token'),
+      //"data": data
+    };
+    ApiClass.getApiCall(apiData, (onSuccess) {
+      print(onSuccess.toString());
+      futureAlbum = HomePage.fromJson(jsonDecode(onSuccess['response']));
+      print("walletqrcode>>>>>>> " + futureAlbum.data.phone.toString());
+      //print("walletqrcode>>>>>>> " + futureAlbum.message.toString());
+      //print(futureAlbum.message);
+      setState(() {
+      });
+    }, (onError) {
+      print(onError);
+    });
+  }
+
   Widget build(BuildContext context) {
     Map<int, Color> color = {
       50: Color.fromRGBO(136, 14, 79, .1),
@@ -46,7 +203,6 @@ class MainScreenState extends State<MainScreenPage> {
     };
 
     MaterialColor colorCustom = MaterialColor(0xFF203040, color);
-
     return WillPopScope(
       onWillPop: (){
         //Navigator.pop(context);
@@ -92,15 +248,17 @@ class MainScreenState extends State<MainScreenPage> {
           appBar: AppBar(
             shadowColor: Colors.transparent,
             leading: GestureDetector(
-              onTap:(){
+              onTap:() {
+                //fetchAlbum1();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Dbar(),
+                    ),
+                  );
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Dbar(),
-                  ),
-                );
-              },
+                },
+
               child: Container(
                 child: Icon(Icons.supervised_user_circle_outlined,color: Colors.white,),
               ),
