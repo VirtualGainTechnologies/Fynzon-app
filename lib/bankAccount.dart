@@ -54,9 +54,7 @@ class BankAccountState extends State<BankAccount> {
       String accType,
       BuildContext context) async {
     setState(() => _isLoading = true);
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    AuthToken.authtoken = token;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     var data = {
       "bankAccNo": bankAccNo,
       "ifscCode": ifscCode,
@@ -65,7 +63,7 @@ class BankAccountState extends State<BankAccount> {
 
     var apiData = {
       "url":
-      AuthToken.api + "/" + "client/updateProfile/" + AuthToken.authtoken,
+      AuthToken.api + "/" + "client/updateProfile/" + prefs.getString('token'),
       "data": data
     };
 

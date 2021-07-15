@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fyn_zon/deposit.dart';
 import 'package:fyn_zon/paymentOption.dart';
 import 'package:fyn_zon/services/service.dart';
-import './deposit.dart';
+import './wallet.dart';
 import './withdraw.dart';
 
 class HorizontalList extends StatefulWidget {
@@ -16,19 +17,13 @@ class _HorizontalListState extends State<HorizontalList> {
         servicename: "Deposit", serviceicon: "assets/images/fz_deposit.png"),
     Service(
         servicename: "Withdraw", serviceicon: "assets/images/fz_withdraw.png"),
-    Service(
-        servicename: "Receive", serviceicon: "assets/images/fz_receive.png"),
-    Service(servicename: "Pay", serviceicon: "assets/images/fz_pay.png"),
-    Service(
-        servicename: "INR Wallet", serviceicon: "assets/images/fz_deposit.png"),
-    Service(servicename: "Deposit", serviceicon: "assets/images/fz_funds.png"),
+    Service(servicename: "Wallet", serviceicon: "assets/images/fz_deposit.png"),
   ];
 
   final _pageOptions = [
-    PaymentOption(),
+    DepositPage(),
     WithdrawPage(),
-    WithdrawPage(),
-    WithdrawPage(),
+    Wallet(),
   ];
 
   Widget build(BuildContext context) {
@@ -39,6 +34,7 @@ class _HorizontalListState extends State<HorizontalList> {
           children: [
             Expanded(
               child: ListView.builder(
+                  // shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: list_service.length,
                   itemBuilder: (context, index) {
@@ -52,25 +48,23 @@ class _HorizontalListState extends State<HorizontalList> {
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(),
+                        padding: const EdgeInsets.only(
+                            top: 10, bottom: 10, left: 20, right: 20),
 //          elevation: 0,
 //          shape: RoundedRectangleBorder(
 //            borderRadius: BorderRadius.circular(0.0),
 //          ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, bottom: 10, left: 20, right: 20),
-                          child: Column(children: <Widget>[
-                            Image.asset(
-                              list_service[index].serviceicon,
-                              height: 30,
-                              width: 30,
-                            ),
-                            Text(
-                              list_service[index].servicename,
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ]),
-                        ),
+                        child: Column(children: <Widget>[
+                          Image.asset(
+                            list_service[index].serviceicon,
+                            height: 30,
+                            width: 30,
+                          ),
+                          Text(
+                            list_service[index].servicename,
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ]),
                       ),
                     );
                   }),

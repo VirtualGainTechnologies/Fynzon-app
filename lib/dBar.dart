@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fyn_zon/Asset/assets.dart';
 import 'package:fyn_zon/animation/FadeAnimation.dart';
+import 'package:fyn_zon/bankAccount.dart';
+import 'package:fyn_zon/orderHistory.dart';
+import 'package:fyn_zon/paymentOption.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:page_transition/page_transition.dart';
@@ -45,6 +49,7 @@ class Data {
   String address;
   String adhaarNumber;
   String city;
+  bool kycApproved;
   String dob;
   String panNumber;
   String pinCode;
@@ -62,6 +67,7 @@ class Data {
         this.address,
         this.adhaarNumber,
         this.city,
+        this.kycApproved,
         this.dob,
         this.panNumber,
         this.pinCode,
@@ -79,6 +85,7 @@ class Data {
     address = json['address'];
     adhaarNumber = json['adhaarNumber'];
     city = json['city'];
+    kycApproved = json['kycApproved'];
     dob = json['dob'];
     panNumber = json['panNumber'];
     pinCode = json['pinCode'];
@@ -97,6 +104,7 @@ class Data {
     data['pin'] = this.pin;
     data['address'] = this.address;
     data['adhaarNumber'] = this.adhaarNumber;
+    data['kycApproved'] = this.kycApproved;
     data['city'] = this.city;
     data['dob'] = this.dob;
     data['panNumber'] = this.panNumber;
@@ -114,9 +122,11 @@ class Dbar extends StatefulWidget {
 class _DbarState extends State<Dbar> {
   Future<void> main() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs?.clear();
-    AuthToken.authtoken = null;
-    AuthToken.userid = null;
+   // prefs?.clear();
+    prefs.remove('token');
+    prefs.remove('userid');
+   /* AuthToken.authtoken = null;
+    AuthToken.userid = null;*/
     Navigator.pop(context);
     Navigator.pushReplacement(
       context,
@@ -139,16 +149,17 @@ class _DbarState extends State<Dbar> {
 
     });
   }
-
+  var userid;
   Future<void> fetchAlbum1() async {
     /* var data = {
 
     };*/
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    AuthToken.authtoken = token;
-    var apiData = {
-      "url": AuthToken.api + "/" + "client/userDetails/"+ AuthToken.authtoken,
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userid = prefs.getString('userid');
+    });
+      var apiData = {
+      "url": AuthToken.api + "/" + "client/userDetails/"+ prefs.getString('token'),
       //"data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -171,7 +182,7 @@ class _DbarState extends State<Dbar> {
         ),),
       ),
       body: Container(
-          child: AuthToken.userid == null ?
+          child: userid == null ?
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -532,19 +543,7 @@ class _DbarState extends State<Dbar> {
                                 child: UpdateProfile(name, lastname,  state, nationality, email, city, pincode, pin, phone,),
                               ),
                             );
-                           /* Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    UpdateProfile(name, lastname,  state, nationality, email, city, pincode, pin, phone,),
-                              ),
-                            );*/
-                            /* Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UserProfile(),
-                                  ),
-                                );*/
+
                           },
                           child:FadeAnimation(
                             1.5, Container(
@@ -572,9 +571,10 @@ class _DbarState extends State<Dbar> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.leftToRight,
-                                child: KYC(),
+                                child: Assets(),
                               ),
                             );
+
                           },
                           child:FadeAnimation(
                             1.5, Container(
@@ -585,7 +585,152 @@ class _DbarState extends State<Dbar> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(
-                                    'Verify Your Account',
+                                    'Assets',
+                                    style: TextStyle(color: Colors.white, fontSize: 15),
+                                  ),
+                                  Icon(Icons.chevron_right,color: Colors.white,),
+                                ]
+
+                            ),
+                          ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.leftToRight,
+                                child: OrderHistory(),
+                              ),
+                            );
+
+                          },
+                          child:FadeAnimation(
+                            1.5, Container(
+                            margin: EdgeInsets.only(top: 10),
+                            color: Color(0xFF233446),
+                            padding: EdgeInsets.fromLTRB(15, 10, 20, 10),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'Reports',
+                                    style: TextStyle(color: Colors.white, fontSize: 15),
+                                  ),
+                                  Icon(Icons.chevron_right,color: Colors.white,),
+                                ]
+
+                            ),
+                          ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            if(futureAlbum.data.kycApproved == true)
+                            {
+                             return showDialog(
+                                 context: context,
+                                 barrierDismissible: false,
+                                 builder: (BuildContext context) {
+                                   return AlertDialog(
+                                     backgroundColor: Colors.white,
+                                     title: Text("Kyc Approved !"),
+                                     content: Text("Your KYC has already approved. "),
+                                     actions: <Widget>[
+                                       FlatButton(
+                                         child: Text("Ok",style: TextStyle(
+                                             color: Colors.black,
+                                           fontSize: 18
+                                         ),),
+                                         onPressed: () {
+                                           Navigator.of(context).pop();
+                                         },
+                                       ),
+                                     ],
+                                   );
+                                 }
+                             );
+                            }
+                            else {
+                              print("lalit"+futureAlbum.data.kycApproved.toString());
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRight,
+                                  child: KYC(
+                                    name, lastname, state, city, pincode,),
+                                ),
+                              );
+                            }
+                          },
+                          child:FadeAnimation(
+                            1.5, Container(
+                            margin: EdgeInsets.only(top: 10),
+                            color: Color(0xFF233446),
+                            padding: EdgeInsets.fromLTRB(15, 10, 20, 10),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'KYC',
+                                    style: TextStyle(color: Colors.white, fontSize: 15),
+                                  ),
+                                  Icon(Icons.chevron_right,color: Colors.white,),
+                                ]
+
+                            ),
+                          ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            if(futureAlbum.data.kycApproved == true){
+                              return showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.white,
+                                      title: Text("Kyc Approved !"),
+                                      content: Text("Your KYC has already approved. "),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text("Ok",style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 18
+                                          ),),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  }
+                              );
+                            }else {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRight,
+                                  child: PaymentOption(),
+                                ),
+                              );
+                            }
+                          },
+                          child:FadeAnimation(
+                            1.5, Container(
+                            margin: EdgeInsets.only(top: 10),
+                            color: Color(0xFF233446),
+                            padding: EdgeInsets.fromLTRB(15, 10, 20, 10),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'Bank Account Details',
                                     style: TextStyle(color: Colors.white, fontSize: 15),
                                   ),
                                   Icon(Icons.chevron_right,color: Colors.white,),

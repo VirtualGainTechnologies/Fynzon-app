@@ -44,10 +44,7 @@ class _SignupPageState extends State<SignupPage> {
       'phone': phone_number,
     };
 
-    var apiData = {
-      "url": AuthToken.api + "/" +"generateOTP",
-      "data": data
-    };
+    var apiData = {"url": AuthToken.api + "/" + "generateOTP", "data": data};
 
     ApiClass.postApiCall(apiData, (onSuccess) {
       print(onSuccess.toString());
@@ -68,8 +65,12 @@ class _SignupPageState extends State<SignupPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                OtpRegister(phoneController.text, pinController.text,fnameController.text,lnameController.text,emailController.text)),
+            builder: (context) => OtpRegister(
+                phoneController.text,
+                pinController.text,
+                fnameController.text,
+                lnameController.text,
+                emailController.text)),
       );
     }, (onError) {
       Fluttertoast.showToast(
@@ -83,6 +84,7 @@ class _SignupPageState extends State<SignupPage> {
       print("Error working with the api");
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -119,13 +121,16 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.phone,
                         controller: phoneController,
                         cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         validator: (text) {
-                          if (text.trim().length < 10)
-                            return "Number Should not be blank.";
+                          if (text.isEmpty) return 'Please enter mobile number';
+                          String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                          RegExp regExp = new RegExp(patttern);
+                          if (!regExp.hasMatch(text))
+                            return 'Please enter valid mobile number'
+                                .toLowerCase();
                           phone_number = phoneController.text;
+
                           return null;
                         },
                         onSaved: (text) => phone_number = text,
@@ -134,12 +139,14 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.blueGrey),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),),
+                            borderSide: BorderSide(color: Colors.blueGrey),
+                          ),
                           filled: true,
-                          hintStyle:
-                          new TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold),
-                            hintText: "Phone Number",
-                           // fillColor: Colors.white70
+                          hintStyle: new TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold),
+                          hintText: "Phone Number",
+                          // fillColor: Colors.white70
                         ),
                       ),
                       SizedBox(
@@ -150,9 +157,7 @@ class _SignupPageState extends State<SignupPage> {
                         autofocus: false,
                         controller: fnameController,
                         cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         validator: (text) {
                           if (text.trim().length < 2)
                             return "name Should not be blank.";
@@ -165,10 +170,12 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.blueGrey),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),),
+                            borderSide: BorderSide(color: Colors.blueGrey),
+                          ),
                           filled: true,
-                          hintStyle:
-                          new TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold),
+                          hintStyle: new TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold),
                           hintText: "First Name",
                           // fillColor: Colors.white70
                         ),
@@ -181,9 +188,7 @@ class _SignupPageState extends State<SignupPage> {
                         autofocus: false,
                         controller: lnameController,
                         cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         validator: (text) {
                           if (text.trim().length < 2)
                             return "Last Name Should not be blank.";
@@ -196,10 +201,12 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.blueGrey),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),),
+                            borderSide: BorderSide(color: Colors.blueGrey),
+                          ),
                           filled: true,
-                          hintStyle:
-                          new TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold),
+                          hintStyle: new TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold),
                           hintText: "Last Name",
                           // fillColor: Colors.white70
                         ),
@@ -213,9 +220,7 @@ class _SignupPageState extends State<SignupPage> {
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         autovalidate: false,
                         validator: (text) {
                           if (text.isEmpty) return 'Enter Email Id';
@@ -234,12 +239,14 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.blueGrey),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),),
+                            borderSide: BorderSide(color: Colors.blueGrey),
+                          ),
                           filled: true,
-                          hintStyle:
-                          new TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold),
-                            hintText: "Email Id",
-                            //fillColor: Colors.white70
+                          hintStyle: new TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold),
+                          hintText: "Email Id",
+                          //fillColor: Colors.white70
                         ),
                       ),
                       SizedBox(
@@ -251,15 +258,10 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.number,
                         controller: pinController,
                         cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         validator: (text) {
-
-                            if(text.isEmpty)
-                            return "Enter Pin";
-                            if (text.trim().length != 4)
-                              return "4 digit Pin";
+                          if (text.isEmpty) return "Enter Pin";
+                          if (text.trim().length != 4) return "4 digit Pin";
                           pin = pinController.text;
                           return null;
                         },
@@ -269,10 +271,12 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.blueGrey),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),),
+                            borderSide: BorderSide(color: Colors.blueGrey),
+                          ),
                           filled: true,
-                          hintStyle:
-                          new TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold),
+                          hintStyle: new TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold),
                           hintText: "4 Digit Pin",
                           //fillColor: Colors.white70
                         ),
@@ -286,14 +290,11 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.number,
                         controller: cpinController,
                         cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         validator: (text) {
-                          if(text.isEmpty)
-                            return "Enter Pin";
-                          if (text.trim().length != 4)
-                            return "4 digit Pin";
+                          if (text.isEmpty) return "Enter Pin";
+                          if (text != pinController.text)
+                            return "Pin did'n match";
                           cpin = cpinController.text;
                           return null;
                         },
@@ -303,10 +304,12 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.blueGrey),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),),
+                            borderSide: BorderSide(color: Colors.blueGrey),
+                          ),
                           filled: true,
-                          hintStyle:
-                          new TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold),
+                          hintStyle: new TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold),
                           hintText: "Confirm PIN",
                           //fillColor: Colors.white70
                         ),
@@ -319,93 +322,90 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10),
-                  child: Text("Referral Code",style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.w600
-                  ),),
+                  child: Text(
+                    "Referral Code",
+                    style: TextStyle(
+                        color: Colors.blueGrey, fontWeight: FontWeight.w600),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child:FormField<bool>(
-                builder: (state) {
-                  return Column(
-                    children: <Widget>[
-                      Row(
+                Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: FormField<bool>(
+                    builder: (state) {
+                      return Column(
                         children: <Widget>[
-                          Checkbox(
-                              value: checkBoxValue,
-                              onChanged: (value) {
-                                setState(() {
+                          Row(
+                            children: <Widget>[
+                              Checkbox(
+                                  value: checkBoxValue,
+                                  onChanged: (value) {
+                                    setState(() {
 //save checkbox value to variable that store terms and notify form that state changed
-                                  checkBoxValue = value;
-                                  state.didChange(value);
-                                });
-                              }),
-                          RichText(
-                            text: new TextSpan(
-                              children: <TextSpan>[
-                                new TextSpan(
-                                  text: 'I agree to Fynzon`s' ,style: TextStyle(
-                                    color: Colors.blueGrey,
-                                    fontSize: 12
+                                      checkBoxValue = value;
+                                      state.didChange(value);
+                                    });
+                                  }),
+                              RichText(
+                                text: new TextSpan(
+                                  children: <TextSpan>[
+                                    new TextSpan(
+                                      text: 'I agree to Fynzon`s',
+                                      style: TextStyle(
+                                          color: Colors.blueGrey, fontSize: 12),
+                                    ),
+                                    new TextSpan(
+                                      text: ' Terms of Service',
+                                      style: TextStyle(
+                                          color: Colors.blue, fontSize: 12),
+                                    ),
+                                  ],
                                 ),
-                                ),
-                                new TextSpan(
-                                  text: ' Terms of Service' ,style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 12
-                                ),
-                                ),
-
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
 //display error in matching theme
-                      Text(
-                        state.errorText ?? '',
-                        style: TextStyle(
-                          color: Theme.of(context).errorColor,
-                        ),
-                      )
-                    ],
-                  );
-                },
+                          Text(
+                            state.errorText ?? '',
+                            style: TextStyle(
+                              color: Theme.of(context).errorColor,
+                            ),
+                          )
+                        ],
+                      );
+                    },
 //output from validation will be displayed in state.errorText (above)
-                validator: (value) {
-                  if (!checkBoxValue) {
-                    return 'You need to accept terms';
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-            ),
-        SizedBox(
-        height: 10,
-      ),
+                    validator: (value) {
+                      if (!checkBoxValue) {
+                        return 'You need to accept terms';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
-                  padding:
-                  EdgeInsets.only(bottom: 20, left: 40, right: 40),
-                  child: _isLoading ?
-                      CircularProgressIndicator():
-                  Container(
-                    padding: EdgeInsets.only(top: 3, left: 3),
-                    child: MaterialButton(
-                      minWidth: double.infinity,
-                      height: 40,
-                      onPressed: () async {
-                      // if(pin != cpin)
+                  padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : Container(
+                          padding: EdgeInsets.only(top: 3, left: 3),
+                          child: MaterialButton(
+                            minWidth: double.infinity,
+                            height: 40,
+                            onPressed: () async {
+                              // if(pin != cpin)
 
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
-                          createAlbum();
+                              if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
+                                createAlbum();
 
-                         /* setState(() => _isLoading = true);
+                                /* setState(() => _isLoading = true);
                           var rsp = await registerUser(
                               phone_number, fname, lname, email, pin);
                           var data = rsp['data'];
@@ -434,21 +434,21 @@ class _SignupPageState extends State<SignupPage> {
 
                             });
                           }*/
-                        }
-                      },
-                      color: Colors.blue,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
+                              }
+                            },
+                            color: Colors.blue,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              "SIGN UP",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
                 ),
               ],
             ),

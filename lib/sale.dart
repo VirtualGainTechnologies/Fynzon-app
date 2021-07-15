@@ -49,7 +49,7 @@ class SalePageState extends State<SalePage> {
   void initState() {
     super.initState();
     usdtController.text = widget.price;
-    btcController.text = "0";
+    //btcController.text = "0";
 
   }
   @override
@@ -69,7 +69,7 @@ class SalePageState extends State<SalePage> {
                   2.0,
                   Column(
                     children: [
-                      Align(
+                     /* Align(
                         alignment: Alignment.topRight,
                         child: Container(
                           alignment: Alignment.topRight,
@@ -109,7 +109,7 @@ class SalePageState extends State<SalePage> {
                                 });
                               }),
                         ),
-                      ),
+                      ),*/
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 30),
                         decoration: BoxDecoration(
@@ -140,7 +140,7 @@ class SalePageState extends State<SalePage> {
                                 Text(
                                   widget.base,
                                   style: TextStyle(
-                                    fontSize: 10.0, color: Color(0xFF18222C),
+                                    fontSize: 10.0, color: Colors.white,
                                   ),
                                 ),
                               ],
@@ -275,7 +275,7 @@ class SalePageState extends State<SalePage> {
                                   Text(
                                     widget.tread,
                                     style: TextStyle(
-                                      fontSize: 10.0, color: Color(0xFF18222C),
+                                      fontSize: 10.0, color: Colors.white,
                                     ),
                                   ),
                                 ],
@@ -284,48 +284,56 @@ class SalePageState extends State<SalePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                    width: 50,
-                                    //width: MediaQuery.of(context).size.width,
-                                    child: TextFormField(
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(color: Colors.white),
-                                      keyboardType: TextInputType.number,
-                                      controller: btcController,
-                                      validator: (text) {
-                                        if (text.isEmpty && text==0 )
-                                          return "amount Should not be blank.";
-                                        // btc = btcController.text;
+                                Expanded(
+                                  child: Container(
 
-                                        return null;
-
-                                      },
-                                      onSaved: (text) => btc = text,
-                                      onChanged: (val){
-                                        setState(() {
-                                          usdt = usdtController.text;
-                                          btc = btcController.text;
-                                          var sum = double.parse(usdt) * double.parse(btc);
-                                          if(widget.base == iNR){
-                                            result1 = sum;
-                                            result = result1.round().toString();
-                                            print(sum.toString());
-                                          }else{
-                                            result = sum.toString();
+                                      //width: MediaQuery.of(context).size.width,
+                                      child: TextFormField(
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(color: Colors.white),
+                                        keyboardType: TextInputType.number,
+                                        minLines: 1,
+                                        maxLines: 5,
+                                        controller: btcController,
+                                        validator: (text) {
+                                          if(text.isEmpty){
+                                            return "Please enter amount";}
+                                          var n = int.tryParse(text);
+                                          if(n == 0) {
+                                            return "Please Enter valid amount";
                                           }
+                                          // btc = btcController.text;
 
-                                        });
+                                          return null;
 
-                                      },
-                                      decoration: new InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle:
-                                          new TextStyle(color: Colors.grey[800]),
-                                          hintText: "",
-                                          labelStyle:
-                                          new TextStyle(color: Colors.white),
-                                          fillColor: Colors.white70),
-                                    )),
+                                        },
+                                        onSaved: (text) => btc = text,
+                                        onChanged: (val){
+                                          setState(() {
+                                            usdt = usdtController.text;
+                                            btc = btcController.text;
+                                            var sum = double.parse(usdt) * double.parse(btc);
+                                            if(widget.base == iNR){
+                                              result1 = sum;
+                                              result = result1.round().toString();
+                                              print(sum.toString());
+                                            }else{
+                                              result = sum.toString();
+                                            }
+
+                                          });
+
+                                        },
+                                        decoration: new InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle:
+                                            new TextStyle(color: Colors.white),
+                                            hintText: "0",
+                                            labelStyle:
+                                            new TextStyle(color: Colors.white),
+                                            fillColor: Colors.white70),
+                                      )),
+                                ),
                                 /*SizedBox(
                                 width: 25,
                               ),*/
@@ -422,7 +430,7 @@ class SalePageState extends State<SalePage> {
                                   Text(
                                     widget.base,
                                     style: TextStyle(
-                                      fontSize: 10.0, color: Color(0xFF18222C),
+                                      fontSize: 10.0, color: Colors.white,
                                     ),
                                   ),
                                 ],
@@ -512,6 +520,8 @@ class SalePageState extends State<SalePage> {
                           RaisedButton(
                             color: Colors.red,
                             onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
                               setState(() => _isLoading = true);
                               base = widget.base;
                               tread = widget.tread;
@@ -558,8 +568,8 @@ class SalePageState extends State<SalePage> {
                                 btcValue = value1.substring(0,btcpointIndex)+value1.substring(btcpointIndex,btcpointIndex+5);
                               }
                               print("btc"+btcValue);
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
+                             /* if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();*/
 
                                 var rsp = await postSell(base, tread, btcValue,usdtValue, context);
                                 var data = rsp['data'];
@@ -601,11 +611,17 @@ class SalePageState extends State<SalePage> {
                               }
                             },
                             child: Text(
-                              "SALE",
+                              "PLACE SELL ORDER",
                               style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ),
                         ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 5),
+                        child: Text('Fee: Maker fee: 0.1% | Taker fee:0.1%',style: TextStyle(
+                            color: Colors.white
+                        ),),
                       )
                     ],
                   ),

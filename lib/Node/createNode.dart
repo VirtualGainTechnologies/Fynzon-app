@@ -3,18 +3,19 @@ import 'dart:convert';
 import 'package:fyn_zon/mainApi.dart';
 import 'package:fyn_zon/signup.dart';
 import 'package:fyn_zon/tokenPass.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateUSDT {
   // ignore: missing_return
   static Future<SignupPage> balance(String phone, String pin) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     var data = {
       'phone': phone,
       'pin': pin,
     };
     var apiData = {
       "url":
-          "http://Fynzonbackend-env.eba-whd8wud9.ap-southeast-1.elasticbeanstalk.com/clientBalance/" +
-              AuthToken.authtoken,
+          AuthToken.api+"/"+"clientBalance/" + prefs.getString('token'),
       "data": data
     };
     ApiClass.postApiCall(apiData, (onSuccess) {
@@ -31,7 +32,7 @@ class CreateUSDT {
     var data = {'phone': phone, 'pin': pin};
     var apiData = {
       "url":
-          "http://Fynzonbackend-env.eba-whd8wud9.ap-southeast-1.elasticbeanstalk.com/createUSDTNode",
+      AuthToken.api+"/"+"createUSDTNode",
       "data": data
     };
     ApiClass.postApiCall(apiData, (onSuccess) {
@@ -48,7 +49,7 @@ class CreateUSDT {
     var data = {'phone': phone, 'pin': pin};
     var apiData = {
       "url":
-          "http://Fynzonbackend-env.eba-whd8wud9.ap-southeast-1.elasticbeanstalk.com/createETHNode",
+      AuthToken.api+"/"+"createETHNode",
       "data": data
     };
     ApiClass.postApiCall(apiData, (onSuccess) {
@@ -65,7 +66,7 @@ class CreateUSDT {
     var data = {'phone': phone, 'pin': pin};
     var apiData = {
       "url":
-          "http://Fynzonbackend-env.eba-whd8wud9.ap-southeast-1.elasticbeanstalk.com/createBTCNode",
+      AuthToken.api+"/"+"createBTCNode",
       "data": data
     };
     ApiClass.postApiCall(apiData, (onSuccess) {
@@ -82,7 +83,7 @@ class CreateUSDT {
     var data = {'phone': phone, 'pin': pin};
     var apiData = {
       "url":
-          "http://Fynzonbackend-env.eba-whd8wud9.ap-southeast-1.elasticbeanstalk.com/createCRMTNode",
+      AuthToken.api+"/"+"createCRMTNode",
       "data": data
     };
     ApiClass.postApiCall(apiData, (onSuccess) {
@@ -102,7 +103,7 @@ class CreateUSDT {
     };
     var apiData = {
       "url":
-          "http://Fynzonbackend-env.eba-whd8wud9.ap-southeast-1.elasticbeanstalk.com/createBCHNode",
+      AuthToken.api+"/"+"createBCHNode",
       "data": data
     };
     ApiClass.postApiCall(apiData, (onSuccess) {

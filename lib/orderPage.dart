@@ -119,20 +119,22 @@ class OrderPageState extends State<OrderPage> {
   @override
   void initState() {
     super.initState();
-    if(AuthToken.marketdepthtade.isEmpty){
+    fetchBuy();
+    fetchSell();
+   /* if(AuthToken.marketdepthtade.isEmpty){
       fetchBuy1();
       fetchSell1();
     }else{
       fetchBuy();
       fetchSell();
-    }
+    }*/
 
   }
 
   fetchBuy() async {
     // var data = {"baseCurrency": "INR", "tradingCurrency": "USDT"};
     var apiData = {
-      "url": AuthToken.api + "/" + "orders/orderVolume?purpose=buy&tradingCurrency"+"="+AuthToken.marketdepthtade,
+      "url": AuthToken.api + "/" + "orders/orderVolume?purpose=buy&tradingCurrency=ETH",
       // "data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -163,7 +165,7 @@ class OrderPageState extends State<OrderPage> {
     // var data = {"baseCurrency": "INR", "tradingCurrency": "USDT"};
 
     var apiData = {
-      "url": AuthToken.api + "/" + "orders/orderVolume?purpose=sell&tradingCurrency"+"="+AuthToken.marketdepthtade,
+      "url": AuthToken.api + "/" + "orders/orderVolume?purpose=sell&tradingCurrency=ETH",
       // "data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -191,6 +193,10 @@ class OrderPageState extends State<OrderPage> {
       print("Error working with the api");
     });
   }
+  var num;
+  var num2;
+  var value;
+  var value2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -252,8 +258,32 @@ class OrderPageState extends State<OrderPage> {
                               child: ListView.builder(
                                   itemCount: fetchModal.data.length,
                                   itemBuilder: (context, position) {
+                                    var num1 = double.parse(fetchModal.data[position].volume.toString());
+                                    String value = num1.toString();
+                                    int pointIndex = value.indexOf(".");
+                                    String afterDecimal = value.substring(pointIndex+1);
+                                    int finalLen = afterDecimal.length;
+                                    String a = '0';
+                                    String b = '00';
+                                    String c = '000';
+                                    if(finalLen == 1){
+                                      value = '$value$c';
+                                      print("answerc"+value);
+                                    }else if(finalLen>1 && finalLen<3) {
+                                      value= '$value$b';
+                                      print("answerb"+value);
+                                    }else if(finalLen>2 && finalLen<4){
+                                      value= '$value$a';
+                                      print("answera"+value);
+                                    }else if(finalLen>4){
+                                      value= num.toStringAsFixed(4);
+                                      print("answeraaaaa"+value);
+                                    }else {
+                                      value = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
+                                      print("answer "+value);
+                                    }
                                     return Container(
-                                      height: 50,
+                                      height: 40,
                                       child: Card(
                                         margin: EdgeInsets.symmetric(),
                                         elevation: 0,
@@ -271,7 +301,7 @@ class OrderPageState extends State<OrderPage> {
                                               child: Padding(
                                                 padding: const EdgeInsets.only(left: 20),
                                                 child: Text(
-                                                  fetchModal.data[position].volume.toString(),
+                                                  value,
                                                   style: TextStyle(color: Colors.green,fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                                 ),
@@ -300,8 +330,32 @@ class OrderPageState extends State<OrderPage> {
                               child: ListView.builder(
                                   itemCount: fetchModal2.data.length,
                                   itemBuilder: (context, position) {
+                                    var num1 = double.parse(fetchModal2.data[position].volume.toString());
+                                    String value = num1.toString();
+                                    int pointIndex = value.indexOf(".");
+                                    String afterDecimal = value.substring(pointIndex+1);
+                                    int finalLen = afterDecimal.length;
+                                    String a = '0';
+                                    String b = '00';
+                                    String c = '000';
+                                    if(finalLen == 1){
+                                      value2 = '$value$c';
+                                      print("answerc"+value);
+                                    }else if(finalLen>1 && finalLen<3) {
+                                      value2= '$value$b';
+                                      print("answerb"+value);
+                                    }else if(finalLen>2 && finalLen<4){
+                                      value2= '$value$a';
+                                      print("answera"+value);
+                                    }else if(finalLen>4){
+                                      value2= num2.toStringAsFixed(4);
+                                      print("answeraaaaa"+value);
+                                    }else {
+                                      value2 = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
+                                      print("answer "+value);
+                                    }
                                     return Container(
-                                      height: 50,
+                                      height: 40,
                                       child: Card(
                                         margin: EdgeInsets.symmetric(),
                                         elevation: 0,
@@ -317,8 +371,8 @@ class OrderPageState extends State<OrderPage> {
                                               child: Padding(
                                                 padding: const EdgeInsets.only(left: 20),
                                                 child: Text(
-                                                  fetchModal2.data[position].volume.toString(),
-                                                  style: TextStyle(color: Colors.green,fontSize: 15,
+                                                  value2,
+                                                  style: TextStyle(color: Colors.red,fontSize: 15,
                                                       fontWeight: FontWeight.bold),
                                                 ),
                                               ),

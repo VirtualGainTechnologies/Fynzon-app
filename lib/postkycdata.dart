@@ -21,9 +21,8 @@ class PostKYCInfo {
       String pan,
       String adhaar,
       BuildContext context) async {
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    AuthToken.authtoken = token;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     var data = {
       "fname": fname,
       "lname": lname,
@@ -39,7 +38,7 @@ class PostKYCInfo {
 
     var apiData = {
       "url":
-          AuthToken.api + "/" + "client/updateProfile/" + AuthToken.authtoken,
+          AuthToken.api + "/" + "client/updateProfile/" + prefs.getString('token'),
       "data": data
     };
 

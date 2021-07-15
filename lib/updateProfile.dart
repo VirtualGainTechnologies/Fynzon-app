@@ -64,6 +64,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0xFF18222C),
+            title: Text('Update Profile'),
+          ),
          // backgroundColor: Color(0xFF18222C),
           backgroundColor: Colors.white,
           body: Form(
@@ -550,9 +554,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
   String pincode,
       String pin,
   BuildContext context) async {
-  var prefs = await SharedPreferences.getInstance();
-  var token = prefs.getString("token");
-  AuthToken.authtoken = token;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+ /* var token = prefs.getString("token");
+  AuthToken.authtoken = token;*/
   var data = {
     'fname': fname,
     'lname': lname,
@@ -566,7 +570,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   var apiData = {
     "url":
-    AuthToken.api + "/" + "client/updateProfile/" + AuthToken.authtoken,
+    AuthToken.api + "/" + "client/updateProfile/" + prefs.getString('token'),
     "data": data
   };
 

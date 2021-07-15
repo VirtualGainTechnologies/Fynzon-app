@@ -10,6 +10,12 @@
 @import camera;
 #endif
 
+#if __has_include(<connectivity/FLTConnectivityPlugin.h>)
+#import <connectivity/FLTConnectivityPlugin.h>
+#else
+@import connectivity;
+#endif
+
 #if __has_include(<firebase_auth/FLTFirebaseAuthPlugin.h>)
 #import <firebase_auth/FLTFirebaseAuthPlugin.h>
 #else
@@ -22,6 +28,18 @@
 @import firebase_core;
 #endif
 
+#if __has_include(<flutter_image_compress/FlutterImageCompressPlugin.h>)
+#import <flutter_image_compress/FlutterImageCompressPlugin.h>
+#else
+@import flutter_image_compress;
+#endif
+
+#if __has_include(<flutter_native_image/FlutterNativeImagePlugin.h>)
+#import <flutter_native_image/FlutterNativeImagePlugin.h>
+#else
+@import flutter_native_image;
+#endif
+
 #if __has_include(<fluttertoast/FluttertoastPlugin.h>)
 #import <fluttertoast/FluttertoastPlugin.h>
 #else
@@ -32,6 +50,12 @@
 #import <hexcolor/HexcolorPlugin.h>
 #else
 @import hexcolor;
+#endif
+
+#if __has_include(<image_cropper/FLTImageCropperPlugin.h>)
+#import <image_cropper/FLTImageCropperPlugin.h>
+#else
+@import image_cropper;
 #endif
 
 #if __has_include(<image_picker/FLTImagePickerPlugin.h>)
@@ -62,10 +86,14 @@
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [CameraPlugin registerWithRegistrar:[registry registrarForPlugin:@"CameraPlugin"]];
+  [FLTConnectivityPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTConnectivityPlugin"]];
   [FLTFirebaseAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseAuthPlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
+  [FlutterImageCompressPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterImageCompressPlugin"]];
+  [FlutterNativeImagePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterNativeImagePlugin"]];
   [FluttertoastPlugin registerWithRegistrar:[registry registrarForPlugin:@"FluttertoastPlugin"]];
   [HexcolorPlugin registerWithRegistrar:[registry registrarForPlugin:@"HexcolorPlugin"]];
+  [FLTImageCropperPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImageCropperPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [NexmoVerifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"NexmoVerifyPlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];

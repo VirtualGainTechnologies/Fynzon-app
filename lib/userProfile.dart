@@ -122,11 +122,11 @@ class _UserProfileState extends State<UserProfile> {
     /* var data = {
 
     };*/
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    AuthToken.authtoken = token;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    /*var token = prefs.getString("token");
+    AuthToken.authtoken = token;*/
     var apiData = {
-      "url": AuthToken.api + "/" + "client/userDetails/" + AuthToken.authtoken,
+      "url": AuthToken.api + "/" + "client/userDetails/" + prefs.getString('token'),
       //"data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {

@@ -1,19 +1,24 @@
+import 'package:http/http.dart' as http;
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:fyn_zon/paymentOption.dart';
-import 'package:fyn_zon/postkycdata.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
-import 'package:page_transition/page_transition.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fyn_zon/mainApi.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fyn_zon/tokenPass.dart';
 
+
+import 'Model/user_data_model.dart';
+import 'mainApi.dart';
 import 'mainscreen.dart';
 
 class KYC extends StatefulWidget {
+  final String name, lastname,  state, city, pincode;
+  KYC( this.name, this.lastname,  this.state, this.city,this.pincode, {Key key})
+      : super(key: key);
   @override
   _KYCState createState() => _KYCState();
 }
@@ -24,7 +29,8 @@ class _KYCState extends State<KYC> {
   bool _isLoading = false;
   List<String> _country = ['India'];
   List<String> _document = ['ADHAAR'];
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final globalKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   TextEditingController fnameController = new TextEditingController();
   TextEditingController lnameController = new TextEditingController();
@@ -48,86 +54,51 @@ class _KYCState extends State<KYC> {
   File adhaarimageFile;
   File adhaarbackimageFile;
 
-  Future createAlbum(
-      String selectedSalutation,
-      String fname,
-      String lname,
-      String dob,
-      String address,
-      String state,
-      String city,
-      String pin,
-      String pan,
-      String adhaar,
-      BuildContext context) async {
-    setState(() => _isLoading = true);
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    AuthToken.authtoken = token;
-    var data = {
-      "fname": fname,
-      "lname": lname,
-      "city": city,
-      "state": state,
-      "pinCode": pin,
-      "country": selectedSalutation,
-      "dob": dob,
-      "address": address,
-      "panNumber": pan,
-      "adhaarNumber": adhaar
-    };
+  @override
+  void initState() {
+    super.initState();
+    fetchAlbum();
+    fnameController.text = widget.name;
+    lnameController.text = widget.lastname;
+    stateController.text = widget.state;
+    cityController.text = widget.city;
+    pinController.text = widget.pincode;
 
-    var apiData = {
-      "url":
-      AuthToken.api + "/" + "client/updateProfile/" + AuthToken.authtoken,
-      "data": data
-    };
 
-    ApiClass.postApiCall(apiData, (onSuccess) {
-      print(onSuccess.toString());
-      var id = jsonDecode(onSuccess["response"])['data'].toString();
-      print("id");
-      Fluttertoast.showToast(
-          msg: "Successfully Updated Profile",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print("status: " + id);
-      setState(() => _isLoading = false);
-      //Navigator.pop(context);
-      fnameController.clear();
-      lnameController.clear();
-      dobController.clear();
-      addressController.clear();
-      stateController.clear();
-      cityController.clear();
-      pinController.clear();
-      panController.clear();
-      adhaarController.clear();
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.leftToRight,
-          child: MainScreenPage(),
-        ),
-      );
-    }, (onError) {
-      setState(() => _isLoading = false);
-      Fluttertoast.showToast(
-          msg: "Something Went Wrong",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print("Error working with the api");
-    });
   }
+
+  Future createAlbum( String selectedSalutation, String fname, String lname, String dob, String address, String state, String city, String pin, String pan, String adhaar, String panimage, String adhaarimage, String adhaarbackimage,) async
+  {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = AuthToken.api + "/" + "client/updateProfile/" + prefs.getString('token');
+    final response= await http.post(url,
+        headers: {"Accept": "Application/json"},
+        body: {
+          "fname": fname,
+          "lname": lname,
+          "city": city,
+          "state": state,
+          "pinCode": pin,
+          "country": selectedSalutation,
+          "dob": dob,
+          "address": address,
+          "panNumber": pan,
+          "adhaarNumber": adhaar,
+          "panImage":panimage,
+          "adhaarImage":adhaarimage,
+          "adhaarBackImage" :adhaarbackimage
+        }
+    );
+
+    var convertedDatatoJson =jsonDecode(response.body);
+    return convertedDatatoJson;
+
+  }
+   /* Future<File> compressFile(File file) async{
+      File compressedFile = await FlutterNativeImage.compressImage(file.path,
+        quality: 5,);
+      return compressedFile;
+    }*/
 
 
   Future<void> _panCard(BuildContext context) {
@@ -160,19 +131,33 @@ class _KYCState extends State<KYC> {
 
   void _openpanGallery(BuildContext context) async {
     var picture = (await ImagePicker.pickImage(source: ImageSource.gallery));
-    this.setState(() {
-      panimageFile = picture;
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: picture.path,
+    );
+    File compressedFile = await FlutterNativeImage.compressImage(croppedFile.path,
+      quality: 50,);
+
+    setState(() {
+      panimageFile = compressedFile;
+      print(panimageFile.lengthSync());
     });
     Navigator.of(context).pop();
   }
 
   Future _openpanCamera(BuildContext context) async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: image.path,
+    );
+    File compressedFile = await FlutterNativeImage.compressImage(croppedFile.path,
+      quality: 50,);
     setState(() {
-      panimageFile = image;
+      panimageFile = compressedFile;
     });
     Navigator.of(context).pop();
   }
+
+
 
   Future<void> _adhaarCard(BuildContext context) {
     return showDialog(
@@ -204,16 +189,26 @@ class _KYCState extends State<KYC> {
 
   void _openadhaarGallery(BuildContext context) async {
     var picture = (await ImagePicker.pickImage(source: ImageSource.gallery));
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: picture.path,
+    );
+    File compressedFile = await FlutterNativeImage.compressImage(croppedFile.path,
+      quality: 50,);
     this.setState(() {
-      adhaarimageFile = picture;
+      adhaarimageFile = compressedFile;
     });
     Navigator.of(context).pop();
   }
 
   Future _openadhaarCamera(BuildContext context) async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: image.path,
+    );
+    File compressedFile = await FlutterNativeImage.compressImage(croppedFile.path,
+      quality: 50,);
     setState(() {
-      adhaarimageFile = image;
+      adhaarimageFile = compressedFile;
     });
     Navigator.of(context).pop();
   }
@@ -248,18 +243,88 @@ class _KYCState extends State<KYC> {
 
   void _openadhaarbackGallery(BuildContext context) async {
     var picture = (await ImagePicker.pickImage(source: ImageSource.gallery));
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: picture.path,
+    );
+    File compressedFile = await FlutterNativeImage.compressImage(croppedFile.path,
+      quality: 50,);
     this.setState(() {
-      adhaarbackimageFile = picture;
+      adhaarbackimageFile = compressedFile;
     });
     Navigator.of(context).pop();
   }
 
   Future _openadhaarbackCamera(BuildContext context) async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    var image = await ImagePicker.pickImage(source: ImageSource.camera,
+       );
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: image.path,
+    );
+    File compressedFile = await FlutterNativeImage.compressImage(croppedFile.path,
+      quality: 50,);
     setState(() {
-      adhaarbackimageFile = image;
+      adhaarbackimageFile = compressedFile;
     });
     Navigator.of(context).pop();
+  }
+  Autogenerated futureAlbum;
+  var userid;
+
+  fetchAlbum() async {
+    /* var data = {
+
+    };*/
+    var prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userid = prefs.getString('userid');
+    });
+    //AuthToken.authtoken = token;*/
+    var apiData = {
+      "url": AuthToken.api + "/" + "client/userDetails/" + prefs.getString('token'),
+      //"data": data
+    };
+    ApiClass.getApiCall(apiData, (onSuccess) {
+      print(onSuccess.toString());
+      futureAlbum = Autogenerated.fromJson(jsonDecode(onSuccess['response']));
+      print("lalit acc>>>>>>> " + futureAlbum.data.bankAccNo.toString());
+      setState(() {
+
+      });
+    }, (onError) {
+      print("Error working with the api");
+    });
+  }
+  DateTime _selectedDate;
+
+  _selectDate(BuildContext context) async {
+    DateTime newSelectedDate = await showDatePicker(
+        context: context,
+        initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2040),
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+              colorScheme: ColorScheme.dark(
+                primary: Colors.deepPurple,
+                onPrimary: Colors.white,
+                surface: Colors.blueGrey,
+                onSurface: Colors.yellow,
+              ),
+              dialogBackgroundColor: Colors.blue[500],
+            ),
+            child: child,
+          );
+        });
+
+    if (newSelectedDate != null) {
+      _selectedDate = newSelectedDate;
+      dobController
+        ..text = DateFormat.yMMMd().format(_selectedDate)
+        ..selection = TextSelection.fromPosition(TextPosition(
+            offset: dobController.text.length,
+            affinity: TextAffinity.upstream));
+    }
   }
 
   @override
@@ -270,12 +335,52 @@ class _KYCState extends State<KYC> {
       },
       child: Scaffold(
        // backgroundColor: Color(0xFF18222C),
+          key: _scaffoldKey,
           backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Color(0xFF18222C),
           title: Text('KYC'),
         ),
-        body: Form(
+        body:
+        /*futureAlbum.data.kycApproved == true ?
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: Colors.blueGrey,
+                title: Text("KYC Approved"),
+                content: Text("Your KYC is already Approved !"),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("Ok",style: TextStyle(
+                        color: Colors.white
+                    ),),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => MainScreenPage()));
+                      *//* Navigator.of.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UserProfile(),
+                          ),
+                        );*//*
+                    },
+                  ),
+                  *//* FlatButton(
+                      child: Text("NO",style: TextStyle(
+                          color: Colors.white
+                      ),),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )*//*
+                ],
+              );
+            }
+        ):
+*/
+        Form(
           key: _formKey,
           child: Container(
             padding: EdgeInsets.only(left: 20, right: 20),
@@ -447,8 +552,12 @@ class _KYCState extends State<KYC> {
                     // padding: EdgeInsets.only(left: 20,right: 20),
                     child: TextFormField(
                       controller: dobController,
+                      readOnly: true,
+                      onTap: (){
+                        _selectDate(context);
+                      },
                       validator: (text) {
-                        if (text.trim().length < 2)
+                        if (text.isEmpty)
                           return "D.O.B Should not be blank.";
                         dob = dobController.text;
                         return null;
@@ -456,7 +565,7 @@ class _KYCState extends State<KYC> {
                       onSaved: (text) => dob = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
+                      //keyboardType: TextInputType.visiblePassword,
                       cursorHeight: 18,
                       style: TextStyle(
                           decoration: TextDecoration.none,
@@ -487,7 +596,6 @@ class _KYCState extends State<KYC> {
                     margin: EdgeInsets.only(top: 10),
                     // padding: EdgeInsets.only(left: 20,right: 20),
                     child: TextFormField(
-                      maxLines: 5,
 
                       controller: addressController,
                       validator: (text) {
@@ -499,11 +607,13 @@ class _KYCState extends State<KYC> {
                       onSaved: (text) => address = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
-                      cursorHeight: 18,
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,
+                      maxLines: 6,
+                      //cursorHeight: 18,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          height: 0.5,
+                          //height: 0.5,
                           color: Colors.black
                       ),
                       decoration: new InputDecoration(
@@ -541,11 +651,12 @@ class _KYCState extends State<KYC> {
                       onSaved: (text) => state = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
-                      cursorHeight: 18,
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,maxLines: 5,
+                      //cursorHeight: 18,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          height: 0.5,
+                          //height: 0.5,
                           color: Colors.black
                       ),
                       decoration: new InputDecoration(
@@ -583,11 +694,11 @@ class _KYCState extends State<KYC> {
                       onSaved: (text) => city = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
-                      cursorHeight: 18,
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,maxLines: 5,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          height: 0.5,
+                          //height: 0.5,
                           color: Colors.black
                       ),
                       decoration: new InputDecoration(
@@ -616,19 +727,23 @@ class _KYCState extends State<KYC> {
                     child: TextFormField(
                       controller: pinController,
                       validator: (text) {
-                        if (text.trim().length < 2)
-                          return "pin Should not be blank.";
+                        if (text.isEmpty)
+                          return 'Please enter pinCode';
+                        RegExp regExp = new RegExp("^[1-9][0-9]{5}");
+                        if (!regExp.hasMatch(text))
+                          return 'Please enter valid pinCode'
+                              .toLowerCase();
                         pin = pinController.text;
                         return null;
                       },
                       onSaved: (text) => pin = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
-                      cursorHeight: 18,
+                      keyboardType: TextInputType.text,
+                      //cursorHeight: 18,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          height: 0.5,
+                          //height: 0.5,
                           color: Colors.black
                       ),
                       decoration: new InputDecoration(
@@ -674,19 +789,25 @@ class _KYCState extends State<KYC> {
                     child: TextFormField(
                       controller: panController,
                       validator: (text) {
-                        if (text.trim().length < 2)
-                          return "Pan Should not be blank.";
+                        if (text.isEmpty)
+                          return 'Please enter pan number';
+                        String patttern =
+                            "[A-Z]{5}[0-9]{4}[A-Z]{1}";
+                        RegExp regExp = new RegExp(patttern);
+                        if (!regExp.hasMatch(text))
+                          return 'Please enter valid Pan number'
+                              .toLowerCase();
                         pan = panController.text;
                         return null;
                       },
                       onSaved: (text) => pan = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
-                      cursorHeight: 18,
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,maxLines: 5,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          height: 0.5,
+                          //height: 0.5,
                           color: Colors.black
                       ),
                       decoration: new InputDecoration(
@@ -791,19 +912,23 @@ class _KYCState extends State<KYC> {
 
                       controller: adhaarController,
                       validator: (text) {
-                        if (text.trim().length < 2)
-                          return "Adhaar Number Should not be blank.";
+                        if (text.isEmpty)
+                          return 'Please enter adhar number';
+                        RegExp regExp = new RegExp("^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}");
+                        if (!regExp.hasMatch(text))
+                          return 'Please enter valid adhar number'
+                              .toLowerCase();
                         adhaar = adhaarController.text;
                         return null;
                       },
                       onSaved: (text) => adhaar = text,
                       autocorrect: true,
                       autofocus: false,
-                      keyboardType: TextInputType.visiblePassword,
-                      cursorHeight: 18,
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,maxLines: 5,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          height: 0.5,
+                          //height: 0.5,
                           color: Colors.black
                       ),
                       decoration: new InputDecoration(
@@ -869,6 +994,7 @@ class _KYCState extends State<KYC> {
                             textAlign: TextAlign.left),
                         onPressed: () => {
                               _adhaarbackCard(context),
+
                             }),
                   ),
                   Container(
@@ -902,13 +1028,55 @@ class _KYCState extends State<KYC> {
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: RaisedButton(
-                        onPressed: () {
-
+                        onPressed: () async{
                           if (_formKey.currentState.validate()) {
                             _formKey.currentState.save();
-                            createAlbum(selectedSalutation,fname, lname, dob, address, state, city, pin, pan, adhaar, context);
+                            setState(()=> _isLoading = true);
 
-                          } else {}
+                            String panImage = base64Encode(panimageFile.readAsBytesSync());
+                            String adharfrontImage = base64Encode(adhaarimageFile.readAsBytesSync());
+                            String adharbackImage = base64Encode(adhaarbackimageFile.readAsBytesSync());
+
+                            var rsp = await createAlbum(selectedSalutation,fname, lname, dob, address, state, city, pin, pan, adhaar,
+                                panImage, adharfrontImage, adharbackImage,);
+                            var data = rsp['data'];
+                            var message = rsp['message'];
+                            var error = rsp['error'];
+                            if (error == true) {
+                              _scaffoldKey.currentState.showSnackBar(new SnackBar(
+                                content: new Text(
+                                  message,
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                                duration: new Duration(seconds: 2),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
+                                ),
+                              ));
+                              setState(()=> _isLoading = false);
+                            }else{
+                              _scaffoldKey.currentState.showSnackBar(new SnackBar(
+                                content: new Text(
+                                  message,
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                                duration: new Duration(seconds: 2),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
+                                ),
+                              ));
+                              setState(()=> _isLoading = false);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainScreenPage()),
+                              );
+                            }
+                          } else {
+
+                          }
                         },
                         textColor: Colors.white,
                         color: Colors.green,

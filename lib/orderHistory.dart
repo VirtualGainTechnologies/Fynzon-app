@@ -15,7 +15,7 @@ class OrderHistoryState extends State<OrderHistory> {
   final _pageOptions = [
      OpenOrder(),
      CloseOrder(),
-     OrderHistoryMain()
+     //OrderHistoryMain()
   ];
 
   @override
@@ -24,7 +24,7 @@ class OrderHistoryState extends State<OrderHistory> {
     return Padding(
       padding: const EdgeInsets.only(),
       child: new DefaultTabController(
-        length: 3,
+        length: 2,
         child: new Scaffold(
           appBar: new AppBar(
             backgroundColor: Color(0xFF18222C),
@@ -44,9 +44,9 @@ class OrderHistoryState extends State<OrderHistory> {
                     new Tab(
                       text: 'Close Orders',
                     ),
-                    new Tab(
+                    /*new Tab(
                       text: 'OrderHistory',
-                    ),
+                    ),*/
                   ],
                   indicatorColor: Colors.green,
                   unselectedLabelStyle: TextStyle(

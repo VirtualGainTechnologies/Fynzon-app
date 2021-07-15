@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fyn_zon/login.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:fyn_zon/tokenPass.dart';
 import 'package:fyn_zon/pin.dart';
 import 'package:fyn_zon/verifyotp.dart';
@@ -23,8 +24,11 @@ class OtpPageState extends State<OtpPage> {
   OtpPageState(this.phone_number);
   TextEditingController otpController = new TextEditingController();
   bool _isLoading = false;
+  bool _isLoading1 = false;
+
+
   Future createAlbum(String phone) async {
-    setState(()=> _isLoading= true);
+    setState(()=> _isLoading1= true);
     var data = {
       'phone': phone,
     };
@@ -50,9 +54,9 @@ class OtpPageState extends State<OtpPage> {
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
-      setState(()=> _isLoading= false);
+      setState(()=> _isLoading1= false);
     }, (onError) {
-      setState(()=> _isLoading= false);
+      setState(()=> _isLoading1= false);
       Fluttertoast.showToast(
           msg: "Failed OTP",
           toastLength: Toast.LENGTH_SHORT,
@@ -114,6 +118,7 @@ class OtpPageState extends State<OtpPage> {
                      child: TextFormField(
                        textAlign: TextAlign.center,
                        autocorrect: true,
+                       autofillHints: [ AutofillHints.oneTimeCode ],
                        autofocus: false,
                        controller: otpController,
                        keyboardType: TextInputType.text,
@@ -207,7 +212,9 @@ class OtpPageState extends State<OtpPage> {
                       onTap:()async{
                         createAlbum(phone_number);
                       },
-                      child: Container(
+                      child: _isLoading1 ?
+                          CircularProgressIndicator():
+                      Container(
                         child: RichText(
                           text: new TextSpan(
                             text: 'Did not receive OTP? ',
@@ -217,14 +224,14 @@ class OtpPageState extends State<OtpPage> {
                             children: <TextSpan>[
 
                               new TextSpan(
-                                  text: 'RESEND in',
+                                  text: 'RESEND OTP',
                                 style: TextStyle(
-                                    color: Colors.blueGrey,
+                                    color: Colors.white,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600
                                 ),
                                   ),
-                              new TextSpan(text: ' 60s', style: TextStyle(
+                              new TextSpan(text: '', style: TextStyle(
                                   color: Colors.blueGrey,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600

@@ -1,12 +1,8 @@
 import 'dart:async';
-import 'package:fyn_zon/text.dart';
-import 'package:fyn_zon/wallet.dart';
+import 'package:connectivity/connectivity.dart';
 import './animation/FadeAnimation.dart';
-import 'package:fyn_zon/tokenPass.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import './mainscreen.dart';
-import './login.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+      title: "Fynzon",
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
@@ -46,13 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future _getThingsOnStartup() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs?.setBool("isLoggedIn", true);
-    final user = prefs.getString("userid");
+    /*final prefs = await SharedPreferences.getInstance();
+    prefs.setString("userid", 'user_id');*/
+   /* final user = prefs.getString("userid");
     AuthToken.userid = user;
     final token = prefs.getString("token");
-    AuthToken.authtoken = token;
-    print(user);
+    AuthToken.authtoken = token;*/
+   // print(user);
     Timer(Duration(seconds: 3), () {
      // Navigator.pushNamed(context, '/mainScreenPage');
        Navigator.pushReplacement(

@@ -14,9 +14,9 @@ class MarketsTabPageState extends State<MarketsTabPage> {
 
   int _selectedPage = 0;
   final _pageOptions = [
+    MarketINR(),
     MarketsPage(),
     MarketBTC(),
-    MarketINR(),
   ];
 
   @override
@@ -38,9 +38,9 @@ class MarketsTabPageState extends State<MarketsTabPage> {
                     });
                   },
                   tabs: [
+                    new Tab(text: 'INR',),
                     new Tab(text: 'USDT',),
-                    new Tab(text: 'BTC',),
-                    new Tab(text: 'INR'),
+                    new Tab(text: 'BTC'),
                   ],
                   indicatorColor: Colors.green,
                   unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),

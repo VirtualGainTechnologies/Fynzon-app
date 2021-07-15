@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/tokenPass.dart';
@@ -8,7 +7,7 @@ import 'BuySell.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login.dart';
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'mainApi.dart';
 
 class INRModel {
@@ -99,6 +98,22 @@ class _MarketINRState extends State<MarketINR> {
       print("Error working with the api");
     });
   }
+ /* Future loginUser(String phone, String password) async
+  {
+    String url = AuthToken.api + "/" + "v2/market/?baseCurrency=INR";
+    final response= await http.post(url,
+        headers: {"Accept": "Application/json"},
+        body: {
+          "phone": phone,
+          "pin": password
+
+        }
+    );
+
+    var convertedDatatoJson =jsonDecode(response.body);
+    return convertedDatatoJson;
+
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -148,17 +163,20 @@ class _MarketINRState extends State<MarketINR> {
                     child: ListView.builder(
                         itemCount: fetchModal.data.length,
                         itemBuilder: (context, position){
+
+                            //AuthToken.marketdepthtade=fetchModal.data[position].sId;
+
                           return GestureDetector(
                             onTap: ()async{
-                              AuthToken.marketdepthtade=fetchModal.data[position].sId;
-                              AuthToken.baseinr=fetchModal.data[position].base;
-                              final prefs = await SharedPreferences.getInstance();
-                              final user = prefs.getString("userid");
-                              AuthToken.userid = user;
+                              //AuthToken.marketdepthtade=fetchModal.data[position].sId;
+                             // AuthToken.baseinr=fetchModal.data[position].base;
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              var userid = prefs.getString("userid");
+                           /*   AuthToken.userid = user;
                               final token = prefs.getString("token");
                               AuthToken.authtoken = token;
-                              print(user);
-                              if (user == null) {
+                              print(user);*/
+                              if (userid == null) {
                                 Navigator.pushReplacement(
                                     context, MaterialPageRoute(builder: (context) => LoginScreen()));
                               } else {

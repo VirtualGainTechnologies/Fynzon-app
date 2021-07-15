@@ -300,13 +300,13 @@ class OtpRegisterState extends State<OtpRegister> {
       ));
     } else {
       var user_id = data['userid'];
-
       var token = data['token'];
-      print('auth token>>>>>>>>' + token);
+      /*print('auth token>>>>>>>>' + token);
       AuthToken.authtoken = token;
-      print('auth>>>>>>>>' + AuthToken.authtoken);
-      SharedPreferences prefs =
-          await SharedPreferences.getInstance();
+      print('auth>>>>>>>>' + AuthToken.authtoken);*/
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('userid', user_id);
+      prefs.setString('token', token);
       setState(() {
         prefs.setString('userid', user_id);
         prefs.setString('token', token);

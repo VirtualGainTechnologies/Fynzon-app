@@ -120,20 +120,22 @@ class _MarketDepthState extends State<MarketDepth> {
   @override
   void initState() {
     super.initState();
-    if(AuthToken.marketdepthtade.isEmpty){
+    fetchBuy();
+    fetchSell();
+   /* if(AuthToken.marketdepthtade.isEmpty){
       fetchBuy1();
       fetchSell1();
     }else{
       fetchBuy();
       fetchSell();
-    }
+    }*/
 
   }
 
   fetchBuy() async {
     // var data = {"baseCurrency": "INR", "tradingCurrency": "USDT"};
     var apiData = {
-      "url": AuthToken.api + "/" + "orders/marketDepth?purpose=buy&tradingCurrency"+"="+AuthToken.marketdepthtade,
+      "url": AuthToken.api + "/" + "orders/marketDepth?purpose=buy&tradingCurrency=ETH",
       // "data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -164,7 +166,7 @@ class _MarketDepthState extends State<MarketDepth> {
     // var data = {"baseCurrency": "INR", "tradingCurrency": "USDT"};
 
     var apiData = {
-      "url": AuthToken.api + "/" + "orders/marketDepth?purpose=sell&tradingCurrency"+"="+AuthToken.marketdepthtade,
+      "url": AuthToken.api + "/" + "orders/marketDepth?purpose=sell&tradingCurrency=ETH",
       // "data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -192,6 +194,10 @@ class _MarketDepthState extends State<MarketDepth> {
       print("Error working with the api");
     });
   }
+ var num;
+ var num2;
+  var value;
+  var value1;
 
   @override
   Widget build(BuildContext context) {
@@ -207,6 +213,7 @@ class _MarketDepthState extends State<MarketDepth> {
             // ignore: missing_return
             builder: (BuildContext context, AsyncSnapshot  snapshot){
               if(fetchModal != null && fetchModal2 != null){
+
                 return FadeAnimation(
                   0.0
                   ,Column(
@@ -255,8 +262,32 @@ class _MarketDepthState extends State<MarketDepth> {
                             child: ListView.builder(
                                 itemCount: fetchModal.data.length,
                                 itemBuilder: (context, position) {
+                                  var num = double.parse(fetchModal.data[position].volume.toString());
+                                 String value = num.toString();
+                                  int pointIndex = value.indexOf(".");
+                                  String afterDecimal = value.substring(pointIndex+1);
+                                  int finalLen = afterDecimal.length;
+                                  String a = '0';
+                                  String b = '00';
+                                  String c = '000';
+                                  if(finalLen == 1){
+                                    value = '$value$c';
+                                    print("answerc"+value);
+                                  }else if(finalLen>1 && finalLen<3) {
+                                    value= '$value$b';
+                                    print("answerb"+value);
+                                  }else if(finalLen>2 && finalLen<4){
+                                    value= '$value$a';
+                                    print("answera"+value);
+                                  }else if(finalLen>4){
+                                    value= num.toStringAsFixed(4);
+                                    print("answeraaaaa"+value);
+                                  }else {
+                                    value = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
+                                    print("answer "+value);
+                                  }
                                   return Container(
-                                    height: 50,
+                                    height: 40,
                                     child: Card(
                                       margin: EdgeInsets.symmetric(),
                                       elevation: 0,
@@ -272,7 +303,7 @@ class _MarketDepthState extends State<MarketDepth> {
                                             child: Padding(
                                               padding: const EdgeInsets.only(left: 20),
                                               child: Text(
-                                                fetchModal.data[position].volume.toString(),
+                                                value,
                                                 style: TextStyle(color: Colors.green,fontSize: 15,
                                                     fontWeight: FontWeight.bold),
                                               ),
@@ -301,8 +332,33 @@ class _MarketDepthState extends State<MarketDepth> {
                             child: ListView.builder(
                                 itemCount: fetchModal2.data.length,
                                 itemBuilder: (context, position) {
+                                  var num1 = double.parse(fetchModal2.data[position].volume.toString());
+                                  String value = num1.toString();
+                                  int pointIndex = value.indexOf(".");
+                                  String afterDecimal = value.substring(pointIndex+1);
+                                  int finalLen = afterDecimal.length;
+                                  String a = '0';
+                                  String b = '00';
+                                  String c = '000';
+                                  if(finalLen == 1){
+                                    value1 = '$value$c';
+                                    print("answerc"+value);
+                                  }else if(finalLen>1 && finalLen<3) {
+                                    value1= '$value$b';
+                                    print("answerb"+value);
+                                  }else if(finalLen>2 && finalLen<4){
+                                    value1= '$value$a';
+                                    print("answera"+value);
+                                  }else if(finalLen>4){
+                                    value1= num1.toStringAsFixed(4);
+                                    print("answeraaaaa"+value);
+                                    print("lalit>>>>>>>$num1");
+                                  }else {
+                                    value1 = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
+                                    print("answer "+value);
+                                  }
                                   return Container(
-                                    height: 50,
+                                    height: 40,
                                     child: Card(
                                       margin: EdgeInsets.symmetric(),
                                       elevation: 0,
@@ -318,8 +374,8 @@ class _MarketDepthState extends State<MarketDepth> {
                                             child: Padding(
                                               padding: const EdgeInsets.only(left: 20),
                                               child: Text(
-                                                fetchModal2.data[position].volume.toString(),
-                                                style: TextStyle(color: Colors.green,fontSize: 15,
+                                                value1,
+                                                style: TextStyle(color: Colors.red,fontSize: 15,
                                                     fontWeight: FontWeight.bold),
                                               ),
                                             ),

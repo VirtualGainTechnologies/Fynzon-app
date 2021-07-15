@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'mainApi.dart';
 import './tokenPass.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './qrCode.dart';
 
 class Album {
@@ -46,11 +47,12 @@ class _QRCodeState extends State<QRCode> {
   }
 
   fetchAlbum() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     /* var data = {
 
     };*/
     var apiData = {
-      "url": AuthToken.api + "/" + "tfa/setup/" + AuthToken.authtoken,
+      "url": AuthToken.api + "/" + "tfa/setup/" + prefs.getString('token'),
       //"https://jsonplaceholder.typicode.com/albums/1",
       //"data": data
     };

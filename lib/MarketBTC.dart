@@ -147,17 +147,20 @@ class _MarketBTCState extends State<MarketBTC> {
 
                         itemCount: fetchModal.data.length,
                         itemBuilder: (context, position){
+
+                           // AuthToken.marketdepthtade=fetchModal.data[position].sId;
+
                           return GestureDetector(
                             onTap: ()async{
-                              AuthToken.marketdepthtade=fetchModal.data[position].sId;
-                              AuthToken.baseinr=fetchModal.data[position].base;
+
+                              //AuthToken.baseinr=fetchModal.data[position].base;
                               final prefs = await SharedPreferences.getInstance();
-                              final user = prefs.getString("userid");
-                              AuthToken.userid = user;
+                              var userid = prefs.getString("userid");
+                             /* AuthToken.userid = user;
                               final token = prefs.getString("token");
                               AuthToken.authtoken = token;
-                              print(user);
-                              if (user == null) {
+                              print(user);*/
+                              if (userid == null) {
                                 Navigator.pushReplacement(
                                     context, MaterialPageRoute(builder: (context) => LoginScreen()));
                               } else {

@@ -106,12 +106,14 @@ class _OpenOrderState extends State<OpenOrder> {
     super.initState();
       fetchAlbum();
   }
+  var userid;
   fetchAlbum() async {
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-    AuthToken.authtoken = token;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+     setState(() {
+       userid = prefs.getString('userid');
+     });
     var apiData = {
-      "url": AuthToken.api + "/" + "orders/"+AuthToken.authtoken,
+      "url": AuthToken.api + "/" + "orders/"+prefs.getString('token'),
       //"data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -123,14 +125,15 @@ class _OpenOrderState extends State<OpenOrder> {
       print("Error working with the api");
     });
   }
-
+   var num;
+  var value;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF233446),
       body: FadeAnimation(
         2.0,
-         AuthToken.userid == null ?
+         userid == null ?
          GestureDetector(
            onTap: (){
              Navigator.push(
@@ -229,21 +232,45 @@ class _OpenOrderState extends State<OpenOrder> {
                               ? 0
                               : futureAlbum.data.length,
                           itemBuilder: (context, position) {
-                            var volume = futureAlbum.data[position].volume.toString();
+                            //var volume = futureAlbum.data[position].volume.toString();
                             var price = futureAlbum.data[position].price.toString();
                             var total1 = futureAlbum.data[position].total.toString();
                             var total2 = double.parse(total1);
                             /*var sum = double.parse(volume) * double.parse(price);
                             total = sum.toString();
                             print(sum.toString());*/
+                            var num1 = double.parse(futureAlbum.data[position].volume.toString());
+                            String value = num1.toString();
+                            int pointIndex = value.indexOf(".");
+                            String afterDecimal = value.substring(pointIndex+1);
+                            int finalLen = afterDecimal.length;
+                            String a = '0';
+                            String b = '00';
+                            String c = '000';
+                            if(finalLen == 1){
+                              value = '$value$c';
+                              print("answerc"+value);
+                            }else if(finalLen>1 && finalLen<3) {
+                              value= '$value$b';
+                              print("answerb"+value);
+                            }else if(finalLen>2 && finalLen<4){
+                              value= '$value$a';
+                              print("answera"+value);
+                            }else if(finalLen>4){
+                              value= num.toStringAsFixed(4);
+                              print("answeraaaaa"+value);
+                            }else {
+                              value = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
+                              print("answer "+value);
+                            }
 
-                            if(AuthToken.baseinr != inr){
+                           /* if(AuthToken.baseinr != inr){
                               total = total2.toString();
                             }else {
                               total = total2.toStringAsFixed(0);
-                            }
+                            }*/
                             return Container(
-                              height: 60,
+                              height: 40,
                               margin: EdgeInsets.only(top: 2),
                               child: Card(
                                 //color: Color(0xFF18222C),
@@ -308,7 +335,7 @@ class _OpenOrderState extends State<OpenOrder> {
                                        // width: 60,
                                         padding: EdgeInsets.only(left: 0),
                                         child: Text(
-                                          futureAlbum.data[position].volume.toString(),
+                                          value,
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.green, fontSize: 15,
@@ -321,7 +348,7 @@ class _OpenOrderState extends State<OpenOrder> {
                                       child: Container(
                                         padding: EdgeInsets.only(right:10),
                                         child: Text(
-                                          total,
+                                          total2.toStringAsFixed(0).toString(),
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.white, fontSize: 15,

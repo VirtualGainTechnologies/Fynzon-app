@@ -88,12 +88,12 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
   @override
   void initState() {
     super.initState();
-    if(AuthToken.marketdepthtade.isEmpty){
+    fetchAlbum();
+   /* if(AuthToken.marketdepthtade.isEmpty){
       fetchAlbum1();
     }else{
       fetchAlbum();
-    }
-
+    }*/
   }
 
 
@@ -102,7 +102,7 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
     var apiData = {
       "url": AuthToken.api +
           "/" +
-          "orderHistory/tradeHistory/?tradingCurrency"+"="+AuthToken.marketdepthtade,
+          "orderHistory/tradeHistory/?tradingCurrency=ETH",
       //"data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
@@ -114,7 +114,7 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
       print("Error working with the api");
     });
   }
-  fetchAlbum1() async {
+  /*fetchAlbum1() async {
 
     var apiData = {
       "url": AuthToken.api +
@@ -130,16 +130,16 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
     }, (onError) {
       print("Error working with the api");
     });
-  }
+  }*/
+  var num;
+  var value;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF233446),
-
       body: FadeAnimation(
         2.0,
-
          Container(child: FutureBuilder<OrderHistoryModal>(
           builder: (context, snapshot) {
             if (futureAlbum != null) {
@@ -206,15 +206,38 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                             var volume = futureAlbum.data[position].volume.toString();
                             var price = futureAlbum.data[position].price.toString();
                             var sum = double.parse(volume) * double.parse(price);
-
-                            if(AuthToken.baseinr != inr){
+                            var num1 = double.parse(futureAlbum.data[position].volume.toString());
+                            String value = num1.toString();
+                            int pointIndex = value.indexOf(".");
+                            String afterDecimal = value.substring(pointIndex+1);
+                            int finalLen = afterDecimal.length;
+                            String a = '0';
+                            String b = '00';
+                            String c = '000';
+                            if(finalLen == 1){
+                              value = '$value$c';
+                              print("answerc"+value);
+                            }else if(finalLen>1 && finalLen<3) {
+                              value= '$value$b';
+                              print("answerb"+value);
+                            }else if(finalLen>2 && finalLen<4){
+                              value= '$value$a';
+                              print("answera"+value);
+                            }else if(finalLen>4){
+                              value= num.toStringAsFixed(4);
+                              print("answeraaaaa"+value);
+                            }else {
+                              value = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
+                              print("answer "+value);
+                            }
+                            /*if(AuthToken.baseinr != inr){
                               total = sum.toString();
                             }else {
                               total = sum.toStringAsFixed(0);
-                            }
+                            }*/
                             print(sum.toString());
                             return Container(
-                              height: 60,
+                              height: 40,
                               margin: EdgeInsets.only(top: 2),
                               child: Card(
                                 //color: Color(0xFF18222C),
@@ -273,7 +296,7 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                                       flex: 2,
                                       child: Container(
                                         child: Text(
-                                          futureAlbum.data[position].volume.toString(),
+                                          value,
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.green, fontSize: 15,
@@ -286,7 +309,7 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                                       child: Container(
                                         padding: EdgeInsets.only(right:10),
                                         child: Text(
-                                          total,
+                                          sum.toStringAsFixed(0).toString(),
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.white, fontSize: 15,

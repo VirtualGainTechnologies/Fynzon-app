@@ -3,6 +3,21 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1357829189/android.camera.iml" filepath="$PROJECT_DIR$/.idea/modules/1357829189/android.camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1485271416/android.connectivity.iml" filepath="$PROJECT_DIR$/.idea/modules/-1485271416/android.connectivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1056581825/android.firebase_auth.iml" filepath="$PROJECT_DIR$/.idea/modules/-1056581825/android.firebase_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-813428686/android.firebase_core.iml" filepath="$PROJECT_DIR$/.idea/modules/-813428686/android.firebase_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1802081892/android.flutter_image_compress.iml" filepath="$PROJECT_DIR$/.idea/modules/1802081892/android.flutter_image_compress.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1930831338/android.flutter_native_image.iml" filepath="$PROJECT_DIR$/.idea/modules/-1930831338/android.flutter_native_image.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-273962524/android.flutter_plugin_android_lifecycle.iml" filepath="$PROJECT_DIR$/.idea/modules/-273962524/android.flutter_plugin_android_lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1712976821/android.fluttertoast.iml" filepath="$PROJECT_DIR$/.idea/modules/1712976821/android.fluttertoast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2114169929/android.hexcolor.iml" filepath="$PROJECT_DIR$/.idea/modules/2114169929/android.hexcolor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-249170494/android.image_cropper.iml" filepath="$PROJECT_DIR$/.idea/modules/-249170494/android.image_cropper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1825929138/android.image_picker.iml" filepath="$PROJECT_DIR$/.idea/modules/1825929138/android.image_picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1336191249/android.nexmo_verify.iml" filepath="$PROJECT_DIR$/.idea/modules/1336191249/android.nexmo_verify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/287550685/android.shared_preferences.iml" filepath="$PROJECT_DIR$/.idea/modules/287550685/android.shared_preferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1251384455/android.url_launcher.iml" filepath="$PROJECT_DIR$/.idea/modules/-1251384455/android.url_launcher.iml" />
     </modules>
   </component>
 </project>

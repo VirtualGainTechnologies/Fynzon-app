@@ -38,7 +38,8 @@ class PaymentOptionState extends State<PaymentOption> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Deposite',textAlign: TextAlign.center),
+          backgroundColor: Color(0xFF18222C),
+          title: Text('Bank Details'),
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -46,7 +47,7 @@ class PaymentOptionState extends State<PaymentOption> {
           child: Padding(
             padding: const EdgeInsets.only(),
             child: new DefaultTabController(
-              length: 2,
+              length: 1,
               child: new Scaffold(
                 appBar: new AppBar(
                   backgroundColor: Colors.white,
@@ -58,9 +59,9 @@ class PaymentOptionState extends State<PaymentOption> {
                           new Tab(
                             text: 'BANK ACCOUNT*',
                           ),
-                          new Tab(
+                         /* new Tab(
                             text: 'UPI',
-                          ),
+                          ),*/
                         ],
                         indicatorColor: Colors.green,
                         labelColor: Colors.black,
@@ -90,7 +91,7 @@ class PaymentOptionState extends State<PaymentOption> {
                     city, pin, pan, adhaar*/
 
                     BankAccount(),
-                    UPI(),
+                    //UPI(),
                   ],
                 ),
               ),

@@ -5,17 +5,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/qrCode.dart';
 import 'package:fyn_zon/mainApi.dart';
 import 'package:fyn_zon/tokenPass.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'mainscreen.dart';
 
 class QRPass {
   // ignore: missing_return
   static Future<QRCodeDigit> qrCode(String qr, BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     var data = {
       'authCode': qr,
     };
     var apiData = {
-      "url": AuthToken.api + "/" + "tfa/verify/" + AuthToken.authtoken,
+      "url": AuthToken.api + "/" + "tfa/verify/" + prefs.getString('token'),
       "data": data
     };
 

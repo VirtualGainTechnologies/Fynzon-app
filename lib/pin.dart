@@ -18,7 +18,7 @@ class PinPage extends StatefulWidget {
 class PinPageState extends State<PinPage> {
   @override
   String phone_number;
-  var user_id;
+  String user_id;
   bool _isLoading = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final globalKey = GlobalKey<ScaffoldState>();
@@ -143,29 +143,25 @@ class PinPageState extends State<PinPage> {
                             var rsp = await loginUser(phone_number, pin);
                             var data = rsp['data'];
                             var error = rsp['error'];
-                            if (error == "true") {
+                            if (error == true) {
                               showInSnackBar();
                               setState(()=> _isLoading = false);
                             } else {
-                              showInSnackBar1();
-                              user_id = data['userid'];
-                              //AuthToken.userid = data['userid'];
+                              //showInSnackBar1();
+                               var user_id = data['userid'];
                               var token = data['token'];
                               SharedPreferences prefs = await SharedPreferences.getInstance();
-                              print('user id' + user_id);
-                              AuthToken.authtoken = token;
-                              AuthToken.userid = user_id;
-                              print('logintoken>>>>>>>>>' + AuthToken.authtoken);
+                              prefs.setString('userid', user_id);
+                              prefs.setString('token', token);
+                              setState(()=> _isLoading = false);
+                               Navigator.of(context).pop();
+                               Navigator.push(
+                                 context,
+                                 MaterialPageRoute(
+                                     builder: (context) => MainScreenPage()),
+                               );
                               setState(() {
-                                prefs.setString('userid', user_id);
-                                prefs.setString('token', token);
-                                setState(()=> _isLoading = false);
-                                Navigator.of(context).pop();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => MainScreenPage()),
-                                );
+
                               });
 
                             }

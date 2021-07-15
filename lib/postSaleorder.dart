@@ -7,12 +7,12 @@ import 'package:fyn_zon/tokenPass.dart';
 Future postSell(String base, String tread, String usdt,
     String btc, BuildContext context) async
 {
-  var prefs = await SharedPreferences.getInstance();
-  var user = prefs.getString("userid");
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+ /* var user = prefs.getString("userid");
   AuthToken.userid = user;
   var token = prefs.getString("token");
-  AuthToken.authtoken = token;
-  String url =AuthToken.api + "/" + "v2/sellPeer/" + AuthToken.authtoken;
+  AuthToken.authtoken = token;*/
+  String url =AuthToken.api + "/" + "v2/sellPeer/" + prefs.getString('token');
   final response = await http.post(url,
       headers: {"Accept": "Application/json"},
       body: {
