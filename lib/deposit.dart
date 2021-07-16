@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fyn_zon/login.dart';
+import 'package:fyn_zon/mainscreen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/instantDeposit.dart';
@@ -137,14 +138,16 @@ class DepositPageState extends State<DepositPage> {
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1
     );
-    Navigator.pop(context);
-    Navigator.pushReplacement(
-      context,
-      PageTransition(
-        type: PageTransitionType.leftToRight,
-        child: LoginScreen(),
-      ),
-    );
+    setState(() {
+      Navigator.pop(context);
+      Navigator.pushReplacement(
+        context,
+        PageTransition(
+          type: PageTransitionType.leftToRight,
+          child: MainScreenPage(),
+        ),
+      );
+    });
         (Route route) => false;
   }
 

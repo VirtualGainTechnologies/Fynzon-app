@@ -31,28 +31,51 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bb8e1f6-db5c-4dbb-b05d-ad63004f3cf0" name="Default Changelist" comment="complete">
-      <change afterPath="$PROJECT_DIR$/lib/Asset/assetsWithdraw.dart" afterDir="false" />
+    <list default="true" id="4bb8e1f6-db5c-4dbb-b05d-ad63004f3cf0" name="Default Changelist" comment="final">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/libs.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/libs.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/merged_assets/debug/out/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/merged_assets/debug/out/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk.sha1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Asset/assets.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Asset/assets.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/camera/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/camera/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/connectivity/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/connectivity/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/firebase_auth/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/firebase_auth/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/firebase_core/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/firebase_core/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_image_compress/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_image_compress/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_image_compress/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_image_compress/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_image_compress/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_image_compress/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_native_image/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_native_image/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_plugin_android_lifecycle/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_plugin_android_lifecycle/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fluttertoast/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/fluttertoast/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fluttertoast/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/fluttertoast/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fluttertoast/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/fluttertoast/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/hexcolor/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/hexcolor/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/hexcolor/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/hexcolor/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/hexcolor/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/hexcolor/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/image_cropper/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/image_cropper/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/image_picker/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/image_picker/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/nexmo_verify/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/nexmo_verify/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/shared_preferences/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/shared_preferences/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/url_launcher/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/url_launcher/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/url_launcher/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/url_launcher/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/BuySell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/BuySell.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/dBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dBar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/deposit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/deposit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mainApi.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/mainApi.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/openOrder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/openOrder.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/signup.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/signup.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/wallet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/wallet.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/withdraw.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/withdraw.dart" afterDir="false" />
     </list>
@@ -146,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626365707156</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="final">
+      <created>1626416856348</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626416856348</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,7 +193,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete" />
+    <MESSAGE value="final" />
+    <option name="LAST_COMMIT_MESSAGE" value="final" />
   </component>
   <component name="WindowStateProjectService">
     <state x="475" y="194" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1626348687756">
@@ -184,46 +215,50 @@
       <screen x="0" y="42" width="1366" height="686" />
     </state>
     <state x="463" y="153" key="FileChooserDialogImpl/0.42.1366.686@0.42.1366.686" timestamp="1622611428377" />
-    <state width="1358" height="250" key="GridCell.Tab.0.bottom" timestamp="1626415354622">
-      <screen x="0" y="25" width="1440" height="805" />
+    <state width="1358" height="250" key="GridCell.Tab.0.bottom" timestamp="1626436680943">
+      <screen x="0" y="25" width="1440" height="809" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621422908823" />
     <state width="1358" height="250" key="GridCell.Tab.0.bottom/0.25.1440.801@0.25.1440.801" timestamp="1626407150536" />
     <state width="1358" height="250" key="GridCell.Tab.0.bottom/0.25.1440.805@0.25.1440.805" timestamp="1626415354622" />
     <state width="1358" height="250" key="GridCell.Tab.0.bottom/0.25.1440.807@0.25.1440.807" timestamp="1626365921258" />
+    <state width="1358" height="250" key="GridCell.Tab.0.bottom/0.25.1440.809@0.25.1440.809" timestamp="1626436680943" />
     <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.42.1366.686@0.42.1366.686" timestamp="1624361793664" />
-    <state width="1358" height="250" key="GridCell.Tab.0.center" timestamp="1626415354622">
-      <screen x="0" y="25" width="1440" height="805" />
+    <state width="1358" height="250" key="GridCell.Tab.0.center" timestamp="1626436680942">
+      <screen x="0" y="25" width="1440" height="809" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621422908823" />
     <state width="1358" height="250" key="GridCell.Tab.0.center/0.25.1440.801@0.25.1440.801" timestamp="1626407150536" />
     <state width="1358" height="250" key="GridCell.Tab.0.center/0.25.1440.805@0.25.1440.805" timestamp="1626415354622" />
     <state width="1358" height="250" key="GridCell.Tab.0.center/0.25.1440.807@0.25.1440.807" timestamp="1626365921257" />
+    <state width="1358" height="250" key="GridCell.Tab.0.center/0.25.1440.809@0.25.1440.809" timestamp="1626436680942" />
     <state width="1323" height="163" key="GridCell.Tab.0.center/0.42.1366.686@0.42.1366.686" timestamp="1624361793664" />
-    <state width="1358" height="250" key="GridCell.Tab.0.left" timestamp="1626415354621">
-      <screen x="0" y="25" width="1440" height="805" />
+    <state width="1358" height="250" key="GridCell.Tab.0.left" timestamp="1626436680942">
+      <screen x="0" y="25" width="1440" height="809" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621422908822" />
     <state width="1358" height="250" key="GridCell.Tab.0.left/0.25.1440.801@0.25.1440.801" timestamp="1626407150535" />
     <state width="1358" height="250" key="GridCell.Tab.0.left/0.25.1440.805@0.25.1440.805" timestamp="1626415354621" />
     <state width="1358" height="250" key="GridCell.Tab.0.left/0.25.1440.807@0.25.1440.807" timestamp="1626365921257" />
+    <state width="1358" height="250" key="GridCell.Tab.0.left/0.25.1440.809@0.25.1440.809" timestamp="1626436680942" />
     <state width="1323" height="163" key="GridCell.Tab.0.left/0.42.1366.686@0.42.1366.686" timestamp="1624361793664" />
-    <state width="1358" height="250" key="GridCell.Tab.0.right" timestamp="1626415354622">
-      <screen x="0" y="25" width="1440" height="805" />
+    <state width="1358" height="250" key="GridCell.Tab.0.right" timestamp="1626436680942">
+      <screen x="0" y="25" width="1440" height="809" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621422908823" />
     <state width="1358" height="250" key="GridCell.Tab.0.right/0.25.1440.801@0.25.1440.801" timestamp="1626407150536" />
     <state width="1358" height="250" key="GridCell.Tab.0.right/0.25.1440.805@0.25.1440.805" timestamp="1626415354622" />
     <state width="1358" height="250" key="GridCell.Tab.0.right/0.25.1440.807@0.25.1440.807" timestamp="1626365921257" />
+    <state width="1358" height="250" key="GridCell.Tab.0.right/0.25.1440.809@0.25.1440.809" timestamp="1626436680942" />
     <state width="1323" height="163" key="GridCell.Tab.0.right/0.42.1366.686@0.42.1366.686" timestamp="1624361793664" />
     <state x="229" y="64" key="SettingsEditor" timestamp="1626347527866">
       <screen x="0" y="25" width="1440" height="807" />
     </state>
     <state x="229" y="64" key="SettingsEditor/0.25.1440.807@0.25.1440.807" timestamp="1626347527866" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1626416828667">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1626417331648">
       <screen x="0" y="25" width="1440" height="805" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.805@0.25.1440.805" timestamp="1626416828667" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.805@0.25.1440.805" timestamp="1626417331648" />
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.807@0.25.1440.807" timestamp="1626365707682" />
     <state x="92" y="129" width="1182" height="513" key="dock-window-1" timestamp="1623404471620">
       <screen x="0" y="42" width="1366" height="686" />

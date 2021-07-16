@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fyn_zon/mainscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fyn_zon/tokenPass.dart';
 import 'package:page_transition/page_transition.dart';
@@ -120,14 +121,16 @@ class _OpenOrderState extends State<OpenOrder> {
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1
     );
-    Navigator.pop(context);
-    Navigator.pushReplacement(
-      context,
-      PageTransition(
-        type: PageTransitionType.leftToRight,
-        child: LoginScreen(),
-      ),
-    );
+    setState(() {
+      Navigator.pop(context);
+      Navigator.pushReplacement(
+        context,
+        PageTransition(
+          type: PageTransitionType.leftToRight,
+          child: MainScreenPage(),
+        ),
+      );
+    });
         (Route route) => false;
   }
   var userid;
