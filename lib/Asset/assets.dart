@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:fyn_zon/Asset/assetsWithdraw.dart';
 import 'package:fyn_zon/wallet.dart';
 
 class Assets extends StatefulWidget {
@@ -13,7 +14,7 @@ class _AssetsState extends State<Assets> {
   int _selectedPage = 0;
   final _pageOptions = [
     Wallet(),
-    Wallet(),
+    AssetsWithdraw(),
     //OrderHistoryMain()
   ];
 

@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/instantDeposit.dart';
 import 'package:fyn_zon/tokenPass.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/wallet_model.dart';
 import 'mainApi.dart';
@@ -124,6 +125,28 @@ class DepositPageState extends State<DepositPage> {
     super.initState();
 
   }
+  Future<void> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs?.clear();
+
+    prefs.remove('token');
+    prefs.remove('userid');
+    Fluttertoast.showToast(
+        msg: "User Logout",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1
+    );
+    Navigator.pop(context);
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        type: PageTransitionType.leftToRight,
+        child: LoginScreen(),
+      ),
+    );
+        (Route route) => false;
+  }
 
   fetchAlbum() async {
     /* var data = {
@@ -172,6 +195,7 @@ class DepositPageState extends State<DepositPage> {
       setState(() {});
     }, (onError) {
       print("Error working with the api");
+      logout();
     });
   }
 

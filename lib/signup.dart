@@ -40,6 +40,7 @@ class _SignupPageState extends State<SignupPage> {
   String cpin = "";
   bool checkBoxValue = false;
   Future createAlbum() async {
+    setState(() {_isLoading = true;});
     var data = {
       'phone': phone_number,
     };
@@ -62,6 +63,7 @@ class _SignupPageState extends State<SignupPage> {
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
+      setState(() {_isLoading = false;});
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -73,6 +75,7 @@ class _SignupPageState extends State<SignupPage> {
                 emailController.text)),
       );
     }, (onError) {
+      setState(() {_isLoading = false;});
       Fluttertoast.showToast(
           msg: "Something Went Wrong",
           toastLength: Toast.LENGTH_SHORT,
@@ -404,36 +407,6 @@ class _SignupPageState extends State<SignupPage> {
                               if (_formKey.currentState.validate()) {
                                 _formKey.currentState.save();
                                 createAlbum();
-
-                                /* setState(() => _isLoading = true);
-                          var rsp = await registerUser(
-                              phone_number, fname, lname, email, pin);
-                          var data = rsp['data'];
-                          var error = rsp['error'];
-                          if (error == "true") {
-                            globalKey.currentState
-                                .showSnackBar(new SnackBar(
-                              content: new Text(rsp['message']),
-                            ));
-                            setState(() => _isLoading = false);
-                          } else {
-                            var user_id = data['userid'];
-
-                            var token = data['token'];
-                            print('auth token>>>>>>>>' + token);
-                            AuthToken.authtoken = token;
-                            print('auth>>>>>>>>' + AuthToken.authtoken);
-                            SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                            setState(() => _isLoading = false);
-                            setState(() {
-                              prefs.setString('userid', user_id);
-                              prefs.setString('token', token);
-                              //Navigator.pop(context);
-
-
-                            });
-                          }*/
                               }
                             },
                             color: Colors.blue,

@@ -5,28 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-class ApiClass {
- /* static Future<void> main() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs?.clear();
-    prefs.remove('token');
-    prefs.remove('userid');
-    *//* AuthToken.authtoken = null;
-    AuthToken.userid = null;*//*
-    //Navigator.pop(context);
-    print('hlo lalit');
-    *//*Navigator.pushReplacement(
-      context,
-      PageTransition(
-        type: PageTransitionType.leftToRight,
-        child: MainScreenPage(),
-      ),
-    );*//*   *//* Navigator
-        .of(context)
-        .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) =>MainScreenPage()
-    ));*//*
-        (Route route) => false;
-  }*/
+class ApiClass{
+
   static void getApiCall(data, onSuccess, onError){
     final Map<String, String> defaultgetHeader = {
       "Content-Type": "application/json",
@@ -44,8 +24,13 @@ class ApiClass {
       if (response.statusCode < 200 ||
           response.statusCode >= 400 ||
           response == null) {
-
+       /* Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+        // prefs?.clear();
+        prefs.remove('token');
+        prefs.remove('userid');
+        print('logout');*/
         onError({"status": 0, "message": response.body});
+
       } else {
         onSuccess({"status": 1, "response": response.body});
       }

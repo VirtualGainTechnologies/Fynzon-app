@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/first_withdrawal.dart';
 import 'package:fyn_zon/login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/tokenPass.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/user_data_model.dart';
@@ -27,6 +28,29 @@ class WithdrawPageState extends State<WithdrawPage> {
     super.initState();
 
   }
+
+  Future<void> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs?.clear();
+    prefs.remove('token');
+    prefs.remove('userid');
+    Fluttertoast.showToast(
+        msg: "User Logout",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1
+    );
+    Navigator.pop(context);
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        type: PageTransitionType.leftToRight,
+        child: LoginScreen(),
+      ),
+    );
+        (Route route) => false;
+  }
+
   Future<void> fetchAlbum1() async {
     /* var data = {
 
@@ -46,6 +70,7 @@ class WithdrawPageState extends State<WithdrawPage> {
       setState(() {});
     }, (onError) {
       print("Error working with the api");
+      logout();
     });
   }
 

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fyn_zon/tokenPass.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/login.dart';
 import 'package:fyn_zon/animation/FadeAnimation.dart';
 import 'mainApi.dart';
@@ -106,6 +108,28 @@ class _OpenOrderState extends State<OpenOrder> {
     super.initState();
       fetchAlbum();
   }
+
+  Future<void> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs?.clear();
+    prefs.remove('token');
+    prefs.remove('userid');
+    Fluttertoast.showToast(
+        msg: "User Logout",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1
+    );
+    Navigator.pop(context);
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        type: PageTransitionType.leftToRight,
+        child: LoginScreen(),
+      ),
+    );
+        (Route route) => false;
+  }
   var userid;
   fetchAlbum() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -123,6 +147,7 @@ class _OpenOrderState extends State<OpenOrder> {
       setState(() {});
     }, (onError) {
       print("Error working with the api");
+      logout();
     });
   }
    var num;

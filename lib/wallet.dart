@@ -3,6 +3,7 @@ import 'package:fyn_zon/inrTab_Deposit_Withdraw,dart.dart';
 import 'package:fyn_zon/walletCurrencyQRCode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/tokenPass.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:fyn_zon/login.dart';
@@ -89,6 +90,27 @@ class _WalletState extends State<Wallet> {
     super.initState();
 
   }
+  Future<void> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs?.clear();
+    prefs.remove('token');
+    prefs.remove('userid');
+    Fluttertoast.showToast(
+        msg: "User Logout",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1
+    );
+    Navigator.pop(context);
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        type: PageTransitionType.leftToRight,
+        child: LoginScreen(),
+      ),
+    );
+        (Route route) => false;
+  }
 
   fetchAlbum() async {
     /* var data = {
@@ -114,6 +136,7 @@ class _WalletState extends State<Wallet> {
       setState(() {});
     }, (onError) {
       print("Error working with the api");
+      logout();
     });
   }
 
@@ -171,120 +194,124 @@ class _WalletState extends State<Wallet> {
             builder: (context, snapshot) {
               if (futureAlbum != null) {
                 return Container(
+                 alignment: Alignment.center,
                    color: Color(0xFF203040),
                   //color: Colors.white,
                   //padding: EdgeInsets.all(10.0),
                   width: double.infinity,
-                  child: Column(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => WalletCurrencyQRCode( currncy: "ETH",),
-                            ),
-                          );
-                        },
-                        child: FadeAnimation(
-                          0, Card(
-                            margin: EdgeInsets.only(top: 1),
-                            child: Container(
-                              color: Color(0xFF18222C),
-                              child: ListTile(
-                                leading: Image.asset("./assets/images/fz_eth.png"),
-                                title: Text(
-                                  'Ethereum',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                subtitle: Row(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Text(
-                                        futureAlbum.data.eTHBalance.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
+                  child: SafeArea(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WalletCurrencyQRCode( currncy: "ETH",),
+                              ),
+                            );
+                          },
+                          child: FadeAnimation(
+                            0, Card(
+                              margin: EdgeInsets.only(top: 1),
+                              child: Container(
+                                color: Color(0xFF18222C),
+                                child: ListTile(
+                                  leading: Image.asset("./assets/images/fz_eth.png"),
+                                  title: Text(
+                                    'Ethereum',
+                                    style: TextStyle(
+                                      color: Colors.white,
                                     ),
-                                    Container(
-                                      child: Text(
-                                        ' ETH',
-                                        style: TextStyle(
-                                          color: Colors.white,
+                                  ),
+                                  subtitle: Row(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Text(
+                                          futureAlbum.data.eTHBalance.toString(),
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                trailing: Text(
-                                  'ETH',
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                      Container(
+                                        child: Text(
+                                          ' ETH',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  trailing: Text(
+                                    'ETH',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
 
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => InrTab(),
-                            ),
-                          );
-                        },
-                        child: FadeAnimation(
-                          0, Card(
-                            margin: EdgeInsets.only(top: 1),
-                            child: Container(
-                              color: Color(0xFF18222C),
-                              child: ListTile(
-                                leading: Image.asset("./assets/images/inr icon.png"),
-                                title: Text(
-                                  'Indian rupee',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                subtitle: Row(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Text(
-                                        futureAlbum.data.iNRBalance.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => InrTab(),
+                              ),
+                            );
+                          },
+                          child: FadeAnimation(
+                            0, Card(
+                              margin: EdgeInsets.only(top: 1),
+                              child: Container(
+                                color: Color(0xFF18222C),
+                                child: ListTile(
+                                  leading: Image.asset("./assets/images/inr icon.png"),
+                                  title: Text(
+                                    'Indian rupee',
+                                    style: TextStyle(
+                                      color: Colors.white,
                                     ),
-                                    Container(
-                                      child: Text(
-                                        ' INR',
-                                        style: TextStyle(
-                                          color: Colors.white,
+                                  ),
+                                  subtitle: Row(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Text(
+                                          futureAlbum.data.iNRBalance.toString(),
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                trailing: Text(
-                                  'INR',
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                      Container(
+                                        child: Text(
+                                          ' INR',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  trailing: Text(
+                                    'INR',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 );
                 //Text(snapshot.data.title);
