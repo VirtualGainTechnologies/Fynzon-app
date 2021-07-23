@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.fyn_zon"
+3    package="com.fynzon"
 4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
@@ -170,7 +170,7 @@
 108-->[:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-19:20
 109            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
 109-->[:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-82
-110            android:authorities="com.fyn_zon.flutter.image_provider"
+110            android:authorities="com.fynzon.flutter.image_provider"
 110-->[:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-74
 111            android:exported="false"
 111-->[:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
@@ -287,7 +287,7 @@
 170-->[com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:26:9-31:39
 171            android:name="com.google.firebase.provider.FirebaseInitProvider"
 171-->[com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:27:13-77
-172            android:authorities="com.fyn_zon.firebaseinitprovider"
+172            android:authorities="com.fynzon.firebaseinitprovider"
 172-->[com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:28:13-72
 173            android:directBootAware="true"
 173-->[com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:29:13-43

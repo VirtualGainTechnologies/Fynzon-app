@@ -134,6 +134,11 @@ class WithdrawPageState extends State<WithdrawPage> {
               GestureDetector(
                 onTap: () {
                   futureData.data.kycApproved == true ?
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => Wrap(children: [FirstWithdrawPage()]),
+                  ):
                   showDialog(
                       context: context,
                       barrierDismissible: false,
@@ -154,12 +159,6 @@ class WithdrawPageState extends State<WithdrawPage> {
                           ],
                         );
                       }
-                  ):
-                  showModalBottomSheet(
-
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => Wrap(children: [FirstWithdrawPage()]),
                   );
 
                   /* Navigator.push(

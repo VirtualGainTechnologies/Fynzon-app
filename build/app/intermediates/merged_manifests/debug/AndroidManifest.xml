@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fyn_zon"
+    package="com.fynzon"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -107,7 +107,7 @@
 
         <provider
             android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-            android:authorities="com.fyn_zon.flutter.image_provider"
+            android:authorities="com.fynzon.flutter.image_provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -169,7 +169,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.fyn_zon.firebaseinitprovider"
+            android:authorities="com.fynzon.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />

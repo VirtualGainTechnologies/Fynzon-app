@@ -115,22 +115,23 @@ class _OpenOrderState extends State<OpenOrder> {
     // prefs?.clear();
     prefs.remove('token');
     prefs.remove('userid');
+    fetchAlbum();
     Fluttertoast.showToast(
         msg: "User Logout",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1
     );
-    setState(() {
-      Navigator.pop(context);
+
+    /*setState(() {
       Navigator.pushReplacement(
         context,
         PageTransition(
           type: PageTransitionType.leftToRight,
-          child: MainScreenPage(),
+          child: LoginScreen(),
         ),
       );
-    });
+    });*/
         (Route route) => false;
   }
   var userid;
@@ -150,7 +151,9 @@ class _OpenOrderState extends State<OpenOrder> {
       setState(() {});
     }, (onError) {
       print("Error working with the api");
+      setState(() {});
       logout();
+
     });
   }
    var num;

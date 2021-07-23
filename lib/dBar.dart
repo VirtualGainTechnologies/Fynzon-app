@@ -749,7 +749,7 @@ class _DbarState extends State<Dbar> {
                                       backgroundColor: Colors.white,
                                       title: Text("Kyc Approved !"),
                                       content: Text(
-                                          "Your KYC has already approved. "),
+                                          "Your KYC has already approved."),
                                       actions: <Widget>[
                                         FlatButton(
                                           child: Text("Ok", style: TextStyle(
@@ -812,7 +812,7 @@ class _DbarState extends State<Dbar> {
                                       backgroundColor: Colors.white,
                                       title: Text("Kyc Approved !"),
                                       content: Text(
-                                          "Your KYC has already approved. "),
+                                          "Your KYC has already approved."),
                                       actions: <Widget>[
                                         FlatButton(
                                           child: Text("Ok", style: TextStyle(

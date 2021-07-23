@@ -222,10 +222,10 @@ class _MarketINRState extends State<MarketINR> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
                                           children: <Widget>[
-                                            ImageIcon(
-                                              AssetImage("assets/bitcoin_1.png"),
-                                              color: Color(0xFFFFFFFF),
-                                            ),
+                                           // ImageIcon(AssetImage("./assets/images/fz_eth.png"),
+                                              Image.asset("./assets/images/fz_eth.png",scale: 20,),
+                                             // color: Color(0xFFFFFFFF),
+                                            //),
                                           ],
                                         ),
                                       ),

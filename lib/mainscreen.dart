@@ -304,7 +304,7 @@ class MainScreenState extends State<MainScreenPage> {
                           child: Column(
                             children: [
                               Image.asset("assets/images/fz_deposit.png",scale: 2,),
-                              Text('Deposite',style: TextStyle(
+                              Text('Deposit',style: TextStyle(
                                 color: Colors.white
                               ),)
                             ],

@@ -311,33 +311,36 @@ class DepositPageState extends State<DepositPage> {
                             child: ListTile(
                               onTap: (){
                                 futurekyc.data.kycApproved == true ?
-                                showDialog(
-                                    context: context,
-                                    barrierDismissible: false,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        backgroundColor: Colors.blueGrey,
-                                        title: Text("Kyc Approved?"),
-                                        content: Text("Your Kyc didn't Approved"),
-                                        actions: <Widget>[
-                                          FlatButton(
-                                            child: Text("Ok",style: TextStyle(
-                                                color: Colors.white
-                                            ),),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                ):
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           InstantDeposit()),
+                                ):
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.white,
+                                        title: Text("Kyc Approved !"),
+                                        content: Text(
+                                            "Your KYC didn`t approved."),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            child: Text("Ok", style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18
+                                            ),),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    }
                                 );
+
                               },
                               leading: Image.asset(
                                 "assets/images/fz_deposit_deposit.png",
