@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:fyn_zon/eth_Wallet_Detail.dart';
+import 'package:fyn_zon/inr_Wallet_Detail.dart';
+import 'package:intl/intl.dart';
 import 'package:fyn_zon/inrTab_Deposit_Withdraw,dart.dart';
 import 'package:fyn_zon/mainscreen.dart';
 import 'package:fyn_zon/walletCurrencyQRCode.dart';
@@ -148,7 +151,7 @@ class _WalletState extends State<Wallet> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  Color(0xFF203040),
-      /*  appBar: AppBar(
+       /* appBar: AppBar(
           title: Text('Wallet'),
           centerTitle: true,
           backgroundColor: Color(0xFF18222C),
@@ -168,6 +171,9 @@ class _WalletState extends State<Wallet> {
               );
             },
             child: Container(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+              ),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
              // color: Color(0xFF18222C),
@@ -197,119 +203,174 @@ class _WalletState extends State<Wallet> {
             //future: futureAlbum,
             builder: (context, snapshot) {
               if (futureAlbum != null) {
+                double eth = double.parse(futureAlbum.data.eTHBalance.toStringAsFixed(3));
+                String ethWallet = NumberFormat.decimalPattern().format(eth); //
+                print(ethWallet);
+                double inr = double.parse(futureAlbum.data.iNRBalance.toStringAsFixed(3));
+                String inrWallet = NumberFormat.decimalPattern().format(inr); //
+                print(inrWallet);
                 return Container(
                  alignment: Alignment.center,
-                   color: Color(0xFF203040),
-                  //color: Colors.white,
-                  //padding: EdgeInsets.all(10.0),
-                  width: double.infinity,
+                  decoration: new BoxDecoration(
+                    image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+                  ),
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
                   child: SafeArea(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Image.asset("./assets/images/wallet-2.png",
+                              height: 40,),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 30),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text('Name',style: TextStyle(
+                              fontSize: 35,
+                              fontFamily: 'berlinsans',
+                              letterSpacing: 0.8,
+                              fontWeight: FontWeight.w600,
+                              color:Color(0xFF81C1DF),
+                              //fontWeight: FontWeight.bold
+                            ),),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
                         GestureDetector(
                           onTap: () {
+                            /*Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WalletCurrencyQRCode( currncy: "eth",),
+                              ),
+                            );*/
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => WalletCurrencyQRCode( currncy: "ETH",),
+                                builder: (context) => EthWalletDetail(currncy: ethWallet,),
                               ),
                             );
                           },
-                          child: FadeAnimation(
-                            0, Card(
-                              margin: EdgeInsets.only(top: 1),
-                              child: Container(
-                                color: Color(0xFF18222C),
-                                child: ListTile(
-                                  leading: Image.asset("./assets/images/fz_eth.png"),
-                                  title: Text(
-                                    'Ethereum',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  subtitle: Row(
-                                    children: <Widget>[
-                                      Container(
-                                        child: Text(
-                                          futureAlbum.data.eTHBalance.toString(),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Ethereum',
                                           style: TextStyle(
-                                            color: Colors.white,
+                                            fontFamily: 'berlinsans',
+                                            letterSpacing: 0.8,
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black87,
                                           ),
+                                        ),
+                                        Image.asset("./assets/images/ethereumicon.png",scale: 8,),
+                                      ],
+                                    ),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        "\$$ethWallet",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'berlinsans',
+                                          letterSpacing: 1,
+                                          fontSize:40,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.black87,
                                         ),
                                       ),
-                                      Container(
-                                        child: Text(
-                                          ' ETH',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  trailing: Text(
-                                    'ETH',
-                                    style: TextStyle(
-                                      color: Colors.white,
                                     ),
-                                  ),
-                                ),
+                                    SizedBox(
+                                      height: 80,
+                                    ),
+                                  ],
+                                )
                               ),
                             ),
                           ),
                         ),
-
+                        SizedBox(
+                          height: 30,
+                        ),
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => InrTab(),
+                                builder: (context) => InrWalletDetail(currncy: inrWallet,),
                               ),
                             );
                           },
-                          child: FadeAnimation(
-                            0, Card(
-                              margin: EdgeInsets.only(top: 1),
-                              child: Container(
-                                color: Color(0xFF18222C),
-                                child: ListTile(
-                                  leading: Image.asset("./assets/images/inr icon.png"),
-                                  title: Text(
-                                    'Indian rupee',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  subtitle: Row(
-                                    children: <Widget>[
-                                      Container(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'INR',
+                                            style: TextStyle(
+                                              fontFamily: 'berlinsans',
+                                              letterSpacing: 0.8,
+                                              fontSize: 28,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black87,
+                                            ),
+                                          ),
+                                          Image.asset("./assets/images/rupee1.png",scale: 8,),
+                                        ],
+                                      ),
+                                      Align(
+                                        alignment: Alignment.topLeft,
                                         child: Text(
-                                          futureAlbum.data.iNRBalance.toString(),
+                                          "\$$inrWallet",
+                                          textAlign: TextAlign.left,
                                           style: TextStyle(
-                                            color: Colors.white,
+                                            fontFamily: 'berlinsans',
+                                            letterSpacing: 1,
+                                            fontSize:40,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black87,
                                           ),
                                         ),
                                       ),
-                                      Container(
-                                        child: Text(
-                                          ' INR',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      )
+                                      SizedBox(
+                                        height: 80,
+                                      ),
                                     ],
-                                  ),
-                                  trailing: Text(
-                                    'INR',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
+                                  )
                               ),
                             ),
                           ),
@@ -327,7 +388,11 @@ class _WalletState extends State<Wallet> {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   // margin: EdgeInsets.only(top: 80),
-                  child: CircularProgressIndicator(backgroundColor: Colors.white,));
+                  child: CircularProgressIndicator(
+                      strokeWidth: 6.0,
+                      backgroundColor: Colors.green,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                  ));
             },
           )
           ),

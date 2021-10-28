@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:convert';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -139,6 +140,9 @@ class _KYCState extends State<KYC> {
   TextEditingController pinController = new TextEditingController();
   TextEditingController panController = new TextEditingController();
   TextEditingController adhaarController = new TextEditingController();
+  TextEditingController uploadImageController = TextEditingController();
+  TextEditingController uploadImageAadharController = TextEditingController();
+  TextEditingController uploadImageAadharbackController = TextEditingController();
   var fname = "";
   var lname = "";
   var dob = "";
@@ -237,6 +241,7 @@ class _KYCState extends State<KYC> {
 
     setState(() {
       panimageFile = compressedFile;
+      uploadImageController.text = panimageFile.path;
       print(panimageFile.lengthSync());
     });
     Navigator.of(context).pop();
@@ -251,6 +256,7 @@ class _KYCState extends State<KYC> {
       quality: 50,);
     setState(() {
       panimageFile = compressedFile;
+      uploadImageController.text = panimageFile.path;
     });
     Navigator.of(context).pop();
   }
@@ -294,6 +300,7 @@ class _KYCState extends State<KYC> {
       quality: 50,);
     this.setState(() {
       adhaarimageFile = compressedFile;
+      uploadImageAadharController.text = adhaarimageFile.path;
     });
     Navigator.of(context).pop();
   }
@@ -307,9 +314,11 @@ class _KYCState extends State<KYC> {
       quality: 50,);
     setState(() {
       adhaarimageFile = compressedFile;
+      uploadImageAadharController.text = adhaarimageFile.path;
     });
     Navigator.of(context).pop();
   }
+  final dateFormat = DateFormat("dd-M-yyyy");
 
   Future<void> _adhaarbackCard(BuildContext context) {
     return showDialog(
@@ -348,6 +357,7 @@ class _KYCState extends State<KYC> {
       quality: 50,);
     this.setState(() {
       adhaarbackimageFile = compressedFile;
+      uploadImageAadharbackController.text = adhaarbackimageFile.path;
     });
     Navigator.of(context).pop();
   }
@@ -362,6 +372,7 @@ class _KYCState extends State<KYC> {
       quality: 50,);
     setState(() {
       adhaarbackimageFile = compressedFile;
+      uploadImageAadharbackController.text = adhaarbackimageFile.path;
     });
     Navigator.of(context).pop();
   }
@@ -398,8 +409,10 @@ class _KYCState extends State<KYC> {
     DateTime newSelectedDate = await showDatePicker(
         context: context,
         initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2040),
+        /*firstDate: DateTime(1900, 1, 1),
+        lastDate: DateTime(2200, 12, 31),*/
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2100),
         builder: (BuildContext context, Widget child) {
           return Theme(
             data: ThemeData.dark().copyWith(
@@ -418,15 +431,21 @@ class _KYCState extends State<KYC> {
     if (newSelectedDate != null) {
       _selectedDate = newSelectedDate;
       dobController
-        ..text = DateFormat.yMMMd().format(_selectedDate)
+        ..text = DateFormat('yyyy-MM-dd').format(_selectedDate)
         ..selection = TextSelection.fromPosition(TextPosition(
             offset: dobController.text.length,
             affinity: TextAffinity.upstream));
     }
   }
-
+ // String dateFormate;
   @override
   Widget build(BuildContext context) {
+    var dateNow = new DateTime.now();
+    var givenDate = dobController.text;
+    //var givenDateFormat = DateTime.parse(givenDate);
+    //var diff = dateNow.difference(givenDateFormat);
+    //var year = ((diff.inDays)/365).round();
+
     return WillPopScope(
       onWillPop: () {
         Navigator.pop(context);
@@ -487,19 +506,20 @@ class _KYCState extends State<KYC> {
                 children: <Widget>[
                   Container(
                     alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.symmetric(vertical: 20),
                     child: Text(
                       'SELECT YOUR COUNTRY',
                       style: TextStyle(
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Container(
-                    child: Divider(
-                      color: Colors.grey[400],
-                    ),
+                  Divider(
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 5),
@@ -534,15 +554,17 @@ class _KYCState extends State<KYC> {
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      'Personal Info',
-                      style: TextStyle(
-                          color: Colors.blueGrey,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Personal Info',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ),
                   Container(
@@ -551,7 +573,10 @@ class _KYCState extends State<KYC> {
                       color: Colors.grey[400],
                     ),
                   ),
-                  Container(
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Align(
                     alignment: Alignment.topLeft,
                     child: Text("FIRST NAME *",style: TextStyle(
                       fontSize: 10
@@ -638,6 +663,7 @@ class _KYCState extends State<KYC> {
                       ),
                     ),
                   ),
+
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     alignment: Alignment.topLeft,
@@ -657,6 +683,11 @@ class _KYCState extends State<KYC> {
                       validator: (text) {
                         if (text.isEmpty)
                           return "D.O.B Should not be blank.";
+                       /* if(year < 18 )
+                          return "you are under 18";*/
+                       /* year < 18 ?
+                         "you are under 18"
+                        : print(year);*/
                         dob = dobController.text;
                         return null;
                       },
@@ -694,7 +725,6 @@ class _KYCState extends State<KYC> {
                     margin: EdgeInsets.only(top: 10),
                     // padding: EdgeInsets.only(left: 20,right: 20),
                     child: TextFormField(
-
                       controller: addressController,
                       validator: (text) {
                         if (text.trim().length < 2)
@@ -815,7 +845,7 @@ class _KYCState extends State<KYC> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     alignment: Alignment.topLeft,
-                    child: Text("PIN CODE *",style: TextStyle(
+                    child: Text("PIN/ZIP CODE *",style: TextStyle(
                         fontSize: 10
                     ),),
                   ),
@@ -864,7 +894,7 @@ class _KYCState extends State<KYC> {
                     child: Text(
                       'Pan Card',
                       style: TextStyle(
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w600),
                     ),
@@ -921,31 +951,61 @@ class _KYCState extends State<KYC> {
                       ),
                     ),
                   ),
-                  if (panimageFile != null)
-                    AspectRatio(
-                      aspectRatio: 487 / 400,
-                      child: Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Image.file(
-                          panimageFile,
-                          fit: BoxFit.fitWidth,
-                        ),
+                  Container(
+                    margin: EdgeInsets.only(top: 30),
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: TextFormField(
+                      controller: uploadImageController,
+                      readOnly: true,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 10,top: 6),
+                          hintText: "no file selected",
+                          hintStyle: TextStyle(color: Colors.white),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          prefixIcon: InkWell(
+                            onTap: (){
+                              _panCard(context);
+                              // getImageFromGallery();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                              width: 100,
+                              child: Center(
+                                child: Text("Choose File", style: TextStyle(color: Colors.black),),
+                              ),
+                            ),
+                          )
                       ),
                     ),
+                  ),
+                  SizedBox(height: 20,),
+
+                  panimageFile==null? Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Image.asset("./assets/images/pancard.png",fit: BoxFit.fill,),
+                  ):
                   Container(
-                    margin: const EdgeInsets.only(
-                        left: 0.0, right: 0.0, top: 25, bottom: 0.0),
-                    child: new RaisedButton(
-                        color: Color(0xfff2f3f5),
-                        child: new Text('Upload Pan Card',
-                            style: TextStyle(
-                                color: Color(0xff114441),
-                                fontWeight: FontWeight.w900,
-                                fontSize: 16),
-                            textAlign: TextAlign.left),
-                        onPressed: () => {
-                              _panCard(context),
-                            }),
+                    height: 200,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: FileImage(File(panimageFile.path)),fit: BoxFit.fill
+                        )
+                    ),
                   ),
                   Container(
                     alignment: Alignment.topLeft,
@@ -953,7 +1013,7 @@ class _KYCState extends State<KYC> {
                     child: Text(
                       'Document Type',
                       style: TextStyle(
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w600),
                     ),
@@ -1042,66 +1102,124 @@ class _KYCState extends State<KYC> {
                       ),
                     ),
                   ),
-                  if (adhaarimageFile != null)
-                    AspectRatio(
-                      aspectRatio: 487 / 400,
-                      child: Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Image.file(
-                          adhaarimageFile,
-                          fit: BoxFit.fitWidth,
-                        ),
+                  Container(
+                    margin: EdgeInsets.only(top: 30),
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: TextFormField(
+                      controller: uploadImageAadharController,
+                      readOnly: true,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 10,top: 6),
+                          hintText: "no file selected",
+                          hintStyle: TextStyle(color: Colors.white),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          prefixIcon: InkWell(
+                            onTap: (){
+                              _adhaarCard(context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                              width: 100,
+                              child: Center(
+                                child: Text("Choose File", style: TextStyle(color: Colors.black),),
+                              ),
+                            ),
+                          )
                       ),
                     ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                        left: 0.0, right: 0.0, top: 25, bottom: 0.0),
-                    child: new RaisedButton(
-                        color: Color(0xfff2f3f5),
-                        child: new Text('Upload Adhaar Card',
-                            style: TextStyle(
-                                color: Color(0xff114441),
-                                fontWeight: FontWeight.w900,
-                                fontSize: 16),
-                            textAlign: TextAlign.left),
-                        onPressed: () => {
-                              _adhaarCard(context),
-                            }),
                   ),
-                  if (adhaarbackimageFile != null)
-                    AspectRatio(
-                      aspectRatio: 487 / 400,
-                      child: Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Image.file(
-                          adhaarbackimageFile,
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                    ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                        left: 0.0, right: 0.0, top: 25, bottom: 0.0),
-                    child: new RaisedButton(
-                        color: Color(0xfff2f3f5),
-                        child: new Text('Upload Adhaar Card Back',
-                            style: TextStyle(
-                                color: Color(0xff114441),
-                                fontWeight: FontWeight.w900,
-                                fontSize: 16),
-                            textAlign: TextAlign.left),
-                        onPressed: () => {
-                              _adhaarbackCard(context),
+                  SizedBox(height: 20,),
 
-                            }),
+                  adhaarimageFile==null? Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Image.asset("./assets/images/adhaar.png",fit: BoxFit.fill,),
+                  ):
+                  Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: FileImage(File(adhaarimageFile.path)),fit: BoxFit.fill
+                        )
+                    ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(top: 30),
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: TextFormField(
+                      controller: uploadImageAadharbackController,
+                      readOnly: true,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 10,top: 6),
+                          hintText: "no file selected",
+                          hintStyle: TextStyle(color: Colors.white),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          prefixIcon: InkWell(
+                            onTap: (){
+                              _adhaarbackCard(context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                              width: 100,
+                              child: Center(
+                                child: Text("Choose File", style: TextStyle(color: Colors.black),),
+                              ),
+                            ),
+                          )
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+
+                  adhaarbackimageFile==null? Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Image.asset("./assets/images/adhaar.png",fit: BoxFit.fill,),
+                  ):
+                  Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: FileImage(File(adhaarbackimageFile.path)),fit: BoxFit.fill
+                        )
+                    ),
+                  ),
+
                   Container(
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.only(top: 20),
                     child: Text(
                       'Ready to submit your application?',
                       style: TextStyle(
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w600),
                     ),
@@ -1122,11 +1240,16 @@ class _KYCState extends State<KYC> {
                     padding: EdgeInsets.only(top: 20, bottom: 10),
                    // width: MediaQuery.of(context).size.width,
                     child: _isLoading ?
-                        CircularProgressIndicator():
+                        CircularProgressIndicator(
+                            strokeWidth: 6.0,
+                            backgroundColor: Colors.green,
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                        ):
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: RaisedButton(
                         onPressed: () async{
+                          //print(year);
                           if (_formKey.currentState.validate()) {
                             _formKey.currentState.save();
                             setState(()=> _isLoading = true);
@@ -1177,7 +1300,7 @@ class _KYCState extends State<KYC> {
                           }
                         },
                         textColor: Colors.white,
-                        color: Colors.green,
+                        color: Colors.blue,
                         padding: const EdgeInsets.all(8.0),
                         child: new Text(
                           "SUBMIT & CONTINUE",

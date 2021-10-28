@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "1023033559013",
-    "project_id": "phoneauth-e2071",
-    "storage_bucket": "phoneauth-e2071.appspot.com"
+    "project_number": "359903583573",
+    "project_id": "fynzon-ff1ce",
+    "storage_bucket": "fynzon-ff1ce.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1023033559013:android:d67fb566ed7da74c3c510c",
+        "mobilesdk_app_id": "1:359903583573:android:32233e063a2076930d23dc",
         "android_client_info": {
-          "package_name": "com.example.fyn_zon"
+          "package_name": "com.fynzon"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1023033559013-h6fl1qmu73b1eabpa31n1ojb76ttolse.apps.googleusercontent.com",
+          "client_id": "359903583573-m3clj8qgmgcvngoj40k7v9ijjj4f34c5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.fyn_zon",
-            "certificate_hash": "2cd56293b90cc8e1d453808c786ae62f0a68719c"
+            "package_name": "com.fynzon",
+            "certificate_hash": "c681ed9450ef325229a6ee5d88d0ede96afc4602"
           }
         },
         {
-          "client_id": "1023033559013-l05h50t5b19bp65mj37ppmedoangi1q7.apps.googleusercontent.com",
+          "client_id": "359903583573-g90k8a0es0c3ghj4t926shlq4q8oenq7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAOVKDvpiJnWa8BOn21tBOMLlf-3w9YN00"
+          "current_key": "AIzaSyBrphbd_hw0s7VpynRk6EtUDD_UZYpi5OE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1023033559013-l05h50t5b19bp65mj37ppmedoangi1q7.apps.googleusercontent.com",
+              "client_id": "359903583573-g90k8a0es0c3ghj4t926shlq4q8oenq7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

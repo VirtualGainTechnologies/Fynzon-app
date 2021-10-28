@@ -64,12 +64,12 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
         },
         child: Scaffold(
+          backgroundColor: Color(0xFF18222C),
           appBar: AppBar(
             backgroundColor: Color(0xFF18222C),
             title: Text('Update Profile'),
           ),
-         // backgroundColor: Color(0xFF18222C),
-          backgroundColor: Colors.white,
+
           body: Form(
             key: _formKey,
             child: Container(
@@ -99,7 +99,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               'Update Profile',
                               style: TextStyle(
                                 fontSize: 24,
-                                color: Colors.blueGrey,
+                                color: Colors.white,
                                 //fontWeight: FontWeight.bold
                               ),
                             ),
@@ -137,7 +137,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("FIRST NAME *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -165,15 +166,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
                               ),
                             ),
                           ),
@@ -183,7 +184,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("LAST NAME *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -210,15 +212,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -228,7 +231,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("STATE *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -256,15 +260,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -274,7 +279,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("COUNTRY *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -302,15 +308,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -320,7 +327,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("EMAIL *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -353,15 +361,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -371,7 +380,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("CITY *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -398,15 +408,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -416,7 +427,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("PIN CODE *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -443,15 +455,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -461,7 +474,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topLeft,
                           child: Text("PIN *",style: TextStyle(
-                              fontSize: 10
+                              fontSize: 10,
+                            color: Colors.white
                           ),),
                         ),
                         FadeAnimation(
@@ -488,15 +502,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   color: Colors.black
                               ),
                               decoration: new InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.grey[400]),
-                                ),
+                                fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueAccent),
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                                 ),
                                 filled: true,
                                 prefixText: ' ',
-                                fillColor: Colors.white10,
+
                               ),
                             ),
                           ),
@@ -517,7 +532,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               }
                             },
                             child:_isLoading
-                              ?CircularProgressIndicator()
+                              ?CircularProgressIndicator(
+                                strokeWidth: 6.0,
+                                backgroundColor: Colors.green,
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                            )
                             :
                             Container(
                               padding: EdgeInsets.fromLTRB(100, 15, 100, 15),
@@ -527,9 +546,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                 style: TextStyle(color: Colors.white, fontSize: 16),
                               ),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5)),
                                   color: Colors.blue,
-                                  border: Border.all(color: Colors.blueAccent)),
+                                  ),
                             ),
                           ),
                         )

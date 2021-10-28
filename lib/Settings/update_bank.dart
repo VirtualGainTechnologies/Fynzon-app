@@ -1,42 +1,22 @@
+
 import 'package:flutter/material.dart';
-import 'package:fyn_zon/paymentOption.dart';
+import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/mainApi.dart';
 import 'package:fyn_zon/mainscreen.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fyn_zon/tokenPass.dart';
-
-class BankAccount extends StatefulWidget {
-  /*String selectedSalutation, fname, lname, dob, address, state,
-      city, pin, pan, adhaar;
-  BankAccount({
-    Key key,
-    @required this.selectedSalutation,
-    @required this.fname,
-    @required this.lname,
-    @required this.dob,
-    @required this.address,
-    @required this.state,
-    @required this.city,
-    @required this.pin,
-    @required this.pan,
-    @required this.adhaar,
-  }) : super(key: key);*/
-
+class UpdateBank extends StatefulWidget {
+  final String accNumber, ifsc;
+  UpdateBank( this.accNumber, this.ifsc, {Key key})
+      : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return BankAccountState();
-  }
+  _UpdateBankState createState() => _UpdateBankState();
 }
 
-class BankAccountState extends State<BankAccount> {
-
- // String selectedSalutation, fname, lname, dob, address, state, city, pin, pan, adhaar;
-
-
+class _UpdateBankState extends State<UpdateBank> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController accController = new TextEditingController();
   TextEditingController reaccController = new TextEditingController();
@@ -48,59 +28,12 @@ class BankAccountState extends State<BankAccount> {
   List<String> _accType = ['Savings','Current'];
   bool _isLoading=false;
 
-  Future createAlbum(
-      String bankAccNo,
-      String ifscCode,
-      String accType,
-      BuildContext context) async {
-    setState(() => _isLoading = true);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var data = {
-      "bankAccNo": bankAccNo,
-      "ifscCode": ifscCode,
-      "accType": accType,
-    };
-
-    var apiData = {
-      "url":
-      AuthToken.api + "/" + "client/updateProfile/" + prefs.getString('token'),
-      "data": data
-    };
-
-    ApiClass.postApiCall(apiData, (onSuccess) {
-      print(onSuccess.toString());
-      var id = jsonDecode(onSuccess["response"])['data'].toString();
-     // print("id");
-      Fluttertoast.showToast(
-          msg: "Bank Detail Uploaded",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print("status: " + id);
-      setState(() => _isLoading = false);
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.leftToRight,
-          child: MainScreenPage(),
-        ),
-      );
-    }, (onError) {
-      setState(() => _isLoading = false);
-      Fluttertoast.showToast(
-          msg: "Something Went Wrong",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print("Error working with the api");
-    });
+  @override
+  void initState() {
+    super.initState();
+    accController.text = widget.accNumber;
+    reaccController.text = widget.accNumber;
+    ifscController.text = widget.ifsc;
   }
 
 
@@ -108,32 +41,52 @@ class BankAccountState extends State<BankAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF233446),
+      appBar: AppBar(
+        title: Text('Update Bank Detail'),
+        backgroundColor: Color(0xFF18222C),
+      ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.only(left: 5,right: 5,top: 10),
+          child: Padding(
+            padding: EdgeInsets.only(left: 20,right: 20,top: 10),
             child: Card(
               elevation: 2,
-              child: Container(
-                padding: EdgeInsets.only(left: 30,right: 30),
+              child: Padding(
+                padding: EdgeInsets.only(left: 20,right: 20),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(top: 20,),
-                      child: Text('Add your bank account details for IMPS payments',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black
-                      ),),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text('Update Details',style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),)),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 10),
+                    Divider(
+                      color: Colors.grey.shade300,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20,left: 25,right: 25),
+                      child: Text('Update your bank account details for IMPS payments',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16,
+
+                            color: Colors.black87
+                        ),),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Align(
                       alignment: Alignment.topLeft,
                       child: Text("ACCOUNT NUMBER",style: TextStyle(
                           fontSize: 12,
-                        color: Colors.grey,fontWeight: FontWeight.bold
+                          color: Colors.grey,fontWeight: FontWeight.bold
                       ),),
                     ),
                     Container(
@@ -159,19 +112,16 @@ class BankAccountState extends State<BankAccount> {
                         onSaved: (text) => bankAccNo = text,
 
                         decoration: new InputDecoration(
-                          /* border: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.red)
-                              ),*/
-
-                          enabledBorder: new OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.grey[400]),
-                          ),
+                          fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueAccent),
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                           ),
                           filled: true,
                           prefixText: ' ',
-                          fillColor: Colors.white10,
+
                         ),
                       ),
                     ),
@@ -198,27 +148,24 @@ class BankAccountState extends State<BankAccount> {
                         ),
                         controller: reaccController,
                         validator: (text) {
-                          if (text.trim().length < 4)
-                            return "Re Enter Account Number Should not be blank.";
+                          if (text != accController.text)
+                            return "account not match";
                           reacc = reaccController.text;
                           return null;
                         },
                         onSaved: (text) => reacc = text,
 
                         decoration: new InputDecoration(
-                          /* border: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.red)
-                              ),*/
-
-                          enabledBorder: new OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.grey[400]),
-                          ),
+                          fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueAccent),
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                           ),
                           filled: true,
                           prefixText: ' ',
-                          fillColor: Colors.white10,
+
                         ),
                       ),
                     ),
@@ -253,19 +200,16 @@ class BankAccountState extends State<BankAccount> {
                         onSaved: (text) => ifscCode = text,
 
                         decoration: new InputDecoration(
-                          /* border: new OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.red)
-                              ),*/
-
-                          enabledBorder: new OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.grey[400]),
-                          ),
+                          fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueAccent),
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100, width: 1.0),
                           ),
                           filled: true,
                           prefixText: ' ',
-                          fillColor: Colors.white10,
+
                         ),
                       ),
                     ),
@@ -273,7 +217,7 @@ class BankAccountState extends State<BankAccount> {
                       margin: EdgeInsets.only(top: 10),
                       padding: EdgeInsets.only(left: 5),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400])),
+                          border: Border.all(color: Colors.lightBlueAccent.shade100)),
                       child: DropdownButtonHideUnderline(
                         child: Theme(
                           data: Theme.of(context).copyWith(
@@ -305,26 +249,29 @@ class BankAccountState extends State<BankAccount> {
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 20, bottom: 10),
-                     // width: MediaQuery.of(context).size.width,
+                      // width: MediaQuery.of(context).size.width,
                       child: _isLoading ?
-                          CircularProgressIndicator():
+                      CircularProgressIndicator(
+                          strokeWidth: 6.0,
+                          backgroundColor: Colors.green,
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                      ):
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: RaisedButton(
                           onPressed: () {
-
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              createAlbum(bankAccNo, ifscCode,
-                              accType,context,
-                              );
+                              createAlbum(bankAccNo, ifscCode, accType,  context);
                             } else {}
                           },
                           textColor: Colors.white,
-                          color: Colors.green,
+                          color: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
                           padding: const EdgeInsets.all(8.0),
                           child: new Text(
-                            "SUBMIT",
+                            "UPDATE",
                           ),
                         ),
                       ),
@@ -338,4 +285,59 @@ class BankAccountState extends State<BankAccount> {
       ),
     );
   }
+  createAlbum (
+      String number,
+      String ifsc,
+      String type,
+      BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    /* var token = prefs.getString("token");
+  AuthToken.authtoken = token;*/
+    var data = {
+      'bankAccNo': number,
+      'ifscCode': ifsc,
+      'accType': type
+    };
+
+    var apiData = {
+      "url":
+      AuthToken.api + "/" + "client/updateProfile/" + prefs.getString('token'),
+      "data": data
+    };
+
+    ApiClass.postApiCall(apiData, (onSuccess) {
+      print(onSuccess.toString());
+      var id = jsonDecode(onSuccess["response"])['data'].toString();
+      print("id");
+      Fluttertoast.showToast(
+          msg: "Successfully Updated Bank Detail",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      print("status: " + id);
+      setState(()=> _isLoading = false);
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainScreenPage(),
+        ),
+      );
+    }, (onError) {
+      setState(()=> _isLoading = false);
+      Fluttertoast.showToast(
+          msg: "Something Went Wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      print("Error working with the api");
+    });
+  }
 }
+
