@@ -36,30 +36,28 @@ class _MyHomePageState extends State<MyHomePage> {
       2.5,
       Container(
           padding: EdgeInsets.all(40),
-          color: Color(0xFF18222C),
-          child: Image.asset("./assets/fynzon_logo.png")),
+        decoration: new BoxDecoration(
+          image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+        ),
+         // color: Color(R129G193B223),
+          child:
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset("./assets/images/fynzon_logo.png",width: 200,
+                height: 70,),
+                Image.asset("./assets/images/fynzon_text.png",width: 200,
+                  height: 70,),
+              ])),
     );
   }
 
   Future _getThingsOnStartup() async {
-    /*final prefs = await SharedPreferences.getInstance();
-    prefs.setString("userid", 'user_id');*/
-   /* final user = prefs.getString("userid");
-    AuthToken.userid = user;
-    final token = prefs.getString("token");
-    AuthToken.authtoken = token;*/
-   // print(user);
+
     Timer(Duration(seconds: 3), () {
-     // Navigator.pushNamed(context, '/mainScreenPage');
        Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MainScreenPage()));
-      /*if (user == null) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      } else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MainScreenPage()));
-      }*/
     });
   }
 }

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/Asset/assetsWithdraw.dart';
-import 'package:fyn_zon/wallet.dart';
+import 'package:fyn_zon/Wallet/wallet.dart';
+import 'package:fyn_zon/mainscreen.dart';
 
 class Assets extends StatefulWidget {
   const Assets({Key key}) : super(key: key);
@@ -21,51 +22,61 @@ class _AssetsState extends State<Assets> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: (){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainScreenPage(),
+          ),
+        );
+      },
+      child: Scaffold(
 
-      appBar: AppBar(
-        backgroundColor: Color(0xFF18222C),
-        title: Text('Assets'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(),
-        child: new DefaultTabController(
-          length: 2,
-          child: new Scaffold(
-            appBar: new AppBar(
-              leading: Icon(null),
-              backgroundColor: Color(0xFF18222C),
-              flexibleSpace: new Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  new TabBar(
-                    onTap: (int index) {
-                      setState(() {
-                        _selectedPage = index;
-                      });
-                    },
-                    tabs: [
-                      new Tab(
-                        text: 'Assets',
-                      ),
-                      new Tab(
-                        text: 'Withdraw',
-                      ),
-                      /*new Tab(
-                        text: 'OrderHistory',
-                      ),*/
-                    ],
-                    indicatorColor: Colors.green,
-                    unselectedLabelStyle: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
-                    labelStyle: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                ],
+        appBar: AppBar(
+          backgroundColor: Color(0xFF18222C),
+          title: Text('Assets'),
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(),
+          child: new DefaultTabController(
+            length: 2,
+            child: new Scaffold(
+              appBar: new AppBar(
+                leading: Icon(null),
+                backgroundColor: Color(0xFF18222C),
+                flexibleSpace: new Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    new TabBar(
+                      onTap: (int index) {
+                        setState(() {
+                          _selectedPage = index;
+                        });
+                      },
+                      tabs: [
+                        new Tab(
+                          text: 'Assets',
+                        ),
+                        new Tab(
+                          text: 'Withdraw',
+                        ),
+                        /*new Tab(
+                          text: 'OrderHistory',
+                        ),*/
+                      ],
+                      indicatorColor: Colors.green,
+                      unselectedLabelStyle: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.grey),
+                      labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
+              body: _pageOptions[_selectedPage],
             ),
-            body: _pageOptions[_selectedPage],
           ),
         ),
       ),

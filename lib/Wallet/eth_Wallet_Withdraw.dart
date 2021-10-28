@@ -6,8 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/tokenPass.dart';
 
-import 'Model/qrCodeModel.dart';
-import 'mainApi.dart';
+import '../Model/qrCodeModel.dart';
+import '../custom_appbar.dart';
+import '../mainApi.dart';
 
 class EthWalletWithdraw extends StatefulWidget {
   String currncy;
@@ -89,6 +90,7 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar('ETH Withdraw'),
       body: SingleChildScrollView(
         child: Container(
           decoration: new BoxDecoration(
@@ -103,10 +105,10 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
                   return Form(
                     key: _formKey,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      //mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        MaterialButton(
+                       /* MaterialButton(
                           height: 40,
                           minWidth: 140,
                           onPressed: () {
@@ -125,9 +127,9 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
                                 fontSize: 18,
                                 color: Colors.white),
                           ),
-                        ),
+                        ),*/
                         SizedBox(
-                          height: 20,
+                          height: 80,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -161,7 +163,7 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
                                       style: TextStyle(
                                         fontFamily: 'berlinsans',
                                         letterSpacing: 1,
-                                        fontSize:40,
+                                        fontSize:20,
                                         fontWeight: FontWeight.w500,
                                         color: Colors.black87,
                                       ),
@@ -172,8 +174,11 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                           alignment: Alignment.topLeft,
                           child: Text('Destination Address',
                             style: TextStyle(
@@ -224,8 +229,11 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                           alignment: Alignment.topLeft,
                           child: Text('ETH Amount',
                             style: TextStyle(
@@ -279,7 +287,7 @@ class _EthWalletWithdrawState extends State<EthWalletWithdraw> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Container(
                             alignment: Alignment.topLeft,

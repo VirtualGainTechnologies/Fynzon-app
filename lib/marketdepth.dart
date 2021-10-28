@@ -2,112 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/tokenPass.dart';
-import 'package:fyn_zon/login.dart';
-import './services/order.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fyn_zon/animation/FadeAnimation.dart';
+import 'Model/order_market_depth_model.dart';
 import 'mainApi.dart';
-class BuyModel {
-  String message;
-  String error;
-  List<Data> data;
 
-  BuyModel({this.message, this.error, this.data});
-
-  BuyModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    error = json['error'];
-    if (json['data'] != null) {
-      data = new List<Data>();
-      json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['error'] = this.error;
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Data {
-  var sId;
-  var price;
-  var volume;
-
-  Data({this.sId, this.price, this.volume});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    price = json['price'];
-    volume = json['volume'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['price'] = this.price;
-    data['volume'] = this.volume;
-    return data;
-  }
-}
-
-class SellModel {
-  String message;
-  String error;
-  List<Data> data;
-
-  SellModel({this.message, this.error, this.data});
-
-  SellModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    error = json['error'];
-    if (json['data'] != null) {
-      data = new List<Data>();
-      json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['error'] = this.error;
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Data2 {
-  var sId;
-  int price;
-  double volume;
-
-  Data2({this.sId, this.price, this.volume});
-
-  Data2.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    price = json['price'];
-    volume = json['volume'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['price'] = this.price;
-    data['volume'] = this.volume;
-    return data;
-  }
-}
 
 class MarketDepth extends StatefulWidget {
   @override
@@ -115,8 +13,8 @@ class MarketDepth extends StatefulWidget {
 }
 
 class _MarketDepthState extends State<MarketDepth> {
-  BuyModel fetchModal;
-  SellModel fetchModal2;
+  BuyModel fetchModal, fetchModal2;
+ // SellModel fetchModal2;
   @override
   void initState() {
     super.initState();
@@ -129,7 +27,6 @@ class _MarketDepthState extends State<MarketDepth> {
       fetchBuy();
       fetchSell();
     }*/
-
   }
 
   fetchBuy() async {
@@ -171,7 +68,7 @@ class _MarketDepthState extends State<MarketDepth> {
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
       print(onSuccess.toString());
-      fetchModal2 = SellModel.fromJson(jsonDecode(onSuccess['response']));
+      fetchModal2 = BuyModel.fromJson(jsonDecode(onSuccess['response']));
       print("sellcurrency>>>>>>> " + fetchModal2.data.length.toString());
       setState(() {});
     }, (onError) {
@@ -187,7 +84,7 @@ class _MarketDepthState extends State<MarketDepth> {
     };
     ApiClass.getApiCall(apiData, (onSuccess) {
       print(onSuccess.toString());
-      fetchModal2 = SellModel.fromJson(jsonDecode(onSuccess['response']));
+      fetchModal2 = BuyModel.fromJson(jsonDecode(onSuccess['response']));
       print("sellcurrency>>>>>>> " + fetchModal2.data.length.toString());
       setState(() {});
     }, (onError) {
@@ -208,7 +105,11 @@ class _MarketDepthState extends State<MarketDepth> {
         2.0,
 
         Container(
-
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: new BoxDecoration(
+              image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+            ),
           child: FutureBuilder<BuyModel>(
             // ignore: missing_return
             builder: (BuildContext context, AsyncSnapshot  snapshot){
@@ -219,47 +120,36 @@ class _MarketDepthState extends State<MarketDepth> {
                   ,Column(
                     children: [
                       Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         height: 50,
                         color: Colors.black,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text("Volume", style: TextStyle(color: Colors.white),),
-                              ),
+                            Text("VOLUME",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 0),
-                                child: Text("Buy Price", style: TextStyle(color: Colors.white),),
-                              ),
+
+                            Text("BUY PRICE",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text("Volume", style: TextStyle(color: Colors.white),),
-                              ),
+                            Text("VOLUME",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 0),
-                                child: Text("Sell Price", style: TextStyle(color: Colors.white),),
-                              ),
+                            Text("SELL PRICE",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                             ),
                           ],
                         ),
                       ),
-                      Flexible(child: Row(
+                      Flexible(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
 
                           Expanded(
                             child: ListView.builder(
+
                                 itemCount: fetchModal.data.length,
                                 itemBuilder: (context, position) {
                                   var num = double.parse(fetchModal.data[position].volume.toString());
@@ -273,15 +163,17 @@ class _MarketDepthState extends State<MarketDepth> {
                                   if(finalLen == 1){
                                     value = '$value$c';
                                     print("answerc"+value);
-                                  }else if(finalLen>1 && finalLen<3) {
+                                  }else if(finalLen == 2) {
                                     value= '$value$b';
                                     print("answerb"+value);
-                                  }else if(finalLen>2 && finalLen<4){
+                                  }else if(finalLen == 3){
                                     value= '$value$a';
                                     print("answera"+value);
-                                  }else if(finalLen>4){
-                                    value= num.toStringAsFixed(4);
+                                  }else if(finalLen == 4){
+                                    value= value;
                                     print("answeraaaaa"+value);
+                                  }else if(finalLen > 4){
+                                    value= num.toStringAsFixed(4);
                                   }else {
                                     value = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
                                     print("answer "+value);
@@ -330,6 +222,7 @@ class _MarketDepthState extends State<MarketDepth> {
 
                           Expanded(
                             child: ListView.builder(
+                              
                                 itemCount: fetchModal2.data.length,
                                 itemBuilder: (context, position) {
                                   var num1 = double.parse(fetchModal2.data[position].volume.toString());
@@ -343,16 +236,18 @@ class _MarketDepthState extends State<MarketDepth> {
                                   if(finalLen == 1){
                                     value1 = '$value$c';
                                     print("answerc"+value);
-                                  }else if(finalLen>1 && finalLen<3) {
+                                  }else if(finalLen == 2) {
                                     value1= '$value$b';
                                     print("answerb"+value);
-                                  }else if(finalLen>2 && finalLen<4){
+                                  }else if(finalLen == 3){
                                     value1= '$value$a';
                                     print("answera"+value);
-                                  }else if(finalLen>4){
-                                    value1= num1.toStringAsFixed(4);
+                                  }else if(finalLen == 4){
+                                    value1= value;
                                     print("answeraaaaa"+value);
                                     print("lalit>>>>>>>$num1");
+                                  }else if(finalLen > 4){
+                                    value1 = num1.toStringAsFixed(4);
                                   }else {
                                     value1 = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
                                     print("answer "+value);
@@ -412,7 +307,9 @@ class _MarketDepthState extends State<MarketDepth> {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   // margin: EdgeInsets.only(top: 80),
-                  child: CircularProgressIndicator(backgroundColor: Colors.white,));
+                  child: CircularProgressIndicator(  strokeWidth: 6.0,
+                      backgroundColor: Colors.green,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)));
 
 
 

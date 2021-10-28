@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/upi.dart';
 
-import 'bankAccount.dart';
+import 'Settings/bankAccount.dart';
 class PaymentOption extends StatefulWidget {
 
 /* String selectedSalutation, fname, lname, dob, address, state, city, pin, pan, adhaar;

@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fyn_zon/tokenPass.dart';
-
-import 'Model/qrCodeModel.dart';
-import 'mainApi.dart';
+import 'package:share/share.dart';
+import '../Model/qrCodeModel.dart';
+import '../custom_appbar.dart';
+import '../mainApi.dart';
 
 class EthWalletDeposit extends StatefulWidget {
   String currncy;
@@ -52,10 +54,12 @@ class _EthWalletDepositState extends State<EthWalletDeposit> {
     }
     );
   }
-
+  final GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: key,
+      appBar: appBar('ETH Deposit'),
       body: Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
@@ -74,7 +78,7 @@ class _EthWalletDepositState extends State<EthWalletDeposit> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    MaterialButton(
+                   /* MaterialButton(
                       height: 40,
                       minWidth: 140,
                       onPressed: () {
@@ -93,7 +97,7 @@ class _EthWalletDepositState extends State<EthWalletDeposit> {
                             fontSize: 18,
                             color: Colors.white),
                       ),
-                    ),
+                    ),*/
                         SizedBox(
                           height: 20,
                         ),
@@ -129,7 +133,7 @@ class _EthWalletDepositState extends State<EthWalletDeposit> {
                                     style: TextStyle(
                                       fontFamily: 'berlinsans',
                                       letterSpacing: 1,
-                                      fontSize:40,
+                                      fontSize:20,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black87,
                                     ),
@@ -158,32 +162,60 @@ class _EthWalletDepositState extends State<EthWalletDeposit> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                MaterialButton(
-                                  height: 40,
-                                  minWidth: MediaQuery.of(context).size.width,
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EthWalletDeposit(currncy: widget.currncy),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    MaterialButton(
+                                      height: 25,
+                                      onPressed: () {
+                                        Clipboard.setData(new ClipboardData(text: futureAlbum.data.address));
+                                        key.currentState.showSnackBar(
+                                            new SnackBar(content: new Text("Copied to Clipboard"),));
+                                      },
+                                      //color:Color(0xFF81C1DF),
+                                      color:Color(0xFF144A7D),
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(30)),
+                                      child: Text(
+                                        "COPY",
+                                        style: TextStyle(
+                                          //fontFamily: 'berlinsans',
+                                            letterSpacing: 1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 11,
+                                            color: Colors.white),
                                       ),
-                                    );
-                                  },
-                                  //color:Color(0xFF81C1DF),
-                                  color:Color(0xFF144A7D),
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30)),
-                                  child: Text(
-                                    "Next",
-                                    style: TextStyle(
-                                      //fontFamily: 'berlinsans',
-                                        letterSpacing: 1,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16,
-                                        color: Colors.white),
-                                  ),
-                                ),
+                                    ),
+
+                                    MaterialButton(
+                                      height: 25,
+                                      onPressed: () {
+                                        final RenderBox box = context.findRenderObject();
+                                        Share.share(futureAlbum.data.address,
+                                            subject: 'Address',
+                                            sharePositionOrigin:
+                                            box.localToGlobal(Offset.zero) &
+                                            box.size);
+                                      },
+                                      //color:Color(0xFF81C1DF),
+                                      color:Color(0xFF144A7D),
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(30)),
+                                      child: Text(
+                                        "SHARE",
+                                        style: TextStyle(
+                                          //fontFamily: 'berlinsans',
+                                            letterSpacing: 1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 11,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           )),

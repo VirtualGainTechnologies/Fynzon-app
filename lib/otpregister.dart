@@ -1,5 +1,6 @@
 import 'package:fyn_zon/Node/createNode.dart';
 import 'package:flutter/material.dart';
+import 'package:fyn_zon/signup.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,8 @@ import 'package:fyn_zon/tokenPass.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/mainApi.dart';
+
+import 'custom_appbar.dart';
 
 // ignore: must_be_immutable
 class OtpRegister extends StatefulWidget {
@@ -33,6 +36,7 @@ class OtpRegisterState extends State<OtpRegister> {
   OtpRegisterState(this.phone_number,this.pin,this.fname,this.lname,this.email);
   TextEditingController otpController = new TextEditingController();
   bool _isLoading = false;
+  bool _isLoadingresend = false;
   final globalKey = GlobalKey<ScaffoldState>();
 
   Future aAlbum(String otp,
@@ -53,6 +57,9 @@ class OtpRegisterState extends State<OtpRegister> {
   }
 
   Future createAlbum() async {
+    setState(() {
+      _isLoadingresend = true;
+    });
     var data = {
       'phone': widget.phone_number,
     };
@@ -69,9 +76,11 @@ class OtpRegisterState extends State<OtpRegister> {
       var veriid = res['_id'];
       print(veriid);
       AuthToken.veriotp = veriid;
-
+      setState(() {
+        _isLoadingresend = false;
+      });
       Fluttertoast.showToast(
-          msg: "OTP send successfully",
+          msg: "OTP Sent successfully",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -79,12 +88,15 @@ class OtpRegisterState extends State<OtpRegister> {
           textColor: Colors.white,
           fontSize: 16.0);
     }, (onError) {
+      setState(() {
+        _isLoadingresend = false;
+      });
       Fluttertoast.showToast(
           msg: "Something Went Wrong",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
       print("Error working with the api");
@@ -112,178 +124,243 @@ class OtpRegisterState extends State<OtpRegister> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: globalKey,
-      body: Container(
-        color: Color(0xFF233446),
-        padding: EdgeInsets.all(10.0),
-        width: double.infinity,
-        child: Column(
-          children: <Widget>[
-            GestureDetector(
-              onTap: (){
-                Navigator.pop(context);
-               /* Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          SignupPage()),
-                );*/
-              },
-              child: Container(
-                alignment: Alignment.topRight,
-                margin: EdgeInsets.only(top: 22),
-                child: Icon(Icons.close,color: Colors.white,),
-              ),
+    return WillPopScope(
+      onWillPop: (){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SignupPage(),
+          ),
+        );
+      },
+      child: Scaffold(
+        appBar: appBar('Phone Authentication'),
+        key: globalKey,
+        body: SingleChildScrollView(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: new BoxDecoration(
+              image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
             ),
-            Expanded(
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      child: Icon(Icons.message,color: Colors.white,),
-                    ),
-                    SizedBox(
-                      height: 60,
-                    ),
-                    Container(
-                      child: Text(
-                        "Enter the OTP sent to your mobile",
-                        style: TextStyle(fontSize: 15, color: Colors.white,fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 45,right: 45),
-                      child: TextFormField(
-                        textAlign: TextAlign.center,
-                        autocorrect: true,
-                        autofocus: false,
-                        controller: otpController,
-                        keyboardType: TextInputType.text,
-                        cursorColor: Colors.white,
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            // borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle:
-                          new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "OTP",
-                          // fillColor: Colors.white70
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      // padding: EdgeInsets.symmetric(horizontal: 40),
-                      padding: EdgeInsets.only(top: 3, left: 45,right: 45,),
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+             /* mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,*/
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20, top: 00),
+                  child:  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("./assets/images/fynzon_logo.png",
+                          height: 40,),
+                        Image.asset("./assets/images/fynzon_text.png",width: 170,
+                          height: 60,),
 
-                      child: _isLoading
-                          ?CircularProgressIndicator():
-                      MaterialButton(
-                        minWidth: double.infinity,
-                        height: 45,
-                        onPressed: () async {
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          setState(()=> _isLoading = true);
-                          var otp = otpController.text;
-                          var rsp = await aAlbum(otp, context);
-                          var data = rsp['data'];
-                          var error = rsp['error'];
-                          if (error == "true"){
-                            Fluttertoast.showToast(
-                                msg: "Mobile verification failed",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                            setState(()=> _isLoading = false);
-                          }else{
-                            Fluttertoast.showToast(
-                                msg: "verified number",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                            register();
-                            setState(()=> _isLoading = false);
-
-
-                          }
-
-                        },
-                        color: Colors.blueGrey,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Text(
-                          "AUTHENTICATE",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GestureDetector(
-                      onTap:()async{
-                        createAlbum();
-                      },
-                      child: Container(
-                        child: RichText(
-                          text: new TextSpan(
-                            text: 'Did not receive OTP? ',
-                            style: TextStyle(
-                                color: Colors.blueGrey
-                            ),
-                            children: <TextSpan>[
-
-                              new TextSpan(
-                                text: 'RESEND in',
-                                style: TextStyle(
-                                    color: Colors.blueGrey,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600
-                                ),
-                              ),
-                              new TextSpan(text: ' 60s', style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600
-                              ),),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                      ])
                 ),
-              ),
-            ),
-          ],
+               Card(
+                 shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.circular(20.0),
+                 ),
+                 child: Column(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.all(15),
+                       child: Align(
+                         alignment: Alignment.topLeft,
+                         child: Text(
+                           "Verify Mobile Number",
+                           style: TextStyle(
+                             fontSize: 17,
+                             fontWeight: FontWeight.w600,
+                             color: Colors.black,
+                           ),
+                         ),
+                       ),
+                     ),
+                     Padding(
+                       padding: EdgeInsets.symmetric(horizontal: 10),
+                       child: Divider(
+                         color: Colors.grey.shade200,
+                         thickness: 1.5,
+                       ),
+                     ),
+                     SizedBox(
+                       height: 50,
+                     ),
+                     Image.asset("./assets/images/security.png",width: 170,
+                       height: 60,),
+                     SizedBox(
+                       height: 30,
+                     ),
+                     Padding(
+                       padding: EdgeInsets.symmetric(horizontal: 50),
+                       child: Text(
+                         "Please Enter the verification code sent to",
+                         textAlign: TextAlign.center,
+                         style: TextStyle( fontSize: 16,
+                             fontFamily: 'berlinsans',
+                             letterSpacing: 0.6,
+                             color: Colors.black87),
+                       ),
+                     ),
+                     SizedBox(
+                       height: 30,
+                     ),
+                     Text(
+                       "+91 $phone_number",
+                       textAlign: TextAlign.center,
+                       style: TextStyle(fontSize: 20,
+                         color: Colors.black,
+                         fontFamily: 'berlinsans',
+                         letterSpacing: 1,),
+                     ),
+                     SizedBox(
+                       height: 30,
+                     ),
 
+                     Container(
+                       padding: EdgeInsets.only(left: 45,right: 45),
+                       child: TextFormField(
+                         textAlign: TextAlign.center,
+                         autocorrect: true,
+                         autofocus: false,
+                         controller: otpController,
+                         keyboardType: TextInputType.text,
+                         cursorColor: Colors.white,
+                         style: TextStyle(
+                             color: Colors.black
+                         ),
+                         decoration: new InputDecoration(
+                           isDense: true,
+                           contentPadding: new EdgeInsets.symmetric(vertical: 13.0, horizontal: 10.0),
+                           fillColor: Colors.white,
+                           focusedBorder: OutlineInputBorder(
+                             borderRadius: BorderRadius.circular(40),
+                             borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                           ),
+                           enabledBorder: OutlineInputBorder(
+                             borderRadius: BorderRadius.circular(40),
+                             borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                           ),
+                           filled: true,
+                           hintStyle:
+                           new TextStyle(
+                             color: Colors.grey,
+                           ),
+                           hintText: "Enter Verification Code",
+                           // fillColor: Colors.white70
+                         ),
+                       ),
+                     ),
+                     SizedBox(
+                       height: 20,
+                     ),
+                     Padding(
+                       padding: EdgeInsets.symmetric(horizontal: 10),
+                       child: Divider(
+                         color: Colors.grey.shade200,
+                         thickness: 1.5,
+                       ),
+                     ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                       children: [
+                         _isLoading
+                             ?CircularProgressIndicator(
+                             strokeWidth: 6.0,
+                             backgroundColor: Colors.green,
+                             valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                         ):
+                         MaterialButton(
+                           minWidth: 110,
+                           height: 30,
+                           onPressed: () async {
+                             FocusScope.of(context).requestFocus(FocusNode());
+                             setState(()=> _isLoading = true);
+                             var otp = otpController.text;
+                             var rsp = await aAlbum(otp, context);
+                             var data = rsp['data'];
+                             var error = rsp['error'];
+                             if (error == "true"){
+                               Fluttertoast.showToast(
+                                   msg: "Mobile verification failed",
+                                   toastLength: Toast.LENGTH_SHORT,
+                                   gravity: ToastGravity.CENTER,
+                                   timeInSecForIosWeb: 1,
+                                   backgroundColor: Colors.green,
+                                   textColor: Colors.white,
+                                   fontSize: 16.0);
+                               setState(()=> _isLoading = false);
+                             }else{
+                               Fluttertoast.showToast(
+                                   msg: "verified Successfully",
+                                   toastLength: Toast.LENGTH_SHORT,
+                                   gravity: ToastGravity.CENTER,
+                                   timeInSecForIosWeb: 1,
+                                   backgroundColor: Colors.green,
+                                   textColor: Colors.white,
+                                   fontSize: 16.0);
+                               register();
+                               setState(()=> _isLoading = false);
+
+
+                             }
+
+                           },
+                           color:Color(0xFF144A7D),
+                           elevation: 0,
+                           shape: RoundedRectangleBorder(
+                               borderRadius: BorderRadius.circular(5)),
+                           child: Text(
+                             "Verify",
+                             style: TextStyle(
+
+                                 fontSize: 16,
+                                 fontFamily: 'berlinsans',
+                                 color: Colors.white),
+                           ),
+                         ),
+                         Container(
+                           child: _isLoadingresend
+                               ?CircularProgressIndicator(
+                               strokeWidth: 6.0,
+                               backgroundColor: Colors.green,
+                               valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                           ):
+                           MaterialButton(
+                             height: 30,
+                             minWidth: 110,
+                             onPressed: () async {
+                               createAlbum();
+                             },
+                             color:Color(0xFF144A7D),
+                             //color: Colors.blue,
+                             elevation: 0,
+                             shape: RoundedRectangleBorder(
+                                 borderRadius: BorderRadius.circular(5)),
+                             child: Text(
+                               "Resend",
+                               style: TextStyle(
+                                   fontFamily: 'berlinsans',
+                                   fontSize: 16,
+                                   color: Colors.white),
+                             ),
+                           ),
+                         ),
+                       ],
+                     ),
+                     SizedBox(
+                       height: 20,
+                     ),
+                   ],
+                 ),
+               )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -294,19 +371,28 @@ class OtpRegisterState extends State<OtpRegister> {
     var data = rsp['data'];
     var error = rsp['error'];
     if (error == "true") {
-      globalKey.currentState
-          .showSnackBar(new SnackBar(
-        content: new Text(rsp['message']),
-      ));
+      Fluttertoast.showToast(
+          msg: rsp['message'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } else {
       var user_id = data['userid'];
       var token = data['token'];
-      /*print('auth token>>>>>>>>' + token);
-      AuthToken.authtoken = token;
-      print('auth>>>>>>>>' + AuthToken.authtoken);*/
+      var fname = data['fname'];
+      var lname = data['lanme'];
+      var email = data['email'];
+      var phone = data['phone'];
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('userid', user_id);
       prefs.setString('token', token);
+      prefs.setString('fname', fname);
+      prefs.setString('lname', lname);
+      prefs.setString('email', email);
+      prefs.setString('phone', phone.toString());
       setState(() {
         prefs.setString('userid', user_id);
         prefs.setString('token', token);
@@ -327,177 +413,3 @@ class OtpRegisterState extends State<OtpRegister> {
     }
   }
 }
-
-
-
-
-/*var otp = otpController.text;
-                          /*  VerifyOtp.createAlbum(
-                             otp, phone_number, context);*/
-                          var rsp = await aAlbum(otp, context);
-                          var data = rsp['data'];
-                          var error = rsp['error'];
-                          if (error == "true"){
-                            Fluttertoast.showToast(
-                                msg: "Mobile verification failed",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                          }else{
-                            Fluttertoast.showToast(
-                                msg: "Successfully verified mobile number",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                            setState(() {
-                              CreateUSDT.balance(phone_number, pin);
-                              CreateUSDT.usdt(phone_number, pin);
-                              CreateUSDT.eth(phone_number, pin);
-                              CreateUSDT.btc(phone_number, pin);
-                              CreateUSDT.crmt(phone_number, pin);
-                              CreateUSDT.bch(phone_number, pin);
-                              Navigator.pop(context);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        MainScreenPage()),
-                              );
-                            });
-                          }
-
-                        },*/
-
-/*
-  /* @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Color(0xFF18222C),
-        padding: EdgeInsets.all(10.0),
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "./assets/fynzon_logo.png",
-              height: 80,
-              width: 200,
-            ),
-            Card(
-              margin: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "OTP",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Please enter your Otp",
-                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 250,
-                    child: PinInputTextField(
-                      pinLength: 6,
-                      keyboardType: TextInputType.text,
-                      controller: otpController,
-
-
-                      // end onSubmit
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Container(
-                      padding: EdgeInsets.only(top: 3, left: 3),
-                      child: MaterialButton(
-                        minWidth: double.infinity,
-                        height: 60,
-                        onPressed: () async {
-                          var otp = otpController.text;
-                          *//*  VerifyOtp.createAlbum(
-                             otp, phone_number, context);*//*
-                          var rsp = await aAlbum(otp, context);
-                          var data = rsp['data'];
-                          var error = rsp['error'];
-                          if (error == "true"){
-                            Fluttertoast.showToast(
-                                msg: "Mobile verification failed",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                          }else{
-                            Fluttertoast.showToast(
-                                msg: "Successfully verified mobile number",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                            setState(() {
-                              CreateUSDT.balance(phone_number, pin);
-                              CreateUSDT.usdt(phone_number, pin);
-                              CreateUSDT.eth(phone_number, pin);
-                              CreateUSDT.btc(phone_number, pin);
-                              CreateUSDT.crmt(phone_number, pin);
-                              CreateUSDT.bch(phone_number, pin);
-                              Navigator.pop(context);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        MainScreenPage()),
-                              );
-                            });
-                          }
-
-                        },
-                        color: Colors.blue,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-*/*/

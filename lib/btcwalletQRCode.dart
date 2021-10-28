@@ -70,7 +70,7 @@ class _WalletQRCodeState extends State<WalletQRCode> {
 
     var apiData = {
       "url":
-      AuthToken.api+"/"+currncy_type+"/"+prefs.getString('token')+"/"+prefs.getString('userid'),
+      AuthToken.api+"/"+"getQRcodeETH"+"/"+prefs.getString('token')+"/"+prefs.getString('userid'),
       //"data": data
     };
     ApiClass.getApiCall(apiData, (onSuccess) {

@@ -1,21 +1,13 @@
-import 'package:fyn_zon/Node/createNode.dart';
 import 'package:fyn_zon/tokenPass.dart';
 import 'package:fyn_zon/otpregister.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/material.dart';
-import 'package:fyn_zon/Node/createNode.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:fyn_zon/tokenPass.dart';
-import 'package:fyn_zon/mainscreen.dart';
-import 'package:fyn_zon/tokenPass.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fyn_zon/mainApi.dart';
-import './mainscreen.dart';
-import './api/api.dart';
+
+import 'custom_appbar.dart';
+import 'login.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -56,7 +48,7 @@ class _SignupPageState extends State<SignupPage> {
       AuthToken.veriotp = veriid;
 
       Fluttertoast.showToast(
-          msg: "OTP send successfully",
+          msg: "OTP Sent successfully",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -81,7 +73,7 @@ class _SignupPageState extends State<SignupPage> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
       print("Error working with the api");
@@ -89,340 +81,482 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      key: globalKey,
-      backgroundColor: Colors.white,
-      body: Form(
-        key: _formKey,
-        child: Container(
-          color: Color(0xFF233446),
-          padding: EdgeInsets.all(10.0),
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
+    return WillPopScope(
+      onWillPop: (){
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+        ),
+        );
+      },
+      child: Scaffold(
+        appBar: appBar('SignUp'),
+        resizeToAvoidBottomInset: false,
+        key: globalKey,
+        backgroundColor: Colors.white,
+        body: Form(
+          key: _formKey,
+          child: Container(
+            decoration: new BoxDecoration(
+              image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+            ),
+            padding: EdgeInsets.all(10.0),
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(bottom: 10),
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "./assets/fynzon_logo.png",
-                    height: 80,
-                    width: 200,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        autocorrect: true,
-                        autofocus: false,
-                        keyboardType: TextInputType.phone,
-                        controller: phoneController,
-                        cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white),
-                        validator: (text) {
-                          if (text.isEmpty) return 'Please enter mobile number';
-                          String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                          RegExp regExp = new RegExp(patttern);
-                          if (!regExp.hasMatch(text))
-                            return 'Please enter valid mobile number'
-                                .toLowerCase();
-                          phone_number = phoneController.text;
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("./assets/images/fynzon_logo.png",
+                          height: 40,),
+                        Image.asset("./assets/images/fynzon_text.png",width: 170,
+                          height: 60,),
 
-                          return null;
-                        },
-                        onSaved: (text) => phone_number = text,
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle: new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "Phone Number",
-                          // fillColor: Colors.white70
+                      ])
+                ),
+                Card(
+                  color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text('Register',style: TextStyle(
+                            fontSize: 18,
+                            letterSpacing: 0.5,
+                            //fontFamily: 'berlinsans',
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                          ),),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autocorrect: true,
-                        autofocus: false,
-                        controller: fnameController,
-                        cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white),
-                        validator: (text) {
-                          if (text.trim().length < 2)
-                            return "name Should not be blank.";
-                          fname = fnameController.text;
-                          return null;
-                        },
-                        onSaved: (text) => fname = text,
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle: new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "First Name",
-                          // fillColor: Colors.white70
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autocorrect: true,
-                        autofocus: false,
-                        controller: lnameController,
-                        cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white),
-                        validator: (text) {
-                          if (text.trim().length < 2)
-                            return "Last Name Should not be blank.";
-                          lname = lnameController.text;
-                          return null;
-                        },
-                        onSaved: (text) => lname = text,
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle: new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "Last Name",
-                          // fillColor: Colors.white70
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autocorrect: true,
-                        autofocus: false,
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white),
-                        autovalidate: false,
-                        validator: (text) {
-                          if (text.isEmpty) return 'Enter Email Id';
-                          Pattern pattern =
-                              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = new RegExp(pattern);
-                          if (!regex.hasMatch(text))
-                            return 'Enter Valid Email'.toLowerCase();
 
-                          email = emailController.text;
-                          return null;
-                        },
-                        onSaved: (text) => email = text,
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle: new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "Email Id",
-                          //fillColor: Colors.white70
+                        Divider(
+                          color: Colors.grey.shade300,
+                          thickness: 1,
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autocorrect: true,
-                        autofocus: false,
-                        keyboardType: TextInputType.number,
-                        controller: pinController,
-                        cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white),
-                        validator: (text) {
-                          if (text.isEmpty) return "Enter Pin";
-                          if (text.trim().length != 4) return "4 digit Pin";
-                          pin = pinController.text;
-                          return null;
-                        },
-                        onSaved: (text) => pin = text,
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle: new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "4 Digit Pin",
-                          //fillColor: Colors.white70
+                        SizedBox(
+                          height: 15,
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autocorrect: true,
-                        autofocus: false,
-                        keyboardType: TextInputType.number,
-                        controller: cpinController,
-                        cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white),
-                        validator: (text) {
-                          if (text.isEmpty) return "Enter Pin";
-                          if (text != pinController.text)
-                            return "Pin did'n match";
-                          cpin = cpinController.text;
-                          return null;
-                        },
-                        onSaved: (text) => cpin = text,
-                        decoration: new InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey),
-                          ),
-                          filled: true,
-                          hintStyle: new TextStyle(
-                              color: Colors.blueGrey,
-                              fontWeight: FontWeight.bold),
-                          hintText: "Confirm PIN",
-                          //fillColor: Colors.white70
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: Text(
-                    "Referral Code",
-                    style: TextStyle(
-                        color: Colors.blueGrey, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: FormField<bool>(
-                    builder: (state) {
-                      return Column(
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Checkbox(
-                                  value: checkBoxValue,
-                                  onChanged: (value) {
-                                    setState(() {
-//save checkbox value to variable that store terms and notify form that state changed
-                                      checkBoxValue = value;
-                                      state.didChange(value);
-                                    });
-                                  }),
-                              RichText(
-                                text: new TextSpan(
-                                  children: <TextSpan>[
-                                    new TextSpan(
-                                      text: 'I agree to Fynzon`s',
-                                      style: TextStyle(
-                                          color: Colors.blueGrey, fontSize: 12),
+                        Column(
+                          children: <Widget>[
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 150,
+                                  child: TextFormField(
+                                    autocorrect: true,
+                                    autofocus: false,
+                                    controller: fnameController,
+                                    cursorColor: Colors.white,
+                                    style: TextStyle(color: Colors.black),
+                                    validator: (text) {
+                                      if (text.trim().length < 2)
+                                        return "name Should not be blank.";
+                                      fname = fnameController.text;
+                                      return null;
+                                    },
+                                    onSaved: (text) => fname = text,
+                                    decoration: new InputDecoration(
+                                      isDense: true,
+                                      contentPadding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                                      fillColor: Colors.white,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      filled: true,
+                                      hintStyle: new TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 12),
+                                      hintText: "First Name",
+                                      // fillColor: Colors.white70
                                     ),
-                                    new TextSpan(
-                                      text: ' Terms of Service',
-                                      style: TextStyle(
-                                          color: Colors.blue, fontSize: 12),
+                                  ),
+                                ),
+                                Container(
+                                  width: 150,
+                                  child: TextFormField(
+                                    autocorrect: true,
+                                    autofocus: false,
+                                    controller: lnameController,
+                                    cursorColor: Colors.white,
+                                    style: TextStyle(color: Colors.black),
+                                    validator: (text) {
+                                      if (text.trim().length < 2)
+                                        return "Last Name Should not be blank.";
+                                      lname = lnameController.text;
+                                      return null;
+                                    },
+                                    onSaved: (text) => lname = text,
+                                    decoration: new InputDecoration(
+                                      isDense: true,
+                                      contentPadding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                                      fillColor: Colors.white,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      filled: true,
+                                      hintStyle: new TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 12),
+                                      hintText: "Last Name",
+                                      // fillColor: Colors.white70
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              autocorrect: true,
+                              autofocus: false,
+                              keyboardType: TextInputType.phone,
+                              controller: phoneController,
+                              cursorColor: Colors.white,
+                              style: TextStyle(
+                                  color: Colors.black
+                              ),
+                              validator: (text) {
+                                if (text.isEmpty) return 'Please enter mobile number';
+                                String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                                RegExp regExp = new RegExp(patttern);
+                                if (!regExp.hasMatch(text))
+                                  return 'Please enter valid mobile number'
+                                      .toLowerCase();
+                                phone_number = phoneController.text;
+
+                                return null;
+                              },
+                              onSaved: (text) => phone_number = text,
+                              decoration: new InputDecoration(
+                                isDense: true,
+                                contentPadding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                ),
+                                filled: true,
+                                hintStyle: new TextStyle(
+                                    color: Colors.grey.shade600,
+                                    fontSize: 12),
+                                hintText: "Mobile Number",
+                                // fillColor: Colors.white70
+                              ),
+                            ),
+
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              autocorrect: true,
+                              autofocus: false,
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              cursorColor: Colors.white,
+                              style: TextStyle(color: Colors.black),
+                              autovalidate: false,
+                              validator: (text) {
+                                if (text.isEmpty) return 'Enter Email Id';
+                                Pattern pattern =
+                                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                RegExp regex = new RegExp(pattern);
+                                if (!regex.hasMatch(text))
+                                  return 'Enter Valid Email'.toLowerCase();
+
+                                email = emailController.text;
+                                return null;
+                              },
+                              onSaved: (text) => email = text,
+                              decoration: new InputDecoration(
+                                isDense: true,
+                                contentPadding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                ),
+                                filled: true,
+                                hintStyle: new TextStyle(
+                                    color: Colors.grey.shade600,
+                                    fontSize: 12),
+                                hintText: "Email Address",
+                                //fillColor: Colors.white70
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 150,
+                                  child: TextFormField(
+                                    autocorrect: true,
+                                    obscureText: true,
+                                    maxLength: 4,
+
+                                    autofocus: false,
+                                    keyboardType: TextInputType.number,
+                                    controller: pinController,
+                                    cursorColor: Colors.white,
+                                    style: TextStyle(color: Colors.black),
+                                    validator: (text) {
+                                      if (text.isEmpty) return "Enter Pin";
+                                      if (text.trim().length != 4) return "4 digit Pin";
+                                      pin = pinController.text;
+                                      return null;
+                                    },
+                                    onSaved: (text) => pin = text,
+                                    decoration: new InputDecoration(
+                                      isDense: true,
+                                      counterText: "",
+                                      contentPadding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                                      fillColor: Colors.white,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      filled: true,
+                                      hintStyle: new TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 12),
+                                      hintText: "Set 4 Digit PIN",
+                                      //fillColor: Colors.white70
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 150,
+                                  child: TextFormField(
+                                    autocorrect: true,
+                                    obscureText: true,
+                                    autofocus: false,
+                                    maxLength: 4,
+                                    keyboardType: TextInputType.number,
+                                    controller: cpinController,
+                                    cursorColor: Colors.white,
+                                    style: TextStyle(color: Colors.black),
+                                    validator: (text) {
+                                      if (text.isEmpty) return "Enter Pin";
+                                      if (text != pinController.text)
+                                        return "Pin didn't match";
+                                      cpin = cpinController.text;
+                                      return null;
+                                    },
+                                    onSaved: (text) => cpin = text,
+                                    decoration: new InputDecoration(
+                                      counterText: "",
+                                      isDense: true,
+                                      contentPadding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                                      fillColor: Colors.white,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: Colors.grey.shade400, width: 1.0),
+                                      ),
+                                      filled: true,
+                                      hintStyle: new TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 12),
+                                      hintText: "Confirm 4 digit PIN",
+                                      //fillColor: Colors.white70
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        FormField<bool>(
+                          builder: (state) {
+                            return Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Checkbox(
+                                        value: checkBoxValue,
+                                        onChanged: (value) {
+                                          setState(() {
+//save checkbox value to variable that store terms and notify form that state changed
+                                            checkBoxValue = value;
+                                            state.didChange(value);
+                                          });
+                                        }),
+                                    RichText(
+                                      text: new TextSpan(
+                                        children: <TextSpan>[
+                                          new TextSpan(
+                                            text: "I accept Fynzon's",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                                //fontFamily: 'berlinsans',
+                                                color: Colors.black, fontSize: 12),
+                                          ),
+                                          new TextSpan(
+                                            text: ' Terms of use',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.blue, fontSize: 12),
+                                          ),
+                                          TextSpan(
+                                            text: ' and',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black87, fontSize: 12),
+                                          ),
+                                          TextSpan(
+                                            text: ' Privacy',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.blue, fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          ),
 //display error in matching theme
-                          Text(
-                            state.errorText ?? '',
-                            style: TextStyle(
-                              color: Theme.of(context).errorColor,
-                            ),
-                          )
-                        ],
-                      );
-                    },
+                                Text(
+                                  state.errorText ?? '',
+                                  style: TextStyle(
+                                    color: Theme.of(context).errorColor,
+                                  ),
+                                )
+                              ],
+                            );
+                          },
 //output from validation will be displayed in state.errorText (above)
-                    validator: (value) {
-                      if (!checkBoxValue) {
-                        return 'You need to accept terms';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
-                  child: _isLoading
-                      ? CircularProgressIndicator()
-                      : Container(
-                          padding: EdgeInsets.only(top: 3, left: 3),
-                          child: MaterialButton(
-                            minWidth: double.infinity,
-                            height: 40,
-                            onPressed: () async {
-                              // if(pin != cpin)
+                          validator: (value) {
+                            if (!checkBoxValue) {
+                              return 'You need to accept terms';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
 
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
-                                createAlbum();
-                              }
-                            },
-                            color: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Text(
-                              "SIGN UP",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Colors.white),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 5, left: 40, right: 40),
+                          child: _isLoading
+                              ? CircularProgressIndicator(
+                              strokeWidth: 6.0,
+                              backgroundColor: Colors.green,
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)
+                          )
+                              : Container(
+                            padding: EdgeInsets.only(top: 3, left: 3),
+                            child: MaterialButton(
+                              minWidth: double.infinity,
+                              height: 40,
+                              onPressed: () async {
+                                // if(pin != cpin)
+
+                                if (_formKey.currentState.validate()) {
+                                  _formKey.currentState.save();
+                                  createAlbum();
+                                }
+                              },
+                              color:Color(0xFF144A7D),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Text(
+                                "Continue",
+                                style: TextStyle(
+
+                                    letterSpacing: 1,
+                                    fontSize: 16,
+                                    fontFamily: 'berlinsans',
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
-                ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Divider(
+                            color: Colors.grey.shade300,
+                            thickness: 1,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          LoginScreen()),
+                                );
+                              },
+                              child: Text('Login',style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),),
+                            ),
+                            Text('Support',style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),)
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    ),
+                  )
+                )
               ],
             ),
           ),

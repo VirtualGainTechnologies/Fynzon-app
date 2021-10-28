@@ -5,7 +5,7 @@ import 'package:fyn_zon/mainApi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fyn_zon/tokenPass.dart';
 
-import 'kyc.dart';
+import 'Settings/kyc.dart';
 
 class PostKYCInfo {
   // ignore: missing_return

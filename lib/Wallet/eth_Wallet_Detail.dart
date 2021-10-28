@@ -1,13 +1,19 @@
 
 import 'package:flutter/material.dart';
-import 'package:fyn_zon/eth_Wallet_Deposit.dart';
-import 'package:fyn_zon/eth_Wallet_Withdraw.dart';
+import 'package:fyn_zon/Wallet/eth_Wallet_Deposit.dart';
+import 'package:fyn_zon/Wallet/eth_Wallet_Withdraw.dart';
+
+import '../custom_appbar.dart';
 
 class EthWalletDetail extends StatefulWidget {
   String currncy;
+  String fName;
+  String lName;
   EthWalletDetail({
     Key key,
     @required this.currncy,
+    @required this.fName,
+    @required this.lName,
   }) : super(key: key);
   @override
   _EthWalletDetailState createState() => _EthWalletDetailState();
@@ -15,9 +21,11 @@ class EthWalletDetail extends StatefulWidget {
 
 class _EthWalletDetailState extends State<EthWalletDetail> {
   String currncy;
+  String fName, lName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar('ETH'),
       body: Column(
         children: [
           Container(
@@ -36,8 +44,8 @@ class _EthWalletDetailState extends State<EthWalletDetail> {
                   padding: EdgeInsets.symmetric(horizontal: 25,vertical: 30),
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Name',style: TextStyle(
-                      fontSize: 35,
+                    child: Text('${widget.fName} ${widget.lName}'.toUpperCase(),style: TextStyle(
+                      fontSize: 21,
                       fontFamily: 'berlinsans',
                       letterSpacing: 0.8,
                       fontWeight: FontWeight.w600,
@@ -73,12 +81,12 @@ class _EthWalletDetailState extends State<EthWalletDetail> {
                                     style: TextStyle(
                                       fontFamily: 'berlinsans',
                                       letterSpacing: 0.8,
-                                      fontSize: 28,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black87,
                                     ),
                                   ),
-                                  Image.asset("./assets/images/wallet-2.png",scale: 9,),
+                                  Image.asset("./assets/images/wallet-2.png",scale: 11,),
                                 ],
                               ),
                               Align(
@@ -89,7 +97,7 @@ class _EthWalletDetailState extends State<EthWalletDetail> {
                                   style: TextStyle(
                                     fontFamily: 'berlinsans',
                                     letterSpacing: 1,
-                                    fontSize:40,
+                                    fontSize:20,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black87,
                                   ),
@@ -128,7 +136,7 @@ class _EthWalletDetailState extends State<EthWalletDetail> {
                         color:Color(0xFF144A7D),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                            borderRadius: BorderRadius.circular(30)),
                         child: Text(
                           "Deposit",
                           style: TextStyle(
@@ -154,7 +162,7 @@ class _EthWalletDetailState extends State<EthWalletDetail> {
                         color:Color(0xFF144A7D),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                            borderRadius: BorderRadius.circular(30)),
                         child: Text(
                           "Withdraw",
                           style: TextStyle(

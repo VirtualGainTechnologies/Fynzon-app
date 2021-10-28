@@ -22,16 +22,9 @@ class ApiClass{
         .then((http.Response response) {
       print("errror ${response.statusCode}");
       if (response.statusCode < 200 ||
-          response.statusCode >= 400 ||
-          response == null) {
-       /* Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-        // prefs?.clear();
-        prefs.remove('token');
-        prefs.remove('userid');
-        print('logout');*/
+          response.statusCode >= 400) {
         onError({"status": 0, "message": response.body});
-
-      } else {
+      }else {
         onSuccess({"status": 1, "response": response.body});
       }
     }).catchError((error) {

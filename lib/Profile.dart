@@ -14,8 +14,8 @@ class ProfilePage extends StatefulWidget {
 class ProfilePageState extends State<ProfilePage>{
   int _selectedPage = 0;
   final _pageOptions = [
-    MarketDepth(),
     OrderPage(),
+    MarketDepth(),
 
   ];
 
@@ -40,12 +40,14 @@ class ProfilePageState extends State<ProfilePage>{
                     });
                   },
                   tabs: [
-                    new Tab(text: 'Market Depth',),
-                    new Tab(text: 'Order Volume',),
+                    new Tab(text: 'ORDER VOLUME',),
+                    new Tab(text: 'MARKET DEPTH',),
                   ],
                   indicatorColor: Colors.green,
-                  unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-                  labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  unselectedLabelStyle: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white,fontSize: 15),
+                  labelStyle: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white, fontSize: 15),
                 ),
               ],
             ),

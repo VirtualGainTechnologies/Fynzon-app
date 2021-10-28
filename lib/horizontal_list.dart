@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fyn_zon/deposit.dart';
 import 'package:fyn_zon/paymentOption.dart';
 import 'package:fyn_zon/services/service.dart';
-import './wallet.dart';
+import 'Wallet/wallet.dart';
 import './withdraw.dart';
 
 class HorizontalList extends StatefulWidget {

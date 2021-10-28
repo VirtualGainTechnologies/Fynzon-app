@@ -38,13 +38,13 @@ class MarketsTabPageState extends State<MarketsTabPage> {
                     });
                   },
                   tabs: [
-                    new Tab(text: 'INR',),
+                    new Tab(text: 'INR'),
                     new Tab(text: 'USDT',),
                     new Tab(text: 'BTC'),
                   ],
                   indicatorColor: Colors.green,
-                  unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-                  labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 16),
+                  labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 16),
                 ),
               ],
             ),

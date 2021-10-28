@@ -56,3 +56,20 @@ Future mainScreen() async
   return convertedDatatoJson;
 
 }
+
+Future cancleOrder(String id) async
+{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String url = AuthToken.api+"/orders/cancelOrder/"+prefs.getString('token');
+ // String url = "http://165.232.182.9:3000/orders/cancelOrder/"+prefs.getString('token');
+  final response= await http.post(url,
+      headers: {"Accept": "Application/json"},
+      body: {
+        "orderID": id,
+      }
+  );
+
+  var convertedDatatoJson =jsonDecode(response.body);
+  return convertedDatatoJson;
+
+}

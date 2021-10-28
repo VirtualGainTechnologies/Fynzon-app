@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:fyn_zon/orderHistoryPage.dart';
 import 'package:fyn_zon/openOrder.dart';
 
+import 'mainscreen.dart';
+
 
 class OrderHistory extends StatefulWidget {
   @override
@@ -29,39 +31,49 @@ class OrderHistoryState extends State<OrderHistory> {
       padding: const EdgeInsets.only(),
       child: new DefaultTabController(
         length: 2,
-        child: new Scaffold(
-          appBar: new AppBar(
-            backgroundColor: Color(0xFF18222C),
-            flexibleSpace: new Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                new TabBar(
-                  onTap: (int index) {
-                    setState(() {
-                      _selectedPage = index;
-                    });
-                  },
-                  tabs: [
-                    new Tab(
-                      text: 'Open Orders',
-                    ),
-                    new Tab(
-                      text: 'Close Orders',
-                    ),
-                    /*new Tab(
-                      text: 'OrderHistory',
-                    ),*/
-                  ],
-                  indicatorColor: Colors.green,
-                  unselectedLabelStyle: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey),
-                  labelStyle: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-              ],
+        child: WillPopScope(
+          onWillPop: (){
+    Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+    builder: (context) => MainScreenPage(),
+    ),
+    );
+          },
+          child: new Scaffold(
+            appBar: new AppBar(
+              backgroundColor: Color(0xFF18222C),
+              flexibleSpace: new Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  new TabBar(
+                    onTap: (int index) {
+                      setState(() {
+                        _selectedPage = index;
+                      });
+                    },
+                    tabs: [
+                      new Tab(
+                        text: 'OPEN ORDERS',
+                      ),
+                      new Tab(
+                        text: 'CLOSE ORDERS',
+                      ),
+                      /*new Tab(
+                        text: 'OrderHistory',
+                      ),*/
+                    ],
+                    indicatorColor: Colors.green,
+                    unselectedLabelStyle: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white,fontSize: 15),
+                    labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white, fontSize: 15),
+                  ),
+                ],
+              ),
             ),
+            body: _pageOptions[_selectedPage],
           ),
-          body: _pageOptions[_selectedPage],
         ),
       ),
     );

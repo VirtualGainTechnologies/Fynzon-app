@@ -10,49 +10,54 @@ MERGED from [:firebase_core] /Users/lalitsharma/Desktop/fyn_zon/build/firebase_c
 MERGED from [:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-22:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] /Users/lalitsharma/Desktop/fyn_zon/build/shared_preferences/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:nexmo_verify] /Users/lalitsharma/Desktop/fyn_zon/build/nexmo_verify/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:webview_flutter] /Users/lalitsharma/Desktop/fyn_zon/build/webview_flutter/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_native_image] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_native_image/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:image_cropper] /Users/lalitsharma/Desktop/fyn_zon/build/image_cropper/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:connectivity] /Users/lalitsharma/Desktop/fyn_zon/build/connectivity/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:hexcolor] /Users/lalitsharma/Desktop/fyn_zon/build/hexcolor/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:fluttertoast] /Users/lalitsharma/Desktop/fyn_zon/build/fluttertoast/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-14:12
+MERGED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-19:12
 MERGED from [:camera] /Users/lalitsharma/Desktop/fyn_zon/build/camera/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:flutter_image_compress] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_image_compress/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:firebase-auth:20.0.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/116ba14eac3517e23f9d49126d8cf8d8/jetified-firebase-auth-20.0.1/AndroidManifest.xml:17:1-83:12
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3984f412c6ba51a14ba8106345531465/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:15:1-49:12
-MERGED from [com.github.yalantis:ucrop:2.2.6] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1b88b248ba35e53e35fe25ea7003f8f2/jetified-ucrop-2.2.6/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.exifinterface:exifinterface:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4ae1c3729174ac5603097df34391647d/exifinterface-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/82203f6f543c91ba5a01670dd4523913/webkit-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.heifwriter:heifwriter:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/7b1927cdb9c216941c54f55a4481dd0d/heifwriter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/295072dbd297cc632a6382ebd8d1bb63/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.yalantis:ucrop:2.2.7] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/427ddf99edcaa8eff1e1abc4d8074d8b/jetified-ucrop-2.2.7/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cef1237333bc5677c536aff0ebcabc29/exifinterface-1.3.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/313140931a4e598b53b2cb3d87b67d68/appcompat-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.4.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/ee23bde683e37d371b25126bd9289e17/transition-1.4.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3d2f0fc7f95220d059ce54f36415db5a/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/8ef50c814d6439c11e744afb40df6294/jetified-firebase-components-16.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/52085cfd79e6e27480c989095453d35d/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/91f08b26d1725f31a2839258483291c5/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/2f3d7637012b5e6485bf0f3c490202d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9e304773ad753a677e83cd361ed7c867/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1d3d34c8dba8133e977679547c68a0e6/jetified-play-services-basement-17.1.0/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b1aea2c3cba3d1dfa4fd0beadf5a099a/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.transition:transition:1.2.0-rc01] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/6a8a87fda1e560a3b2cf880611ab65d2/transition-1.2.0-rc01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.4] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/66086ab3df3a91d98f6d50d98e96ef6e/fragment-1.3.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.3] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/002564db81c44d5e8c5cc37554cf1816/jetified-activity-1.2.3/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58aaad6e5095df8c2c7cd665eb8ef8e9/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58d29eaa3d14b61418af139c8c10bcb4/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/41c15ee9cf009f99a35140879bfa8f1d/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3aec974cce297e7dc6cc78e8bf25e3bc/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b96137e4f2eae8b582a2a9ecd572afc8/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/29831e65f399e75f7e441f4a053adc2a/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58d29eaa3d14b61418af139c8c10bcb4/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/92dbb421c67045d47277adbc4be41388/customview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/32fddba15a2097a5cfd4412fa7726000/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/439493303c87c785c9a971d9843f615a/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cc6b41725c7ac1bcdf6317f6e1b829d3/core-1.1.0/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/a3b86c36919e980e3cc94192f8c3d7af/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1cc452f1bd94d650c9d6085036298bbf/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b815b92270c9517cad1ba61d96ab6197/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/14eca98119bbcb63f3081b185189a281/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3d2f0fc7f95220d059ce54f36415db5a/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/8ef50c814d6439c11e744afb40df6294/jetified-firebase-components-16.1.0/AndroidManifest.xml:15:1-23:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/13dcc99157078dbe9c8e89e8d7df4f2b/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9f16c3a130948176a6e1c9402bb421b9/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/92dbb421c67045d47277adbc4be41388/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4a942e85d29d56ce26fd01b184933b47/core-1.5.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/088427f3aebee1542c674e9fb9a97350/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1abd0b26dfb8b77fb844389e3902ce8b/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/6b8ebd70568d55c79006b9911565bd0d/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b3bb082a0a842837b8dfb84c5e044061/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/85f7cc22aedcf838df7394247d8397bc/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b748d3a5650ea0519dc5fc0dac102413/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/06c19b36723874a5ee710a6d0ac4eb14/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b815b92270c9517cad1ba61d96ab6197/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1725a2d28e1557c436d82da8156cc63d/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/128645b1a8df3e2c1b084ee3e53b2a89/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/e7203721655bdf274b4cd70e7af4fa15/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/40421315563e31d87ec79ae6c224949d/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4c9bc914641fd2ef9a1370d256fd2710/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
 INJECTED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/debug/AndroidManifest.xml:1:1-7:12
@@ -91,6 +96,8 @@ MERGED from [:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picke
 MERGED from [:image_picker] /Users/lalitsharma/Desktop/fyn_zon/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-20:19
 MERGED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-17:19
+MERGED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-17:19
 MERGED from [com.google.firebase:firebase-auth:20.0.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/116ba14eac3517e23f9d49126d8cf8d8/jetified-firebase-auth-20.0.1/AndroidManifest.xml:26:5-81:19
 MERGED from [com.google.firebase:firebase-auth:20.0.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/116ba14eac3517e23f9d49126d8cf8d8/jetified-firebase-auth-20.0.1/AndroidManifest.xml:26:5-81:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3984f412c6ba51a14ba8106345531465/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:7:5-8:19
@@ -105,12 +112,12 @@ MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/lalitshar
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9e304773ad753a677e83cd361ed7c867/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1d3d34c8dba8133e977679547c68a0e6/jetified-play-services-basement-17.1.0/AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1d3d34c8dba8133e977679547c68a0e6/jetified-play-services-basement-17.1.0/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.core:core:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cc6b41725c7ac1bcdf6317f6e1b829d3/core-1.1.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cc6b41725c7ac1bcdf6317f6e1b829d3/core-1.1.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9f16c3a130948176a6e1c9402bb421b9/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9f16c3a130948176a6e1c9402bb421b9/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.core:core:1.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4a942e85d29d56ce26fd01b184933b47/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4a942e85d29d56ce26fd01b184933b47/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/088427f3aebee1542c674e9fb9a97350/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/088427f3aebee1542c674e9fb9a97350/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cc6b41725c7ac1bcdf6317f6e1b829d3/core-1.1.0/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4a942e85d29d56ce26fd01b184933b47/core-1.5.0/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:12:9-31
 	android:icon
@@ -134,17 +141,17 @@ ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManife
 	android:name
 		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:19:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:32:13-35:17
+ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:32:13-35:19
 	android:resource
-		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:34:15-52
+		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:34:17-54
 	android:name
-		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:33:15-70
+		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:33:17-72
 meta-data#io.flutter.embedding.android.SplashScreenDrawable
-ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:41:13-44:17
+ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:41:13-44:19
 	android:resource
-		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:43:15-61
+		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:43:17-63
 	android:name
-		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:42:15-79
+		ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:42:17-81
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/main/AndroidManifest.xml:45:13-48:29
 action#android.intent.action.MAIN
@@ -183,8 +190,8 @@ MERGED from [:flutter_plugin_android_lifecycle] /Users/lalitsharma/Desktop/fyn_z
 MERGED from [:flutter_plugin_android_lifecycle] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/lalitsharma/Desktop/fyn_zon/build/shared_preferences/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/lalitsharma/Desktop/fyn_zon/build/shared_preferences/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:nexmo_verify] /Users/lalitsharma/Desktop/fyn_zon/build/nexmo_verify/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:nexmo_verify] /Users/lalitsharma/Desktop/fyn_zon/build/nexmo_verify/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /Users/lalitsharma/Desktop/fyn_zon/build/webview_flutter/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /Users/lalitsharma/Desktop/fyn_zon/build/webview_flutter/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_native_image] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_native_image/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_native_image] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_native_image/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:image_cropper] /Users/lalitsharma/Desktop/fyn_zon/build/image_cropper/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
@@ -197,6 +204,8 @@ MERGED from [:fluttertoast] /Users/lalitsharma/Desktop/fyn_zon/build/fluttertoas
 MERGED from [:fluttertoast] /Users/lalitsharma/Desktop/fyn_zon/build/fluttertoast/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:camera] /Users/lalitsharma/Desktop/fyn_zon/build/camera/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:camera] /Users/lalitsharma/Desktop/fyn_zon/build/camera/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_image_compress] /Users/lalitsharma/Desktop/fyn_zon/build/flutter_image_compress/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-9:55
@@ -207,14 +216,22 @@ MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/lalitsharm
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3984f412c6ba51a14ba8106345531465/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/deeb946d5d7c96814f9d74de0533a049/jetified-firebase-common-19.5.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.github.yalantis:ucrop:2.2.6] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1b88b248ba35e53e35fe25ea7003f8f2/jetified-ucrop-2.2.6/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.yalantis:ucrop:2.2.6] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1b88b248ba35e53e35fe25ea7003f8f2/jetified-ucrop-2.2.6/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.exifinterface:exifinterface:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4ae1c3729174ac5603097df34391647d/exifinterface-1.3.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.exifinterface:exifinterface:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4ae1c3729174ac5603097df34391647d/exifinterface-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/82203f6f543c91ba5a01670dd4523913/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/82203f6f543c91ba5a01670dd4523913/webkit-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.heifwriter:heifwriter:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/7b1927cdb9c216941c54f55a4481dd0d/heifwriter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.heifwriter:heifwriter:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/7b1927cdb9c216941c54f55a4481dd0d/heifwriter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/295072dbd297cc632a6382ebd8d1bb63/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/295072dbd297cc632a6382ebd8d1bb63/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.yalantis:ucrop:2.2.7] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/427ddf99edcaa8eff1e1abc4d8074d8b/jetified-ucrop-2.2.7/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.7] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/427ddf99edcaa8eff1e1abc4d8074d8b/jetified-ucrop-2.2.7/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cef1237333bc5677c536aff0ebcabc29/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cef1237333bc5677c536aff0ebcabc29/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/313140931a4e598b53b2cb3d87b67d68/appcompat-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/313140931a4e598b53b2cb3d87b67d68/appcompat-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/ee23bde683e37d371b25126bd9289e17/transition-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/ee23bde683e37d371b25126bd9289e17/transition-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3d2f0fc7f95220d059ce54f36415db5a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3d2f0fc7f95220d059ce54f36415db5a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/8ef50c814d6439c11e744afb40df6294/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/8ef50c814d6439c11e744afb40df6294/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/52085cfd79e6e27480c989095453d35d/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/52085cfd79e6e27480c989095453d35d/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/91f08b26d1725f31a2839258483291c5/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:20:5-44
@@ -225,50 +242,50 @@ MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/lalitshar
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9e304773ad753a677e83cd361ed7c867/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1d3d34c8dba8133e977679547c68a0e6/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1d3d34c8dba8133e977679547c68a0e6/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b1aea2c3cba3d1dfa4fd0beadf5a099a/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b1aea2c3cba3d1dfa4fd0beadf5a099a/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0-rc01] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/6a8a87fda1e560a3b2cf880611ab65d2/transition-1.2.0-rc01/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0-rc01] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/6a8a87fda1e560a3b2cf880611ab65d2/transition-1.2.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/66086ab3df3a91d98f6d50d98e96ef6e/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/66086ab3df3a91d98f6d50d98e96ef6e/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.3] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/002564db81c44d5e8c5cc37554cf1816/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.3] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/002564db81c44d5e8c5cc37554cf1816/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58aaad6e5095df8c2c7cd665eb8ef8e9/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58aaad6e5095df8c2c7cd665eb8ef8e9/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58d29eaa3d14b61418af139c8c10bcb4/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58d29eaa3d14b61418af139c8c10bcb4/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/41c15ee9cf009f99a35140879bfa8f1d/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/41c15ee9cf009f99a35140879bfa8f1d/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3aec974cce297e7dc6cc78e8bf25e3bc/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3aec974cce297e7dc6cc78e8bf25e3bc/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b96137e4f2eae8b582a2a9ecd572afc8/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b96137e4f2eae8b582a2a9ecd572afc8/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/29831e65f399e75f7e441f4a053adc2a/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/29831e65f399e75f7e441f4a053adc2a/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58d29eaa3d14b61418af139c8c10bcb4/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/58d29eaa3d14b61418af139c8c10bcb4/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/92dbb421c67045d47277adbc4be41388/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/92dbb421c67045d47277adbc4be41388/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/32fddba15a2097a5cfd4412fa7726000/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/32fddba15a2097a5cfd4412fa7726000/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/439493303c87c785c9a971d9843f615a/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/439493303c87c785c9a971d9843f615a/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cc6b41725c7ac1bcdf6317f6e1b829d3/core-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/cc6b41725c7ac1bcdf6317f6e1b829d3/core-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/a3b86c36919e980e3cc94192f8c3d7af/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/a3b86c36919e980e3cc94192f8c3d7af/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1cc452f1bd94d650c9d6085036298bbf/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1cc452f1bd94d650c9d6085036298bbf/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b815b92270c9517cad1ba61d96ab6197/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b815b92270c9517cad1ba61d96ab6197/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/14eca98119bbcb63f3081b185189a281/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/14eca98119bbcb63f3081b185189a281/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3d2f0fc7f95220d059ce54f36415db5a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/3d2f0fc7f95220d059ce54f36415db5a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/8ef50c814d6439c11e744afb40df6294/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/8ef50c814d6439c11e744afb40df6294/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/13dcc99157078dbe9c8e89e8d7df4f2b/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/13dcc99157078dbe9c8e89e8d7df4f2b/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9f16c3a130948176a6e1c9402bb421b9/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/9f16c3a130948176a6e1c9402bb421b9/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/92dbb421c67045d47277adbc4be41388/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/92dbb421c67045d47277adbc4be41388/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4a942e85d29d56ce26fd01b184933b47/core-1.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.5.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4a942e85d29d56ce26fd01b184933b47/core-1.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/088427f3aebee1542c674e9fb9a97350/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/088427f3aebee1542c674e9fb9a97350/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1abd0b26dfb8b77fb844389e3902ce8b/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1abd0b26dfb8b77fb844389e3902ce8b/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/6b8ebd70568d55c79006b9911565bd0d/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/6b8ebd70568d55c79006b9911565bd0d/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b3bb082a0a842837b8dfb84c5e044061/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b3bb082a0a842837b8dfb84c5e044061/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/85f7cc22aedcf838df7394247d8397bc/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/85f7cc22aedcf838df7394247d8397bc/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b748d3a5650ea0519dc5fc0dac102413/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b748d3a5650ea0519dc5fc0dac102413/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/06c19b36723874a5ee710a6d0ac4eb14/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/06c19b36723874a5ee710a6d0ac4eb14/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b815b92270c9517cad1ba61d96ab6197/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/b815b92270c9517cad1ba61d96ab6197/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1725a2d28e1557c436d82da8156cc63d/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/1725a2d28e1557c436d82da8156cc63d/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/128645b1a8df3e2c1b084ee3e53b2a89/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/128645b1a8df3e2c1b084ee3e53b2a89/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/e7203721655bdf274b4cd70e7af4fa15/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/e7203721655bdf274b4cd70e7af4fa15/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/40421315563e31d87ec79ae6c224949d/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/40421315563e31d87ec79ae6c224949d/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4c9bc914641fd2ef9a1370d256fd2710/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/lalitsharma/.gradle/caches/transforms-2/files-2.1/4c9bc914641fd2ef9a1370d256fd2710/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
 INJECTED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/lalitsharma/Desktop/fyn_zon/android/app/src/debug/AndroidManifest.xml
 	tools:overrideLibrary
@@ -349,6 +366,16 @@ ADDED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher
 		ADDED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-71
 	android:name
 		ADDED from [:url_launcher] /Users/lalitsharma/Desktop/fyn_zon/build/url_launcher/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-74
+provider#io.flutter.plugins.share.ShareFileProvider
+ADDED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
+	android:grantUriPermissions
+		ADDED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
+	android:authorities
+		ADDED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-74
+	android:exported
+		ADDED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [:share] /Users/lalitsharma/Desktop/fyn_zon/build/share/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-70
 uses-permission#android.permission.CAMERA
 ADDED from [:camera] /Users/lalitsharma/Desktop/fyn_zon/build/camera/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-65
 	android:name

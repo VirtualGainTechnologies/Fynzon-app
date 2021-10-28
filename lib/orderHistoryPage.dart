@@ -139,8 +139,14 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
     return Scaffold(
       backgroundColor: Color(0xFF233446),
       body: FadeAnimation(
-        2.0,
-         Container(child: FutureBuilder<OrderHistoryModal>(
+        0,
+         Container(
+             width: MediaQuery.of(context).size.width,
+             height: MediaQuery.of(context).size.height,
+             decoration: new BoxDecoration(
+               image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+             ),
+             child: FutureBuilder<OrderHistoryModal>(
           builder: (context, snapshot) {
             if (futureAlbum != null) {
               return FadeAnimation(
@@ -148,51 +154,31 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                  Column(
                   children: [
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
                       height: 50,
                       color: Colors.black,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Expanded(
-                            flex: 4,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Text(
-                                "Pair",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          Text(
+                            "PAIR",
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
+                          ),
+                          SizedBox(
+                            width: 0,
                           ),
                           //Spacer(),
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 0),
-                              child: Text(
-                                "Amount",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          Text(
+                            "PRICE",
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                           ),
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 0),
-                              child: Text(
-                                "Price",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          Text(
+                            "VOLUME",
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                           ),
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 0),
-                              child: Text(
-                                "Total",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          Text(
+                            "TOTAL",
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,letterSpacing: 0.5),
                           ),
                         ],
                       ),
@@ -217,15 +203,17 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                             if(finalLen == 1){
                               value = '$value$c';
                               print("answerc"+value);
-                            }else if(finalLen>1 && finalLen<3) {
+                            }else if(finalLen == 2) {
                               value= '$value$b';
                               print("answerb"+value);
-                            }else if(finalLen>2 && finalLen<4){
+                            }else if(finalLen == 3){
                               value= '$value$a';
                               print("answera"+value);
-                            }else if(finalLen>4){
-                              value= num.toStringAsFixed(4);
+                            }else if(finalLen == 4){
+                              value= value;
                               print("answeraaaaa"+value);
+                            }else if(finalLen > 4){
+                              value= num1.toStringAsFixed(4);
                             }else {
                               value = value.substring(0,pointIndex)+value.substring(pointIndex,pointIndex+5);
                               print("answer "+value);
@@ -241,7 +229,7 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                               margin: EdgeInsets.only(top: 2),
                               child: Card(
                                 //color: Color(0xFF18222C),
-                                color: getMyColor(position),
+                               color: getMyColor(position),
                                 margin: EdgeInsets.symmetric(),
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
@@ -250,18 +238,22 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                                 //color: getMyColor(index),
                                 //color: Color(0xFF18222C),
                                 child: Row(
-                                 // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Expanded(
                                       flex: 4,
-                                      child: Container(
+                                      child: Padding(
                                         padding: EdgeInsets.only(left: 10),
                                         child: RichText(
                                           text: TextSpan(
-                                              text: futureAlbum
+                                              text:
+
+                                              futureAlbum
                                                   .data[position].tradingCurrency,
-                                              style: TextStyle(color: Colors.green,
-                                                  fontSize: 16,
+                                              style: TextStyle(color:
+
+                                              Colors.white,
+                                                  fontSize: 12,
                                                   fontWeight: FontWeight.bold),
                                               children: <TextSpan>[
                                                 TextSpan(
@@ -280,28 +272,31 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        child: Text(
-                                          futureAlbum.data[position].price.toString(),
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              color: Colors.green, fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                          softWrap: true,
-                                        ),
+                                      flex: 3,
+                                      child: Text(
+                                        futureAlbum.data[position].price.toString(),
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+
+                                            color: futureAlbum
+                                            .data[position].purpose == "buy"?
+                                        Colors.green
+                                            :
+                                        Colors.red,
+                                             fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                        softWrap: true,
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        child: Text(
-                                          value,
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              color: Colors.green, fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                                      flex: 3,
+                                      child: Text(
+                                        value,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            color:
+                                            Colors.white, fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     Expanded(
@@ -312,9 +307,10 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
                                           sum.toStringAsFixed(0).toString(),
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
-                                              color: Colors.white, fontSize: 15,
+                                              color:
+                                              Colors.white, fontSize: 15,
                                               fontWeight: FontWeight.bold),
-                                          softWrap: true,
+
                                         ),
                                       ),
                                     ),
@@ -332,10 +328,14 @@ class _OrderHistoryMainState extends State<OrderHistoryMain> {
             }
             return Container(
                 alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
-                // margin: EdgeInsets.only(top: 80),
-                child: CircularProgressIndicator(backgroundColor: Colors.white,));
+                height: MediaQuery.of(context).size.height,
+                decoration: new BoxDecoration(
+                  image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
+                ),
+                child: CircularProgressIndicator(  strokeWidth: 6.0,
+                    backgroundColor: Colors.green,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)));
           },
         )),
       ),

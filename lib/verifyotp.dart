@@ -23,3 +23,37 @@ import 'package:fyn_zon/tokenPass.dart';
     return convertedDatatoJson;
   }
 
+Future forgotOtp(String otp, String verify_id,
+    BuildContext context) async
+{
+  String url = AuthToken.api + "/" + "resetPin/mobile/verifyOTP";
+  final response = await http.post(url,
+      headers: {"Accept": "Application/json"},
+      body: {
+
+        "otp": otp,
+        "id": verify_id,
+      }
+  );
+
+  var convertedDatatoJson = jsonDecode(response.body);
+  return convertedDatatoJson;
+}
+
+
+Future setNewPin(String pin, String verify_id,
+    BuildContext context) async
+{
+  String url = AuthToken.api + "/" + "resetPin/mobile";
+  final response = await http.post(url,
+      headers: {"Accept": "Application/json"},
+      body: {
+        "id": verify_id,
+        "pin": pin
+
+      }
+  );
+
+  var convertedDatatoJson = jsonDecode(response.body);
+  return convertedDatatoJson;
+}

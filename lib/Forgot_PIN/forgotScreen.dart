@@ -1,15 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:fyn_zon/Forgot_PIN/email_forgot_pin.dart';
+import 'package:fyn_zon/Forgot_PIN/mobile_forgot_pin.dart';
 import 'package:fyn_zon/login.dart';
+
+import '../custom_appbar.dart';
 class ForgotScreen extends StatefulWidget {
   @override
   _ForgotScreenState createState() => _ForgotScreenState();
 }
 
 class _ForgotScreenState extends State<ForgotScreen> {
-  TextEditingController otpController = new TextEditingController();
-  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -21,6 +23,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
           ));
         },
       child: Scaffold(
+        appBar: appBar('Forgot PIN'),
         body: Container(
           decoration: new BoxDecoration(
             image: new DecorationImage(image: new AssetImage("assets/bg.png"), fit: BoxFit.cover,),
@@ -32,7 +35,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                  padding: const EdgeInsets.only(bottom: 20, top: 00),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -44,7 +47,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                       ])
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               Card(
                 shape: RoundedRectangleBorder(
@@ -74,7 +77,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                         padding: EdgeInsets.only(left: 30,right: 30),
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text('Choose one of the methods to update your PIN',
+                          child: Text('Select the method to Recover your PIN',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 16,
@@ -86,12 +89,18 @@ class _ForgotScreenState extends State<ForgotScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Padding(
+                     /* Padding(
                         padding: EdgeInsets.only(left: 30,right: 30),
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 45,
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      EmailForgotPin()),
+                            );
                           },
                           color:Color(0xFF81C1DF),
                           //color:Color(0xFF144A7D),
@@ -108,16 +117,22 @@ class _ForgotScreenState extends State<ForgotScreen> {
                                 color: Colors.white),
                           ),
                         ),
-                      ),
-                      SizedBox(
+                      ),*/
+                      /*SizedBox(
                         height: 20,
-                      ),
+                      ),*/
                       Padding(
                         padding: EdgeInsets.only(left: 30,right: 30),
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 45,
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MobileForgotPin()),
+                            );
                           },
                           color:Color(0xFF81C1DF),
                           //color:Color(0xFF144A7D),
